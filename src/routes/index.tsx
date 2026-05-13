@@ -7,8 +7,12 @@ import { Work } from "@/components/site/Work";
 import { Showcase } from "@/components/site/Showcase";
 import { Process } from "@/components/site/Process";
 import { Vision } from "@/components/site/Vision";
+import { Booking } from "@/components/site/Booking";
 import { Contact } from "@/components/site/Contact";
+import { FAQ } from "@/components/site/FAQ";
+import { Socials } from "@/components/site/Socials";
 import { Footer } from "@/components/site/Footer";
+import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,8 +48,12 @@ function Index() {
         <Process />
         <Vision />
         <Contact />
+        <Booking />
+        <FAQ />
+        <Socials />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
