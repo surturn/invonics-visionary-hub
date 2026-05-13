@@ -1,181 +1,256 @@
 import { useState } from "react";
+import { z } from "zod";
 import { Reveal } from "./Reveal";
+import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
+import { Calendar, Send, FolderOpen } from "lucide-react";
+
+const schema = z.object({
+  name: z.string().trim().min(1, "Name required").max(100),
+  email: z.string().trim().email("Invalid email").max(255),
+  company: z.string().trim().max(120).optional().or(z.literal("")),
+  budget: z.string().trim().max(60).optional().or(z.literal("")),
+  message: z.string().trim().min(10, "Add a few more details").max(1500),
+});
 
 export function Contact() {
   const [sent, setSent] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const r = schema.safeParse(data);
+    if (!r.success) {
+      const errs: Record<string, string> = {};
+      r.error.issues.forEach((i) => (errs[i.path[0] as string] = i.message));
+      setErrors(errs);
+      return;
+    }
+    setErrors({});
+    setSent(true);
+  };
 
   return (
     <section id="contact" className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden">
-      {/* Animated map-style background */}
-      <div className="absolute inset-0 -z-10 opacity-40">
-        <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <radialGradient id="g1" cx="50%" cy="40%" r="50%">
-              <stop offset="0%" stopColor="oklch(0.72 0.18 245 / 0.4)" />
-              <stop offset="100%" stopColor="transparent" />
-            </radialGradient>
-          </defs>
-          <rect width="1200" height="600" fill="url(#g1)" />
-          {Array.from({ length: 30 }).map((_, i) => (
-            <line
-              key={i}
-              x1={0}
-              x2={1200}
-              y1={i * 22}
-              y2={i * 22 + 8}
-              stroke="oklch(1 0 0 / 0.05)"
-              strokeWidth="1"
-            />
-          ))}
-          {Array.from({ length: 50 }).map((_, i) => (
-            <circle
-              key={i}
-              cx={(i * 73) % 1200}
-              cy={((i * 41) % 600) + 30}
-              r="1.5"
-              fill="oklch(0.72 0.18 245 / 0.6)"
-            >
-              <animate
-                attributeName="opacity"
-                values="0.2;1;0.2"
-                dur={`${3 + (i % 5)}s`}
-                repeatCount="indefinite"
-                begin={`${(i % 7) * 0.3}s`}
-              />
-            </circle>
-          ))}
-        </svg>
-      </div>
+      <ContactBackdrop />
 
-      <div className="mx-auto max-w-7xl px-5">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          <Reveal className="lg:col-span-5">
-            <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">
-              <span className="text-primary">●</span>&nbsp; Contact
-            </div>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-gradient leading-[1.04]">
-              Let&rsquo;s engineer
-              <br />
-              <span className="text-gradient-accent">your next move.</span>
-            </h2>
-            <p className="mt-6 text-muted-foreground max-w-md">
-              Tell us about your project. We respond to every inquiry within one
-              business day.
-            </p>
-
-            <div className="mt-10 space-y-4">
-              <a
-                href="https://wa.me/0000000000"
-                className="flex items-center gap-3 group"
-              >
-                <span className="h-10 w-10 grid place-items-center rounded-xl glass group-hover:ring-glow transition-all">
-                  <svg className="h-4 w-4 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.52 3.48A11.86 11.86 0 0012.06 0C5.5 0 .14 5.36.14 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.3-1.66a11.93 11.93 0 005.74 1.46h.01c6.56 0 11.92-5.36 11.92-11.92 0-3.18-1.24-6.17-3.45-8.4zM12.05 21.5a9.55 9.55 0 01-4.87-1.34l-.35-.21-3.74.98 1-3.65-.23-.37a9.5 9.5 0 0114.7-11.6 9.43 9.43 0 012.79 6.74c0 5.27-4.3 9.55-9.3 9.45zm5.43-7.13c-.3-.15-1.76-.86-2.03-.96-.27-.1-.47-.15-.67.15-.2.3-.78.96-.95 1.16-.18.2-.35.22-.65.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.34.45-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.9-2.18-.24-.57-.48-.5-.66-.5l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.62.71.22 1.36.19 1.87.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.35z" />
-                  </svg>
-                </span>
-                <div>
-                  <div className="text-xs text-muted-foreground">WhatsApp</div>
-                  <div className="text-sm text-foreground">Chat with our team</div>
-                </div>
-              </a>
-
-              <a href="mailto:hello@invonics.tech" className="flex items-center gap-3 group">
-                <span className="h-10 w-10 grid place-items-center rounded-xl glass group-hover:ring-glow transition-all">
-                  <svg className="h-4 w-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <path d="m3 7 9 6 9-6" />
-                  </svg>
-                </span>
-                <div>
-                  <div className="text-xs text-muted-foreground">Email</div>
-                  <div className="text-sm text-foreground">hello@invonics.tech</div>
-                </div>
-              </a>
-
-              <div className="flex items-center gap-3 pt-3">
-                {["Linkedin", "X", "Instagram", "Behance"].map((s) => (
-                  <a
-                    key={s}
-                    href="#"
-                    className="rounded-full glass px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:ring-glow transition-all"
-                  >
-                    {s}
-                  </a>
-                ))}
-              </div>
+      <div className="mx-auto max-w-7xl px-5 relative">
+        <div className="text-center max-w-3xl mx-auto">
+          <Reveal>
+            <div className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-1.5 text-xs text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-glow" />
+              <span className="tracking-[0.18em] uppercase">Contact · KE</span>
             </div>
           </Reveal>
-
-          <Reveal delay={120} className="lg:col-span-7">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-              }}
-              className="glass-strong rounded-3xl p-6 md:p-8 shadow-card"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Field label="Full name" placeholder="Ada Okafor" />
-                <Field label="Email" type="email" placeholder="ada@company.com" />
-                <Field label="Company" placeholder="Acme Inc." />
-                <Field label="Budget" placeholder="$10k – $50k" />
-              </div>
-              <div className="mt-4">
-                <label className="text-xs uppercase tracking-wider text-muted-foreground">
-                  Project brief
-                </label>
-                <textarea
-                  rows={5}
-                  required
-                  placeholder="Tell us about your goals, timelines and any references…"
-                  className="mt-2 w-full rounded-xl bg-background/40 border border-border focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-ring px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-all"
-                />
-              </div>
-
-              <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div className="text-xs text-muted-foreground">
-                  By submitting, you agree to our terms. We never share your details.
-                </div>
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent-gradient px-6 py-3 text-sm font-medium text-primary-foreground shadow-glow hover:translate-y-[-1px] transition-transform"
-                >
-                  {sent ? "Message sent ✓" : "Send inquiry"}
-                  {!sent && (
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  )}
-                </button>
-              </div>
-            </form>
+          <Reveal delay={80}>
+            <h2 className="mt-6 font-display text-4xl sm:text-5xl md:text-6xl leading-[1.04] tracking-tight">
+              <span className="text-gradient">Let&rsquo;s build something </span>
+              <span className="text-gradient-accent">intelligent.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed">
+              Whether you need software systems, branding, automation, digital experiences,
+              IT equipment supply, Starlink installation, or modern business solutions —
+              Invonics Technologies is ready to bring your vision to life.
+            </p>
           </Reveal>
         </div>
+
+        {/* CTA stack — WhatsApp dominant */}
+        <Reveal delay={200}>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-4 max-w-5xl mx-auto">
+            {/* Primary — WhatsApp */}
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative md:col-span-6 overflow-hidden rounded-3xl p-6 md:p-7 text-white"
+              style={{
+                background:
+                  "linear-gradient(135deg, oklch(0.62 0.18 150) 0%, oklch(0.5 0.16 160) 100%)",
+              }}
+            >
+              <div className="absolute -top-16 -right-12 h-56 w-56 rounded-full bg-white/15 blur-3xl group-hover:scale-110 transition-transform duration-700" />
+              <div className="relative flex items-start justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] opacity-80">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white pulse-glow" /> Primary
+                  </div>
+                  <div className="mt-3 font-display text-2xl md:text-3xl leading-tight">
+                    Chat on WhatsApp
+                  </div>
+                  <div className="mt-2 text-sm opacity-85 max-w-xs">
+                    Pre-filled inquiry · we usually reply in under 5 minutes.
+                  </div>
+                </div>
+                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/15 wa-pulse">
+                  <WhatsAppIcon className="h-7 w-7 text-white" />
+                </div>
+              </div>
+              <div className="relative mt-7 inline-flex items-center gap-2 text-sm font-medium">
+                Start chat <span aria-hidden>→</span>
+              </div>
+            </a>
+
+            {/* Secondary trio */}
+            <div className="md:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <SecondaryCTA
+                href="#booking"
+                icon={<Calendar className="h-4 w-4" />}
+                label="Book a Strategy Call"
+                sub="30 min · free"
+              />
+              <SecondaryCTA
+                href="#inquiry-form"
+                icon={<Send className="h-4 w-4" />}
+                label="Send an Inquiry"
+                sub="48-hr response"
+              />
+              <SecondaryCTA
+                href="/#work"
+                icon={<FolderOpen className="h-4 w-4" />}
+                label="View Portfolio"
+                sub="Selected work"
+              />
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Inquiry form */}
+        <Reveal delay={260}>
+          <form
+            id="inquiry-form"
+            onSubmit={onSubmit}
+            className="mt-14 max-w-4xl mx-auto glass-strong rounded-3xl p-6 md:p-8 shadow-card noise"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Field name="name" label="Full name" placeholder="Ada Okafor" error={errors.name} />
+              <Field name="email" label="Email" type="email" placeholder="ada@company.com" error={errors.email} />
+              <Field name="company" label="Company / Organization" placeholder="Acme Inc." error={errors.company} required={false} />
+              <Field name="budget" label="Estimated budget" placeholder="KES 200k – 1M" error={errors.budget} required={false} />
+            </div>
+            <div className="mt-4">
+              <label className="text-xs uppercase tracking-wider text-muted-foreground">
+                Project brief
+              </label>
+              <textarea
+                name="message"
+                rows={5}
+                maxLength={1500}
+                placeholder="Tell us about your goals, timelines and any references…"
+                className={`mt-2 w-full rounded-xl bg-background/40 border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-ring transition-all ${
+                  errors.message ? "border-destructive/60" : "border-border focus:border-primary/60"
+                }`}
+              />
+              {errors.message && (
+                <p className="mt-1.5 text-xs text-destructive">{errors.message}</p>
+              )}
+            </div>
+
+            <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="text-xs text-muted-foreground">
+                We never share your details. Replies in &lt; 1 business day.
+              </div>
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent-gradient px-6 py-3 text-sm font-medium text-primary-foreground shadow-glow hover:translate-y-[-1px] transition-transform"
+              >
+                {sent ? "Message sent ✓" : "Send inquiry"}
+                {!sent && (
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </form>
+        </Reveal>
       </div>
     </section>
   );
 }
 
+function SecondaryCTA({
+  href,
+  icon,
+  label,
+  sub,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+  sub: string;
+}) {
+  return (
+    <a
+      href={href}
+      className="group h-full rounded-2xl glass p-5 transition-all hover:-translate-y-1 hover:ring-glow flex flex-col justify-between"
+    >
+      <div className="grid h-10 w-10 place-items-center rounded-xl bg-secondary border border-border text-primary">
+        {icon}
+      </div>
+      <div className="mt-6">
+        <div className="font-display text-base text-foreground leading-tight">{label}</div>
+        <div className="mt-1 text-xs text-muted-foreground">{sub}</div>
+      </div>
+    </a>
+  );
+}
+
 function Field({
+  name,
   label,
   type = "text",
   placeholder,
+  error,
+  required = true,
 }: {
+  name: string;
   label: string;
   type?: string;
   placeholder?: string;
+  error?: string;
+  required?: boolean;
 }) {
   return (
     <label className="block">
       <span className="text-xs uppercase tracking-wider text-muted-foreground">
         {label}
+        {!required && <span className="ml-1 normal-case text-muted-foreground/60">(optional)</span>}
       </span>
       <input
+        name={name}
         type={type}
-        required
+        maxLength={255}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-xl bg-background/40 border border-border focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-ring px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 transition-all"
+        className={`mt-2 w-full rounded-xl bg-background/40 border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-ring transition-all ${
+          error ? "border-destructive/60" : "border-border focus:border-primary/60"
+        }`}
       />
+      {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
     </label>
+  );
+}
+
+function ContactBackdrop() {
+  return (
+    <div className="absolute inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 grid-bg opacity-30" />
+      <div className="absolute -top-32 left-1/4 h-[420px] w-[420px] rounded-full bg-primary/15 blur-3xl float-slow" />
+      <div className="absolute bottom-0 right-1/4 h-[360px] w-[360px] rounded-full bg-primary/10 blur-3xl float-slow" style={{ animationDelay: "2s" }} />
+      {/* Floating particles */}
+      {Array.from({ length: 14 }).map((_, i) => (
+        <span
+          key={i}
+          className="absolute bottom-0 h-1 w-1 rounded-full bg-primary/50 drift-up"
+          style={{
+            left: `${(i * 73) % 100}%`,
+            animationDuration: `${10 + (i % 6) * 2}s`,
+            animationDelay: `${(i % 7) * 1.2}s`,
+          }}
+        />
+      ))}
+    </div>
   );
 }
