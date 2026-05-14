@@ -23,7 +23,10 @@ export function Booking() {
   }&text_color=${isDark ? "f5f7fb" : "111522"}&primary_color=4d8bff`;
 
   return (
-    <section id="booking" className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden">
+    <section
+      id="booking"
+      className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden"
+    >
       <div className="absolute -top-40 left-1/3 h-[480px] w-[480px] rounded-full bg-primary/15 blur-3xl float-slow" />
 
       <div className="mx-auto max-w-7xl px-5">
@@ -36,8 +39,7 @@ export function Booking() {
               Book a 30-minute strategy call.
             </h2>
             <p className="mt-5 text-muted-foreground max-w-md">
-              We&rsquo;ll listen, then send a tailored proposal within 48 hours.
-              No decks, no fluff.
+              We&rsquo;ll listen, then send a tailored proposal within 48 hours. No decks, no fluff.
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-3 max-w-md">
