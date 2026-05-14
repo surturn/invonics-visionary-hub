@@ -46,8 +46,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              Software, infrastructure, automation and brand — engineered to compound for
-              the institutions of the next decade.
+              Software, infrastructure, automation and brand — engineered to compound for the
+              institutions of the next decade.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -60,33 +60,69 @@ export function Footer() {
               >
                 <WhatsAppIcon className="h-3.5 w-3.5" /> WhatsApp
               </a>
-              <a href="mailto:hello@invonics.tech" className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-2 text-xs">
+              <a
+                href="mailto:hello@invonics.tech"
+                className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-2 text-xs"
+              >
                 hello@invonics.tech
               </a>
             </div>
           </div>
 
           <div className="md:col-span-2">
-            <div className="text-xs uppercase tracking-wider text-muted-foreground/70 mb-4">Studio</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground/70 mb-4">
+              Studio
+            </div>
             <ul className="space-y-2.5 text-sm">
-              <li><a className="text-foreground/80 hover:text-foreground" href="/#services">Services</a></li>
-              <li><a className="text-foreground/80 hover:text-foreground" href="/#work">Work</a></li>
-              <li><a className="text-foreground/80 hover:text-foreground" href="/#process">Process</a></li>
+              <li>
+                <a className="text-foreground/80 hover:text-foreground" href="/#services">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a className="text-foreground/80 hover:text-foreground" href="/#work">
+                  Work
+                </a>
+              </li>
+              <li>
+                <a className="text-foreground/80 hover:text-foreground" href="/#process">
+                  Process
+                </a>
+              </li>
             </ul>
           </div>
 
           <div className="md:col-span-2">
-            <div className="text-xs uppercase tracking-wider text-muted-foreground/70 mb-4">Company</div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground/70 mb-4">
+              Company
+            </div>
             <ul className="space-y-2.5 text-sm">
-              <li><a className="text-foreground/80 hover:text-foreground" href="/#about">About</a></li>
-              <li><a className="text-foreground/80 hover:text-foreground" href="/#vision">Vision</a></li>
-              <li><Link className="text-foreground/80 hover:text-foreground" to="/contact">Contact</Link></li>
+              <li>
+                <a className="text-foreground/80 hover:text-foreground" href="/#about">
+                  About
+                </a>
+              </li>
+              <li>
+                <a className="text-foreground/80 hover:text-foreground" href="/#vision">
+                  Vision
+                </a>
+              </li>
+              <li>
+                <Link className="text-foreground/80 hover:text-foreground" to="/contact">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div className="md:col-span-3">
-            <div className="text-xs uppercase tracking-wider text-muted-foreground/70 mb-4">Stay in the loop</div>
-            <form onSubmit={(e) => e.preventDefault()} className="flex items-center gap-2 glass rounded-full p-1 pl-4">
+            <div className="text-xs uppercase tracking-wider text-muted-foreground/70 mb-4">
+              Stay in the loop
+            </div>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="flex items-center gap-2 glass rounded-full p-1 pl-4"
+            >
               <input
                 type="email"
                 placeholder="you@company.com"
