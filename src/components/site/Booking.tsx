@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { Reveal } from "./Reveal";
 import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
 
-const ROBOT_MASCOT_URL = "/images/invonics-robot-mascot.png";
+import mascot from "@/assets/invonics-mascot.webp";
 
 const prompts = [
   "Need a system built?",
@@ -57,14 +57,15 @@ export function Booking() {
             <div className="assistant-panel relative overflow-hidden rounded-[2rem] border border-border bg-card/70 p-5 md:p-8">
               <div className="absolute inset-x-8 top-8 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
               <div className="grid gap-6 md:grid-cols-[0.95fr_1.05fr] md:items-center">
-                <div className="relative mx-auto aspect-[4/5] w-full max-w-[320px]">
-                  <div className="absolute inset-x-8 bottom-8 h-14 rounded-full bg-primary/15 blur-2xl" />
+                <div className="relative mx-auto w-full max-w-[280px]">
+                  {/* Glow behind the robot */}
+                  <div className="absolute inset-x-8 bottom-4 h-12 rounded-full bg-primary/15 blur-2xl" />
                   <img
-                    src={ROBOT_MASCOT_URL}
+                    src={mascot} 
                     alt="Invonics Assistant robot mascot"
                     loading="lazy"
                     decoding="async"
-                    className="assistant-mascot relative h-full w-full object-contain"
+                    className="relative w-full h-auto object-contain drop-shadow-none"
                   />
                 </div>
 
