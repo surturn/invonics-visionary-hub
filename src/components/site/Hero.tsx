@@ -1,10 +1,11 @@
 import heroBg from "@/assets/hero-bg.jpg";
+import { Magnetic, ParallaxLayer } from "./MotionSystem";
 
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-hero pt-32 pb-20 md:pt-40 md:pb-28"
+      className="cinematic-section relative isolate overflow-hidden bg-hero pt-32 pb-20 md:min-h-screen md:pt-40 md:pb-28"
     >
       {/* Layered backgrounds */}
       <div className="absolute inset-0 -z-20">
@@ -16,7 +17,20 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
       </div>
       <div className="absolute inset-0 -z-10 blueprint opacity-50" />
-      <div className="pointer-events-none absolute -top-40 right-[-10%] h-[560px] w-[560px] rounded-full bg-primary/15 blur-3xl" />
+      <div className="hero-topology absolute inset-0 -z-10 opacity-70" />
+      <ParallaxLayer
+        className="pointer-events-none absolute -top-40 right-[-10%] -z-10 h-[560px] w-[560px] rounded-full bg-primary/15 blur-3xl will-change-transform"
+        speed={0.04}
+      />
+      <div className="pointer-events-none absolute left-5 right-5 top-28 -z-10 hidden h-[52vh] md:block">
+        <div className="floating-module left-[6%] top-[18%]">Latency &lt; 200ms</div>
+        <div className="floating-module right-[8%] top-[8%] animation-delay-2000">
+          Mesh integrity 99.99
+        </div>
+        <div className="floating-module bottom-[16%] left-[44%] animation-delay-4000">
+          Brand · software · infra
+        </div>
+      </div>
 
       <div className="mx-auto max-w-7xl px-5">
         {/* Top engineered meta-bar */}
@@ -43,10 +57,10 @@ export function Hero() {
           {/* Headline */}
           <div className="col-span-12 md:col-span-8">
             <h1 className="font-display leading-[0.92] tracking-tight">
-              <span className="block text-[15vw] md:text-[9.5vw] lg:text-[8.4rem] text-gradient">
+              <span className="hero-word block text-[15vw] md:text-[9.5vw] lg:text-[8.4rem] text-gradient">
                 Engineering
               </span>
-              <span className="block pl-[12vw] md:pl-[18vw] -mt-2 md:-mt-4 text-[15vw] md:text-[9.5vw] lg:text-[8.4rem]">
+              <span className="hero-word hero-word--offset block pl-[12vw] md:pl-[18vw] -mt-2 md:-mt-4 text-[15vw] md:text-[9.5vw] lg:text-[8.4rem]">
                 <span className="relative inline-block text-gradient-accent">
                   Tomorrow
                   <svg
@@ -66,7 +80,7 @@ export function Hero() {
                   </svg>
                 </span>
               </span>
-              <span className="block text-[15vw] md:text-[9.5vw] lg:text-[8.4rem] text-gradient -mt-2 md:-mt-4">
+              <span className="hero-word block text-[15vw] md:text-[9.5vw] lg:text-[8.4rem] text-gradient -mt-2 md:-mt-4">
                 Today<span className="text-primary">.</span>
               </span>
             </h1>
@@ -78,14 +92,13 @@ export function Hero() {
               <span className="text-primary">●</span>&nbsp; Studio Note
             </div>
             <p className="text-sm md:text-[15px] text-muted-foreground leading-relaxed">
-              Invonics is a creative technology studio engineering software,
-              connectivity and brand systems for the next decade — built in Africa,
-              deployed everywhere.
+              Invonics is a creative technology studio engineering software, connectivity and brand
+              systems for the next decade — built in Africa, deployed everywhere.
             </p>
             <div className="mt-6 flex flex-col gap-2.5">
-              <a
+              <Magnetic
                 href="#work"
-                className="group inline-flex items-center justify-between rounded-full bg-accent-gradient px-5 py-3 text-sm font-medium text-primary-foreground"
+                className="group inline-flex items-center justify-between rounded-full bg-accent-gradient px-5 py-3 text-sm font-medium text-primary-foreground shadow-glow"
               >
                 <span>View the ecosystem</span>
                 <svg
@@ -95,20 +108,16 @@ export function Hero() {
                   stroke="currentColor"
                   strokeWidth="2"
                 >
-                  <path
-                    d="M5 12h14M13 5l7 7-7 7"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
-              <a
+              </Magnetic>
+              <Magnetic
                 href="#contact"
                 className="inline-flex items-center justify-between rounded-full border border-border px-5 py-3 text-sm text-foreground hover:border-primary/60 transition-colors"
               >
                 <span>Book a consult</span>
                 <span className="label-mono text-[10px]">→</span>
-              </a>
+              </Magnetic>
             </div>
           </div>
         </div>
