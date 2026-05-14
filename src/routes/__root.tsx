@@ -73,14 +73,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Invonics Technologies — Engineering Tomorrow, Today." },
+      {
+        name: "description",
+        content:
+          "Invonics Technologies engineers software, infrastructure, automation and brand systems for future-ready organizations.",
+      },
+      { name: "author", content: "Invonics Technologies" },
+      { property: "og:title", content: "Invonics Technologies — Engineering Tomorrow, Today." },
+      {
+        property: "og:description",
+        content:
+          "A premium technology studio for software, connectivity, automation and identity systems.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@invonics" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

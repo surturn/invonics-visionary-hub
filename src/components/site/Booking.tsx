@@ -1,96 +1,107 @@
-import { useEffect } from "react";
+import type { CSSProperties } from "react";
 import { Reveal } from "./Reveal";
-import { useTheme } from "./Theme";
+import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
 
-const CALENDLY_URL = "https://calendly.com/invonics/strategy-call"; // placeholder
+const ROBOT_MASCOT_URL = "/images/invonics-robot-mascot.png";
+
+const prompts = [
+  "Need a system built?",
+  "Let’s automate your workflow.",
+  "Ready to modernize your business?",
+  "Chat with Invonics.",
+];
 
 export function Booking() {
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    const id = "calendly-widget-script";
-    if (document.getElementById(id)) return;
-    const s = document.createElement("script");
-    s.id = id;
-    s.src = "https://assets.calendly.com/assets/external/widget.js";
-    s.async = true;
-    document.body.appendChild(s);
-  }, []);
-
-  const isDark = theme === "dark";
-  const calendlyHref = `${CALENDLY_URL}?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=${
-    isDark ? "0f111a" : "ffffff"
-  }&text_color=${isDark ? "f5f7fb" : "111522"}&primary_color=4d8bff`;
-
   return (
-    <section id="booking" className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden">
-      <div className="absolute -top-40 left-1/3 h-[480px] w-[480px] rounded-full bg-primary/15 blur-3xl float-slow" />
+    <section
+      id="booking"
+      className="relative overflow-hidden border-t border-border/60 py-24 md:py-32"
+    >
+      <div className="absolute inset-0 -z-10 assistant-grid opacity-70" />
 
       <div className="mx-auto max-w-7xl px-5">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          <Reveal className="lg:col-span-5 lg:sticky lg:top-28">
-            <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">
-              <span className="text-primary">●</span>&nbsp; Strategy Call
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+          <Reveal className="lg:col-span-5" variant="left">
+            <div className="label-mono mb-4">
+              <span className="text-primary">●</span>&nbsp; Invonics Assistant
             </div>
-            <h2 className="font-display text-4xl md:text-5xl text-gradient leading-[1.05]">
-              Book a 30-minute strategy call.
+            <h2 className="font-display text-4xl leading-[1.04] text-gradient md:text-6xl">
+              A digital guide for your next build.
             </h2>
-            <p className="mt-5 text-muted-foreground max-w-md">
-              We&rsquo;ll listen, then send a tailored proposal within 48 hours.
-              No decks, no fluff.
+            <p className="mt-5 max-w-md text-muted-foreground leading-relaxed">
+              Tell the assistant what you want to modernize. We&rsquo;ll continue the conversation
+              on WhatsApp, clarify scope, and recommend the leanest path forward.
             </p>
-
-            <div className="mt-8 grid grid-cols-2 gap-3 max-w-md">
-              <Stat label="Avg reply" value="< 5 min" />
-              <Stat label="Discovery call" value="Free" />
-              <Stat label="Engagement from" value="KES 80,000" />
-              <Stat label="First milestone" value="2 weeks" />
-            </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm hover:ring-glow transition-all"
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="magnetic inline-flex items-center gap-2 rounded-full bg-accent-gradient px-5 py-3 text-sm font-medium text-primary-foreground"
               >
-                Or send a written brief
+                <WhatsAppIcon className="h-4 w-4" />
+                Chat with Invonics
+              </a>
+              <a
+                href="#inquiry-form"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm text-foreground transition-colors hover:border-primary/60"
+              >
+                Send a written brief
+                <span aria-hidden>→</span>
               </a>
             </div>
           </Reveal>
 
-          <Reveal delay={150} className="lg:col-span-7">
-            <div className="relative rounded-3xl glass-strong p-2 shadow-card noise">
-              {/* Calendar header chrome */}
-              <div className="flex items-center justify-between px-4 pt-3 pb-2">
-                <div className="flex items-center gap-1.5">
-                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-foreground/15" />
+          <Reveal delay={120} className="lg:col-span-7" variant="right">
+            <div className="assistant-panel relative overflow-hidden rounded-[2rem] border border-border bg-card/70 p-5 md:p-8">
+              <div className="absolute inset-x-8 top-8 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+              <div className="grid gap-6 md:grid-cols-[0.95fr_1.05fr] md:items-center">
+                <div className="relative mx-auto aspect-[4/5] w-full max-w-[320px]">
+                  <div className="absolute inset-x-8 bottom-8 h-14 rounded-full bg-primary/15 blur-2xl" />
+                  <img
+                    src={ROBOT_MASCOT_URL}
+                    alt="Invonics Assistant robot mascot"
+                    loading="lazy"
+                    decoding="async"
+                    className="assistant-mascot relative h-full w-full object-contain"
+                  />
                 </div>
-                <div className="text-[11px] font-mono text-muted-foreground/70">
-                  calendly · invonics
-                </div>
-                <div className="text-[11px] text-primary">● live</div>
-              </div>
 
-              <div
-                key={theme}
-                className="calendly-inline-widget rounded-2xl overflow-hidden border border-border"
-                data-url={calendlyHref}
-                style={{ minWidth: "320px", height: "680px" }}
-              />
+                <div className="space-y-3">
+                  {prompts.map((prompt, index) => (
+                    <div
+                      key={prompt}
+                      className="assistant-bubble"
+                      style={{ "--bubble-delay": `${index * 80}ms` } as CSSProperties}
+                    >
+                      {prompt}
+                    </div>
+                  ))}
+                  <div className="pt-3">
+                    <a
+                      href={WA_LINK}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex w-full items-center justify-between rounded-2xl border border-primary/30 bg-primary/10 px-5 py-4 text-sm text-foreground transition-colors hover:bg-primary/15"
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="grid h-9 w-9 place-items-center rounded-xl bg-[oklch(0.62_0.18_150)] text-white">
+                          <WhatsAppIcon className="h-5 w-5" />
+                        </span>
+                        Start a WhatsApp inquiry
+                      </span>
+                      <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                        →
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
       </div>
     </section>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-xl glass p-4">
-      <div className="text-[11px] uppercase tracking-wider text-muted-foreground">{label}</div>
-      <div className="mt-1 font-display text-lg text-foreground">{value}</div>
-    </div>
   );
 }

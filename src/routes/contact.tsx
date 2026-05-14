@@ -14,12 +14,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Chat on WhatsApp, book a strategy call, or send an inquiry. Invonics Technologies helps you build intelligent digital ecosystems.",
+          "Chat on WhatsApp, use the Invonics Assistant, or send an inquiry. Invonics Technologies helps you build intelligent digital ecosystems.",
       },
       { property: "og:title", content: "Contact — Invonics Technologies" },
       {
         property: "og:description",
-        content: "WhatsApp, Calendly, inquiries and socials — all in one place.",
+        content: "WhatsApp, the Invonics Assistant, inquiries and socials — all in one place.",
       },
     ],
   }),
