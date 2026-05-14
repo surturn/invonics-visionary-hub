@@ -1,5 +1,5 @@
 import { Reveal } from "./Reveal";
-import { Instagram, Twitter, Facebook, Mail, Calendar } from "lucide-react";
+import { Instagram, Twitter, Facebook, Mail, Bot } from "lucide-react";
 import { WhatsAppIcon, WA_LINK } from "./FloatingWhatsApp";
 
 const socials = [
@@ -46,10 +46,10 @@ const socials = [
     accent: "oklch(0.7 0.16 80)",
   },
   {
-    name: "Calendly",
-    handle: "Book a 30-min slot",
+    name: "Assistant",
+    handle: "Guided project intake",
     href: "#booking",
-    icon: <Calendar className="h-5 w-5" strokeWidth={1.6} />,
+    icon: <Bot className="h-5 w-5" strokeWidth={1.6} />,
     accent: "oklch(0.65 0.18 200)",
   },
 ];

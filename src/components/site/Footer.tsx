@@ -4,21 +4,8 @@ import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
 export function Footer() {
   return (
     <footer className="relative pt-24 pb-10 overflow-hidden">
-      {/* Animated grid + particles */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 grid-bg grid-drift opacity-40" />
-        <div className="absolute -top-20 left-1/2 -translate-x-1/2 h-[300px] w-[700px] rounded-full bg-primary/10 blur-3xl" />
-        {Array.from({ length: 18 }).map((_, i) => (
-          <span
-            key={i}
-            className="absolute bottom-0 h-1 w-1 rounded-full bg-primary/40 drift-up"
-            style={{
-              left: `${(i * 53) % 100}%`,
-              animationDuration: `${12 + (i % 5) * 2}s`,
-              animationDelay: `${(i % 8) * 1.4}s`,
-            }}
-          />
-        ))}
+        <div className="absolute inset-0 grid-bg opacity-20" />
       </div>
 
       <div className="glow-divider mb-16" />
@@ -133,7 +120,7 @@ export function Footer() {
               </button>
             </form>
             <div className="mt-4 text-[11px] text-muted-foreground">
-              Pricing in KES · Engagements from KES 80,000.
+              Send a brief or DM us for a tailored quote.
             </div>
           </div>
         </div>

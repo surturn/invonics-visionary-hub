@@ -502,7 +502,7 @@
   }
 
   .motion-field__grid {
-    opacity: 0.28;
+    opacity: 0.18;
     background-image:
       linear-gradient(
         to right,
@@ -538,20 +538,19 @@
       420px 420px,
       520px 520px,
       640px 640px;
-    animation: topology-drift 28s linear infinite;
   }
 
   .motion-field__cursor {
-    opacity: 0.9;
+    opacity: 0.68;
     background:
       radial-gradient(
-        560px circle at var(--cursor-x, 50%) var(--cursor-y, 35%),
-        color-mix(in oklab, var(--color-primary) 18%, transparent),
+        460px circle at var(--cursor-x, 50%) var(--cursor-y, 35%),
+        color-mix(in oklab, var(--color-primary) 12%, transparent),
         transparent 56%
       ),
       radial-gradient(
-        900px circle at calc(100% - var(--cursor-x, 50%)) calc(100% - var(--cursor-y, 35%)),
-        oklch(0.48 0.13 260 / 0.08),
+        720px circle at calc(100% - var(--cursor-x, 50%)) calc(100% - var(--cursor-y, 35%)),
+        oklch(0.48 0.13 260 / 0.05),
         transparent 62%
       );
     mix-blend-mode: screen;
@@ -580,8 +579,6 @@
 
   .cinematic-section {
     transform-style: preserve-3d;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 900px;
   }
 
   .hero-topology {
@@ -601,7 +598,7 @@
     background-size:
       720px 320px,
       860px 420px;
-    animation: topology-drift 24s linear infinite;
+
     mask-image: radial-gradient(ellipse 65% 46% at 52% 36%, black 20%, transparent 82%);
   }
 
@@ -618,7 +615,7 @@
     text-transform: uppercase;
     box-shadow: var(--shadow-card);
     backdrop-filter: blur(16px);
-    animation: module-float 8s ease-in-out infinite;
+    animation: module-float 10s ease-in-out infinite;
   }
 
   .animation-delay-2000 {
@@ -823,6 +820,70 @@
     .float-slow,
     .marquee {
       animation: none !important;
+    }
+  }
+}
+
+@layer utilities {
+  .assistant-grid {
+    background:
+      linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-border) 1px, transparent 1px),
+      radial-gradient(
+        ellipse at 70% 35%,
+        color-mix(in oklab, var(--color-primary) 10%, transparent),
+        transparent 48%
+      );
+    background-size:
+      96px 96px,
+      96px 96px,
+      auto;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 78%);
+  }
+
+  .assistant-panel {
+    box-shadow: 0 24px 70px -46px oklch(0 0 0 / 0.8);
+  }
+
+  .assistant-mascot {
+    filter: drop-shadow(0 24px 30px oklch(0 0 0 / 0.28));
+    transform: translate3d(0, 0, 0);
+    animation: assistant-idle 7s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .assistant-panel:hover .assistant-mascot {
+    transform: translate3d(0, -6px, 0) scale(1.015);
+  }
+
+  .assistant-bubble {
+    border: 1px solid var(--color-border);
+    border-radius: 1.25rem;
+    background: color-mix(in oklab, var(--color-card) 82%, transparent);
+    padding: 0.9rem 1rem;
+    color: var(--color-foreground);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translate3d(14px, 0, 0);
+    animation: assistant-bubble-in 650ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--bubble-delay, 0ms);
+  }
+
+  @keyframes assistant-idle {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -10px, 0);
+    }
+  }
+
+  @keyframes assistant-bubble-in {
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
     }
   }
 }
