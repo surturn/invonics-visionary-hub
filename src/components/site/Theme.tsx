@@ -10,7 +10,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    const stored = (typeof window !== "undefined" && localStorage.getItem("invonics-theme")) as Theme | null;
+    const stored = (typeof window !== "undefined" &&
+      localStorage.getItem("invonics-theme")) as Theme | null;
     if (stored === "light" || stored === "dark") setTheme(stored);
   }, []);
 
@@ -18,11 +19,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const root = document.documentElement;
     root.classList.toggle("light", theme === "light");
     root.classList.toggle("dark", theme === "dark");
-    try { localStorage.setItem("invonics-theme", theme); } catch {}
+    try {
+      localStorage.setItem("invonics-theme", theme);
+    } catch {
+      // Ignore storage failures in restricted browsing contexts.
+    }
   }, [theme]);
 
   return (
-    <ThemeCtx.Provider value={{ theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) }}>
+    <ThemeCtx.Provider
+      value={{ theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) }}
+    >
       {children}
     </ThemeCtx.Provider>
   );
@@ -46,10 +53,24 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       />
       <span className="relative z-10 grid w-full grid-cols-2 px-2 text-[10px]">
         <span className={isDark ? "text-primary-foreground" : "text-muted-foreground"}>
-          <svg className="h-3 w-3 mx-auto" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg className="h-3 w-3 mx-auto" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+          </svg>
         </span>
         <span className={!isDark ? "text-primary-foreground" : "text-muted-foreground"}>
-          <svg className="h-3 w-3 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><circle cx="12" cy="12" r="4"/><path strokeLinecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"/></svg>
+          <svg
+            className="h-3 w-3 mx-auto"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path
+              strokeLinecap="round"
+              d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"
+            />
+          </svg>
         </span>
       </span>
     </button>

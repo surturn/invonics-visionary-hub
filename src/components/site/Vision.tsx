@@ -2,7 +2,10 @@ import { Reveal } from "./Reveal";
 
 export function Vision() {
   return (
-    <section id="vision" className="relative py-32 md:py-44 border-t border-border/60 overflow-hidden">
+    <section
+      id="vision"
+      className="relative py-32 md:py-44 border-t border-border/60 overflow-hidden"
+    >
       <div className="absolute inset-0 grid-bg opacity-40" />
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-primary/15 blur-3xl" />
 
@@ -22,9 +25,8 @@ export function Vision() {
         </Reveal>
         <Reveal delay={200}>
           <p className="mt-8 mx-auto max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
-            Software, connectivity, automation and brand — engineered as one
-            interoperable ecosystem so institutions across the continent can compound
-            value, decade over decade.
+            Software, connectivity, automation and brand — engineered as one interoperable ecosystem
+            so institutions across the continent can compound value, decade over decade.
           </p>
         </Reveal>
       </div>
