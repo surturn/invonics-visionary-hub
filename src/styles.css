@@ -234,33 +234,22 @@
   }
 
   .glass {
-    background: linear-gradient(
-      180deg,
-      oklch(1 0 0 / 0.04) 0%,
-      oklch(1 0 0 / 0.015) 100%
-    );
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    border: 1px solid oklch(1 0 0 / 0.08);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
   }
 
   .glass-strong {
-    background: linear-gradient(
-      180deg,
-      oklch(1 0 0 / 0.06) 0%,
-      oklch(1 0 0 / 0.02) 100%
-    );
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid oklch(1 0 0 / 0.1);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
   }
 
   .grid-bg {
     background-image:
-      linear-gradient(to right, oklch(1 0 0 / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(1 0 0 / 0.04) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%);
+      linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 55% at 50% 30%, black 40%, transparent 100%);
   }
 
   .glow-divider {
