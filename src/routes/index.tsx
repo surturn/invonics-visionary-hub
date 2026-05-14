@@ -14,6 +14,7 @@ import { FAQ } from "@/components/site/FAQ";
 import { Socials } from "@/components/site/Socials";
 import { Footer } from "@/components/site/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { MotionSystem } from "@/components/site/MotionSystem";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,24 +39,26 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Nav />
-      <main>
-        <Hero />
-        <Ecosystem />
-        <About />
-        <Services />
-        <Work />
-        <Showcase />
-        <Process />
-        <Vision />
-        <Contact />
-        <Booking />
-        <FAQ />
-        <Socials />
-      </main>
-      <Footer />
-      <FloatingWhatsApp />
-    </div>
+    <MotionSystem>
+      <div className="relative z-10 min-h-screen bg-background/80 text-foreground">
+        <Nav />
+        <main>
+          <Hero />
+          <Ecosystem />
+          <About />
+          <Services />
+          <Work />
+          <Showcase />
+          <Process />
+          <Vision />
+          <Contact />
+          <Booking />
+          <FAQ />
+          <Socials />
+        </main>
+        <Footer />
+        <FloatingWhatsApp />
+      </div>
+    </MotionSystem>
   );
 }
