@@ -169,6 +169,7 @@
     linear-gradient(to right, oklch(0.18 0.012 260 / 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, oklch(0.18 0.012 260 / 0.08) 1px, transparent 1px);
 }
+@layer base {
   * {
     border-color: var(--color-border);
   }
@@ -183,12 +184,6 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(
-        800px 400px at 50% -10%,
-        oklch(0.72 0.18 245 / 0.08),
-        transparent 70%
-      );
   }
 
   ::selection {
