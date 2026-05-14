@@ -10,7 +10,8 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="relative py-28 md:py-36 border-t border-border/60">
+    <section id="process" className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden">
+      <div className="absolute inset-0 -z-10 blueprint opacity-30" />
       <div className="mx-auto max-w-7xl px-5">
         <div className="max-w-3xl">
           <Reveal>
