@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 import { TiltCard } from "./MotionSystem";
 import saas from "@/assets/project-saas.jpg";
@@ -36,7 +37,74 @@ const projects = [
   },
 ];
 
+// Duplicate cards to enable seamless infinite loop
+const loopedProjects = [...projects, ...projects];
+
 export function Work() {
+  const railRef = useRef<HTMLDivElement>(null);
+  const animFrameRef = useRef<number | null>(null);
+  const isPausedRef = useRef(false);
+  const isDraggingRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragScrollStartRef = useRef(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Speed in px/frame (~1px per frame @ 60fps = ~60px/s)
+  const SPEED = 0.6;
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+
+    const step = () => {
+      if (!isPausedRef.current && !isDraggingRef.current) {
+        rail.scrollLeft += SPEED;
+
+        // When we've scrolled exactly one "set" width, jump back silently
+        const halfWidth = rail.scrollWidth / 2;
+        if (rail.scrollLeft >= halfWidth) {
+          rail.scrollLeft -= halfWidth;
+        }
+
+        // Update active dot based on scroll position
+        const cardWidth = rail.scrollWidth / loopedProjects.length;
+        const idx = Math.round(rail.scrollLeft / cardWidth) % projects.length;
+        setActiveIndex(idx);
+      }
+      animFrameRef.current = requestAnimationFrame(step);
+    };
+
+    animFrameRef.current = requestAnimationFrame(step);
+    return () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    };
+  }, []);
+
+  // Pause on hover
+  const handleMouseEnter = () => { isPausedRef.current = true; };
+  const handleMouseLeave = () => { isPausedRef.current = false; };
+
+  // Drag-to-scroll (mouse)
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDraggingRef.current = true;
+    dragStartXRef.current = e.clientX;
+    dragScrollStartRef.current = railRef.current!.scrollLeft;
+  };
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingRef.current) return;
+    const delta = dragStartXRef.current - e.clientX;
+    railRef.current!.scrollLeft = dragScrollStartRef.current + delta;
+  };
+  const handleMouseUp = () => { isDraggingRef.current = false; };
+
+  // Dot navigation
+  const scrollToCard = (idx: number) => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const cardWidth = rail.scrollWidth / loopedProjects.length;
+    rail.scrollTo({ left: cardWidth * idx, behavior: "smooth" });
+  };
+
   return (
     <section
       id="work"
@@ -65,14 +133,42 @@ export function Work() {
         </div>
       </div>
 
-      <div className="portfolio-rail no-scrollbar overflow-x-auto snap-x snap-mandatory px-5 md:px-[max(1.25rem,calc((100vw-80rem)/2))]">
+      {/* Rail */}
+      <div
+        ref={railRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        className="no-scrollbar overflow-x-auto px-5 md:px-[max(1.25rem,calc((100vw-80rem)/2))] cursor-grab active:cursor-grabbing select-none"
+        style={{ scrollbarWidth: "none" }}
+      >
         <div className="flex gap-5 pb-3">
-          {projects.map((p, i) => (
-            <Reveal key={p.title} delay={i * 90} variant="dock" className="snap-center shrink-0">
-              <ProjectCard {...p} index={i} />
-            </Reveal>
+          {loopedProjects.map((p, i) => (
+            <div key={`${p.title}-${i}`} className="shrink-0">
+              <ProjectCard {...p} index={i % projects.length} />
+            </div>
           ))}
         </div>
+      </div>
+
+      {/* Progress dots */}
+      <div className="flex justify-center gap-2.5 mt-10">
+        {projects.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollToCard(i)}
+            aria-label={`Go to project ${i + 1}`}
+            className="group relative h-1.5 overflow-hidden rounded-full transition-all duration-500"
+            style={{ width: activeIndex === i ? "2.5rem" : "0.375rem" }}
+          >
+            <span className="absolute inset-0 rounded-full bg-border group-hover:bg-primary/40 transition-colors" />
+            {activeIndex === i && (
+              <span className="absolute inset-0 rounded-full bg-primary" />
+            )}
+          </button>
+        ))}
       </div>
     </section>
   );
