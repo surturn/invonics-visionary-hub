@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { TiltCard } from "./MotionSystem";
 import {
   Satellite,
   Cpu,
@@ -83,15 +84,15 @@ export function Services() {
           </Reveal>
           <Reveal delay={120}>
             <p className="md:max-w-sm text-muted-foreground">
-              Engineering, infrastructure and creative — engineered to interlock
-              into a single, scalable system.
+              Engineering, infrastructure and creative — engineered to interlock into a single,
+              scalable system.
             </p>
           </Reveal>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 50}>
+            <Reveal key={s.title} delay={i * 50} variant="grid">
               <ServiceCard {...s} />
             </Reveal>
           ))}
@@ -111,9 +112,9 @@ function ServiceCard({
   desc: string;
 }) {
   return (
-    <div className="group relative h-full rounded-2xl glass p-6 transition-all duration-500 hover:-translate-y-1 hover:ring-glow overflow-hidden">
+    <TiltCard className="group relative h-full rounded-2xl glass p-6 transition-all duration-500 hover:ring-glow overflow-hidden">
       {/* Hover light sweep */}
-      <div className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(400px_circle_at_var(--x,50%)_0%,oklch(0.72_0.18_245/0.18),transparent_60%)]" />
+      <div className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(400px_circle_at_var(--card-x,50%)_var(--card-y,0%),oklch(0.72_0.18_245/0.18),transparent_60%)]" />
 
       <div className="relative inline-flex h-11 w-11 items-center justify-center rounded-xl bg-secondary border border-border">
         <Icon className="h-5 w-5 text-primary" strokeWidth={1.6} />
@@ -121,16 +122,20 @@ function ServiceCard({
       </div>
 
       <h3 className="relative mt-5 font-display text-lg text-foreground">{title}</h3>
-      <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">
-        {desc}
-      </p>
+      <p className="relative mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
 
       <div className="relative mt-6 flex items-center gap-2 text-xs text-primary/90 opacity-0 group-hover:opacity-100 transition-opacity">
         Learn more
-        <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg
+          className="h-3.5 w-3.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        >
           <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
-    </div>
+    </TiltCard>
   );
 }
