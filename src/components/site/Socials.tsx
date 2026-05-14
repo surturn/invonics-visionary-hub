@@ -1,15 +1,57 @@
 import { Reveal } from "./Reveal";
-import { Instagram, Twitter, Facebook, Mail, Calendar } from "lucide-react";
+import { Instagram, Twitter, Facebook, Mail, Bot } from "lucide-react";
 import { WhatsAppIcon, WA_LINK } from "./FloatingWhatsApp";
 
 const socials = [
-  { name: "WhatsApp", handle: "Chat now · ~5 min reply", href: WA_LINK, icon: <WhatsAppIcon className="h-5 w-5" />, accent: "oklch(0.62 0.18 150)" },
-  { name: "Instagram", handle: "@invonics.tech", href: "https://instagram.com/", icon: <Instagram className="h-5 w-5" strokeWidth={1.6} />, accent: "oklch(0.62 0.22 20)" },
-  { name: "TikTok", handle: "@invonics", href: "https://tiktok.com/", icon: <TikTokIcon className="h-5 w-5" />, accent: "oklch(0.7 0.18 200)" },
-  { name: "X (Twitter)", handle: "@invonicstech", href: "https://x.com/", icon: <Twitter className="h-5 w-5" strokeWidth={1.6} />, accent: "oklch(0.6 0.05 260)" },
-  { name: "Facebook", handle: "Invonics Technologies", href: "https://facebook.com/", icon: <Facebook className="h-5 w-5" strokeWidth={1.6} />, accent: "oklch(0.55 0.2 250)" },
-  { name: "Email", handle: "hello@invonics.tech", href: "mailto:hello@invonics.tech", icon: <Mail className="h-5 w-5" strokeWidth={1.6} />, accent: "oklch(0.7 0.16 80)" },
-  { name: "Calendly", handle: "Book a 30-min slot", href: "#booking", icon: <Calendar className="h-5 w-5" strokeWidth={1.6} />, accent: "oklch(0.65 0.18 200)" },
+  {
+    name: "WhatsApp",
+    handle: "Chat now · ~5 min reply",
+    href: WA_LINK,
+    icon: <WhatsAppIcon className="h-5 w-5" />,
+    accent: "oklch(0.62 0.18 150)",
+  },
+  {
+    name: "Instagram",
+    handle: "@invonics.tech",
+    href: "https://instagram.com/",
+    icon: <Instagram className="h-5 w-5" strokeWidth={1.6} />,
+    accent: "oklch(0.62 0.22 20)",
+  },
+  {
+    name: "TikTok",
+    handle: "@invonics",
+    href: "https://tiktok.com/",
+    icon: <TikTokIcon className="h-5 w-5" />,
+    accent: "oklch(0.7 0.18 200)",
+  },
+  {
+    name: "X (Twitter)",
+    handle: "@invonicstech",
+    href: "https://x.com/",
+    icon: <Twitter className="h-5 w-5" strokeWidth={1.6} />,
+    accent: "oklch(0.6 0.05 260)",
+  },
+  {
+    name: "Facebook",
+    handle: "Invonics Technologies",
+    href: "https://facebook.com/",
+    icon: <Facebook className="h-5 w-5" strokeWidth={1.6} />,
+    accent: "oklch(0.55 0.2 250)",
+  },
+  {
+    name: "Email",
+    handle: "hello@invonics.tech",
+    href: "mailto:hello@invonics.tech",
+    icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
+    accent: "oklch(0.7 0.16 80)",
+  },
+  {
+    name: "Assistant",
+    handle: "Guided project intake",
+    href: "#booking",
+    icon: <Bot className="h-5 w-5" strokeWidth={1.6} />,
+    accent: "oklch(0.65 0.18 200)",
+  },
 ];
 
 function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
@@ -22,7 +64,10 @@ function TikTokIcon({ className = "h-5 w-5" }: { className?: string }) {
 
 export function Socials() {
   return (
-    <section id="social" className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden">
+    <section
+      id="social"
+      className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden"
+    >
       <div className="absolute inset-0 grid-bg opacity-30" />
       <div className="absolute -top-32 right-0 h-[400px] w-[400px] rounded-full bg-primary/15 blur-3xl float-slow" />
 
@@ -68,7 +113,15 @@ export function Socials() {
                 </div>
                 <div className="relative mt-5 flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] text-foreground/60 group-hover:text-primary transition-colors">
                   Open
-                  <svg className="h-3 w-3 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  <svg
+                    className="h-3 w-3 transition-transform group-hover:translate-x-0.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
               </a>
             </Reveal>

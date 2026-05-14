@@ -2,15 +2,30 @@ import { Reveal } from "./Reveal";
 
 const steps = [
   { n: "01", t: "Discover", d: "Audits, interviews and systems mapping to surface real leverage." },
-  { n: "02", t: "Design", d: "Information architecture, UX and brand systems set the foundations." },
+  {
+    n: "02",
+    t: "Design",
+    d: "Information architecture, UX and brand systems set the foundations.",
+  },
   { n: "03", t: "Build", d: "Production engineering, integrations and infrastructure deployment." },
-  { n: "04", t: "Automate", d: "Reliable workflows reduce ops cost and remove manual surface area." },
-  { n: "05", t: "Scale", d: "Observability, growth loops and SLAs for the next stage of the business." },
+  {
+    n: "04",
+    t: "Automate",
+    d: "Reliable workflows reduce ops cost and remove manual surface area.",
+  },
+  {
+    n: "05",
+    t: "Scale",
+    d: "Observability, growth loops and SLAs for the next stage of the business.",
+  },
 ];
 
 export function Process() {
   return (
-    <section id="process" className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden">
+    <section
+      id="process"
+      className="relative py-28 md:py-36 border-t border-border/60 overflow-hidden"
+    >
       <div className="absolute inset-0 -z-10 blueprint opacity-30" />
       <div className="mx-auto max-w-7xl px-5">
         <div className="max-w-3xl">

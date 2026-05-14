@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Reveal } from "./Reveal";
+import { TiltCard } from "./MotionSystem";
 import saas from "@/assets/project-saas.jpg";
 import school from "@/assets/project-school.jpg";
 import branding from "@/assets/project-branding.jpg";
@@ -67,14 +68,27 @@ export function Ecosystem() {
     railRef.current?.scrollBy({ left: dir * 480, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      const canScroll = rail.scrollWidth > rail.clientWidth;
+      if (!canScroll) return;
+      event.preventDefault();
+      rail.scrollBy({ left: event.deltaY * 0.9, behavior: "smooth" });
+    };
+
+    rail.addEventListener("wheel", onWheel, { passive: false });
+    return () => rail.removeEventListener("wheel", onWheel);
+  }, []);
+
   return (
-    <section
-      id="ecosystem"
-      className="relative py-24 md:py-32 border-t border-border/60"
-    >
+    <section id="ecosystem" className="relative py-24 md:py-32 border-t border-border/60">
       <div className="mx-auto max-w-7xl px-5">
         <div className="grid grid-cols-12 gap-6 items-end mb-12">
-          <Reveal className="col-span-12 md:col-span-8">
+          <Reveal className="col-span-12 md:col-span-8" variant="left">
             <div className="label-mono mb-4">
               <span className="text-primary">◆</span>&nbsp; § 02 · Living Ecosystem
             </div>
@@ -86,10 +100,10 @@ export function Ecosystem() {
               </span>
             </h2>
           </Reveal>
-          <Reveal delay={120} className="col-span-12 md:col-span-4 md:text-right">
+          <Reveal delay={120} className="col-span-12 md:col-span-4 md:text-right" variant="right">
             <p className="text-sm text-muted-foreground max-w-xs md:ml-auto">
-              Each project is a node in a wider system — connectivity, software,
-              brand and motion engineered to interlock.
+              Each project is a node in a wider system — connectivity, software, brand and motion
+              engineered to interlock.
             </p>
             <div className="mt-5 flex md:justify-end gap-2">
               <button
@@ -97,7 +111,13 @@ export function Ecosystem() {
                 aria-label="Previous"
                 className="h-10 w-10 rounded-full border border-border grid place-items-center hover:border-primary/60 transition-colors"
               >
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
@@ -106,7 +126,13 @@ export function Ecosystem() {
                 aria-label="Next"
                 className="h-10 w-10 rounded-full border border-border grid place-items-center hover:border-primary/60 transition-colors"
               >
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
@@ -127,10 +153,7 @@ export function Ecosystem() {
       </div>
 
       {/* Horizontal scroll rail (full-bleed) */}
-      <div
-        ref={railRef}
-        className="no-scrollbar overflow-x-auto snap-x snap-mandatory"
-      >
+      <div ref={railRef} className="no-scrollbar overflow-x-auto snap-x snap-mandatory">
         <div className="flex gap-5 px-5 md:px-[max(1.25rem,calc((100vw-80rem)/2))] pb-2">
           {nodes.map((n, i) => (
             <NodeCard key={n.code} {...n} idx={i} />
@@ -159,7 +182,7 @@ function NodeCard({
 }) {
   const tall = idx % 2 === 0;
   return (
-    <article
+    <TiltCard
       className={`group snap-start shrink-0 w-[78vw] sm:w-[420px] ${
         tall ? "md:h-[520px]" : "md:h-[460px] md:mt-10"
       } relative overflow-hidden rounded-2xl glass`}
@@ -184,18 +207,22 @@ function NodeCard({
       {/* Bottom content */}
       <div className="absolute inset-x-0 bottom-0 p-6">
         <div className="label-mono mb-2">{kind}</div>
-        <h3 className="font-display text-2xl md:text-3xl text-foreground leading-tight">
-          {title}
-        </h3>
+        <h3 className="font-display text-2xl md:text-3xl text-foreground leading-tight">{title}</h3>
         <div className="mt-3 flex items-center justify-between">
           <span className="text-xs text-muted-foreground">{meta}</span>
           <span className="h-8 w-8 rounded-full border border-border grid place-items-center group-hover:border-primary/60 group-hover:rotate-45 transition-all">
-            <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              className="h-3.5 w-3.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
         </div>
       </div>
-    </article>
+    </TiltCard>
   );
 }

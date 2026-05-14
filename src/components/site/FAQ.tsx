@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: "Can businesses combine multiple services?",
-    a: "Absolutely — most of our clients combine 2–4 services (e.g. brand + website + automation + IT supply). Bundles unlock pricing efficiency and a single point of accountability.",
+    a: "Absolutely — most of our clients combine 2–4 services (e.g. brand + website + automation + IT supply). Bundles keep delivery coordinated with one point of accountability.",
   },
   {
     q: "Do you offer post-launch support?",
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: "How does the consultation process work?",
-    a: "Book a strategy call, we listen for 30–45 minutes, then send a tailored proposal within 48 hours. No pressure, no boilerplate decks.",
+    a: "Start with WhatsApp or the assistant, we listen, clarify the opportunity, then send a tailored proposal. No pressure, no boilerplate decks.",
   },
   {
     q: "Can you manage branding and digital content?",
@@ -52,8 +52,8 @@ export function FAQ() {
               Questions, answered.
             </h2>
             <p className="mt-6 text-muted-foreground max-w-md">
-              Still curious? Reach out on WhatsApp — most teams get a tailored answer in
-              under five minutes.
+              Still curious? Reach out on WhatsApp — most teams get a tailored answer in under five
+              minutes.
             </p>
           </Reveal>
 
@@ -76,7 +76,9 @@ export function FAQ() {
                       </span>
                       <span
                         className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-border transition-transform duration-500 ${
-                          active ? "rotate-45 bg-accent-gradient text-primary-foreground border-transparent" : "text-muted-foreground"
+                          active
+                            ? "rotate-45 bg-accent-gradient text-primary-foreground border-transparent"
+                            : "text-muted-foreground"
                         }`}
                       >
                         <Plus className="h-4 w-4" />

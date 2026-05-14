@@ -16,15 +16,13 @@ export function About() {
 
           <Reveal delay={120} className="lg:col-span-7">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Invonics Technologies helps businesses, schools and institutions across
-              Africa modernize operations and elevate their digital presence — through
-              integrated software, infrastructure, automation and creative systems
-              engineered to last.
+              Invonics Technologies helps businesses, schools and institutions across Africa
+              modernize operations and elevate their digital presence — through integrated software,
+              infrastructure, automation and creative systems engineered to last.
             </p>
             <p className="mt-5 text-base text-muted-foreground/85 leading-relaxed">
-              We work at the intersection of engineering and design — building
-              dependable platforms, connectivity, and brand systems that compound in
-              value as you scale.
+              We work at the intersection of engineering and design — building dependable platforms,
+              connectivity, and brand systems that compound in value as you scale.
             </p>
 
             <div className="mt-10 grid grid-cols-3 gap-6">
@@ -43,9 +41,7 @@ function Stat({ n, label }: { n: string; label: string }) {
   return (
     <div className="border-t border-border pt-5">
       <div className="font-display text-3xl md:text-4xl text-foreground">{n}</div>
-      <div className="mt-1.5 text-xs uppercase tracking-wider text-muted-foreground">
-        {label}
-      </div>
+      <div className="mt-1.5 text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
     </div>
   );
 }
