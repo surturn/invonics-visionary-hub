@@ -318,4 +318,83 @@
     100% { transform: translateY(-120vh); opacity: 0; }
   }
   .drift-up { animation-name: drift-up; animation-timing-function: linear; animation-iteration-count: infinite; }
+
+  /* Blueprint overlay — fine engineered grid + crosshair ticks */
+  .blueprint {
+    background-image:
+      linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-border) 1px, transparent 1px),
+      linear-gradient(to right, color-mix(in oklab, var(--color-border) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-border) 60%, transparent) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px, 16px 16px, 16px 16px;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+
+  /* Signal-path divider — horizontal engineered line with nodes */
+  .signal-divider {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--color-border) 12%,
+      var(--color-border) 88%,
+      transparent 100%
+    );
+  }
+  .signal-divider::before,
+  .signal-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-primary) 18%, transparent);
+    transform: translateY(-50%);
+  }
+  .signal-divider::before { left: 10%; }
+  .signal-divider::after  { right: 10%; }
+
+  /* Signal-wave underline — animated SVG stroke */
+  @keyframes signal-trace {
+    0% { stroke-dashoffset: 600; }
+    100% { stroke-dashoffset: 0; }
+  }
+  .signal-trace path {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: signal-trace 2.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+
+  /* Vertical engineered tick column — left rail */
+  .tick-rail {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--color-border) 0 1px,
+      transparent 1px 24px
+    );
+  }
+
+  /* Mono engineered label */
+  .label-mono {
+    font-family: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  /* Hide scrollbar for horizontal scroll rails */
+  .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Node trace — animated dot traveling along a line */
+  @keyframes node-travel {
+    0% { transform: translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+  .node-travel { animation: node-travel 4.8s linear infinite; }
 }
