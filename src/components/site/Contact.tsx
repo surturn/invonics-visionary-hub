@@ -2,13 +2,12 @@ import { useState } from "react";
 import { z } from "zod";
 import { Reveal } from "./Reveal";
 import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
-import { Calendar, Send, FolderOpen } from "lucide-react";
+import { Bot, Send, FolderOpen } from "lucide-react";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
   email: z.string().trim().email("Invalid email").max(255),
   company: z.string().trim().max(120).optional().or(z.literal("")),
-  budget: z.string().trim().max(60).optional().or(z.literal("")),
   message: z.string().trim().min(10, "Add a few more details").max(1500),
 });
 
@@ -100,9 +99,9 @@ export function Contact() {
             <div className="md:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
               <SecondaryCTA
                 href="#booking"
-                icon={<Calendar className="h-4 w-4" />}
-                label="Book a Strategy Call"
-                sub="30 min · free"
+                icon={<Bot className="h-4 w-4" />}
+                label="Ask the Assistant"
+                sub="Guided project intake"
               />
               <SecondaryCTA
                 href="#inquiry-form"
@@ -143,13 +142,6 @@ export function Contact() {
                 error={errors.company}
                 required={false}
               />
-              <Field
-                name="budget"
-                label="Estimated budget"
-                placeholder="KES 200k – 1M"
-                error={errors.budget}
-                required={false}
-              />
             </div>
             <div className="mt-4">
               <label className="text-xs uppercase tracking-wider text-muted-foreground">
@@ -159,7 +151,7 @@ export function Contact() {
                 name="message"
                 rows={5}
                 maxLength={1500}
-                placeholder="Tell us about your goals, timelines and any references…"
+                placeholder="Tell us about your goals, timeline and what should happen next…"
                 className={`mt-2 w-full rounded-xl bg-background/40 border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-ring transition-all ${
                   errors.message ? "border-destructive/60" : "border-border focus:border-primary/60"
                 }`}
@@ -263,24 +255,8 @@ function Field({
 function ContactBackdrop() {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-30" />
-      <div className="absolute -top-32 left-1/4 h-[420px] w-[420px] rounded-full bg-primary/15 blur-3xl float-slow" />
-      <div
-        className="absolute bottom-0 right-1/4 h-[360px] w-[360px] rounded-full bg-primary/10 blur-3xl float-slow"
-        style={{ animationDelay: "2s" }}
-      />
-      {/* Floating particles */}
-      {Array.from({ length: 14 }).map((_, i) => (
-        <span
-          key={i}
-          className="absolute bottom-0 h-1 w-1 rounded-full bg-primary/50 drift-up"
-          style={{
-            left: `${(i * 73) % 100}%`,
-            animationDuration: `${10 + (i % 6) * 2}s`,
-            animationDelay: `${(i % 7) * 1.2}s`,
-          }}
-        />
-      ))}
+      <div className="absolute inset-0 grid-bg opacity-20" />
+      <div className="absolute -top-28 left-1/4 h-[300px] w-[300px] rounded-full bg-primary/10 blur-2xl" />
     </div>
   );
 }
