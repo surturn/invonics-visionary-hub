@@ -8,7 +8,6 @@ export function MotionSystem({ children }: { children: ReactNode }) {
     <>
       <div className="motion-field" aria-hidden>
         <div className="motion-field__grid" />
-        <div className="motion-field__topology" />
         <div className="motion-field__cursor" />
         <div className="motion-field__grain" />
       </div>
@@ -27,28 +26,32 @@ function useCursorLight() {
 
     let frame = 0;
     const root = document.documentElement;
-    const onPointerMove = (event: PointerEvent) => {
-      target.current.x = event.clientX / window.innerWidth;
-      target.current.y = event.clientY / window.innerHeight;
-    };
 
     const tick = () => {
-      const x = current.current.x + (target.current.x - current.current.x) * 0.075;
-      const y = current.current.y + (target.current.y - current.current.y) * 0.075;
+      const x = current.current.x + (target.current.x - current.current.x) * 0.12;
+      const y = current.current.y + (target.current.y - current.current.y) * 0.12;
       current.current = { x, y };
       root.style.setProperty("--cursor-x", `${(x * 100).toFixed(3)}%`);
       root.style.setProperty("--cursor-y", `${(y * 100).toFixed(3)}%`);
-      root.style.setProperty("--cursor-x-px", `${Math.round(x * window.innerWidth)}px`);
-      root.style.setProperty("--cursor-y-px", `${Math.round(y * window.innerHeight)}px`);
-      frame = window.requestAnimationFrame(tick);
+
+      if (Math.abs(target.current.x - x) > 0.001 || Math.abs(target.current.y - y) > 0.001) {
+        frame = window.requestAnimationFrame(tick);
+      } else {
+        frame = 0;
+      }
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      target.current.x = event.clientX / window.innerWidth;
+      target.current.y = event.clientY / window.innerHeight;
+      if (!frame) frame = window.requestAnimationFrame(tick);
     };
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
-    frame = window.requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("pointermove", onPointerMove);
-      window.cancelAnimationFrame(frame);
+      if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
 }
@@ -88,7 +91,7 @@ export function Magnetic({
   children,
   className = "",
   href,
-  strength = 0.28,
+  strength = 0.18,
   onClick,
 }: {
   children: ReactNode;
@@ -188,8 +191,8 @@ export function TiltCard({
       const rect = el.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width;
       const y = (event.clientY - rect.top) / rect.height;
-      el.style.setProperty("--tilt-x", `${((0.5 - y) * 7).toFixed(2)}deg`);
-      el.style.setProperty("--tilt-y", `${((x - 0.5) * 8).toFixed(2)}deg`);
+      el.style.setProperty("--tilt-x", `${((0.5 - y) * 4).toFixed(2)}deg`);
+      el.style.setProperty("--tilt-y", `${((x - 0.5) * 4).toFixed(2)}deg`);
       el.style.setProperty("--card-x", `${(x * 100).toFixed(2)}%`);
       el.style.setProperty("--card-y", `${(y * 100).toFixed(2)}%`);
     };

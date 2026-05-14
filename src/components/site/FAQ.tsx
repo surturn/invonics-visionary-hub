@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: "Can businesses combine multiple services?",
-    a: "Absolutely — most of our clients combine 2–4 services (e.g. brand + website + automation + IT supply). Bundles unlock pricing efficiency and a single point of accountability.",
+    a: "Absolutely — most of our clients combine 2–4 services (e.g. brand + website + automation + IT supply). Bundles keep delivery coordinated with one point of accountability.",
   },
   {
     q: "Do you offer post-launch support?",
@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     q: "How does the consultation process work?",
-    a: "Book a strategy call, we listen for 30–45 minutes, then send a tailored proposal within 48 hours. No pressure, no boilerplate decks.",
+    a: "Start with WhatsApp or the assistant, we listen, clarify the opportunity, then send a tailored proposal. No pressure, no boilerplate decks.",
   },
   {
     q: "Can you manage branding and digital content?",

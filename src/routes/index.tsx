@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
@@ -5,16 +6,27 @@ import { Ecosystem } from "@/components/site/Ecosystem";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { Work } from "@/components/site/Work";
-import { Showcase } from "@/components/site/Showcase";
-import { Process } from "@/components/site/Process";
-import { Vision } from "@/components/site/Vision";
-import { Booking } from "@/components/site/Booking";
-import { Contact } from "@/components/site/Contact";
-import { FAQ } from "@/components/site/FAQ";
-import { Socials } from "@/components/site/Socials";
 import { Footer } from "@/components/site/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { MotionSystem } from "@/components/site/MotionSystem";
+
+const Showcase = lazy(() =>
+  import("@/components/site/Showcase").then((m) => ({ default: m.Showcase })),
+);
+const Process = lazy(() =>
+  import("@/components/site/Process").then((m) => ({ default: m.Process })),
+);
+const Vision = lazy(() => import("@/components/site/Vision").then((m) => ({ default: m.Vision })));
+const Contact = lazy(() =>
+  import("@/components/site/Contact").then((m) => ({ default: m.Contact })),
+);
+const Booking = lazy(() =>
+  import("@/components/site/Booking").then((m) => ({ default: m.Booking })),
+);
+const FAQ = lazy(() => import("@/components/site/FAQ").then((m) => ({ default: m.FAQ })));
+const Socials = lazy(() =>
+  import("@/components/site/Socials").then((m) => ({ default: m.Socials })),
+);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,13 +60,15 @@ function Index() {
           <About />
           <Services />
           <Work />
-          <Showcase />
-          <Process />
-          <Vision />
-          <Contact />
-          <Booking />
-          <FAQ />
-          <Socials />
+          <Suspense fallback={null}>
+            <Showcase />
+            <Process />
+            <Vision />
+            <Contact />
+            <Booking />
+            <FAQ />
+            <Socials />
+          </Suspense>
         </main>
         <Footer />
         <FloatingWhatsApp />
