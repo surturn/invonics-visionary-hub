@@ -32,17 +32,17 @@ const Socials = lazy(() =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Invonics Technologies — Engineering Tomorrow, Today." },
+      { title: "Software Developer in Nairobi | Invonics Technologies" },
       {
         name: "description",
         content:
-          "Invonics Technologies builds intelligent digital ecosystems — software, automation, branding, IT supply, Starlink installation and modern digital experiences.",
+          "Custom backend systems Westlands? We do M-Pesa Daraja API integration in Nairobi, plus Docker containerization and server infrastructure for scaling apps.",
       },
-      { property: "og:title", content: "Invonics Technologies — Engineering Tomorrow, Today." },
+      { property: "og:title", content: "Software Developer in Nairobi | Invonics Technologies" },
       {
         property: "og:description",
         content:
-          "Software, infrastructure, automation and brand — engineered to interlock into one scalable ecosystem.",
+          "Custom backend systems Westlands? We do M-Pesa Daraja API integration in Nairobi, plus Docker containerization and server infrastructure for scaling apps.",
       },
       { property: "og:type", content: "website" },
     ],
