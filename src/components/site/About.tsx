@@ -26,9 +26,9 @@ export function About() {
             </p>
 
             <div className="mt-10 grid grid-cols-3 gap-6">
-              <Stat n="06+" label="Sectors served" />
-              <Stat n="140+" label="Systems shipped" />
-              <Stat n="99.99%" label="Average uptime" />
+              <Stat n="02" label="Schools onboarded" />
+              <Stat n="1,400+" label="Learners reached" />
+              <Stat n="01" label="School portal live" />
             </div>
           </Reveal>
         </div>
