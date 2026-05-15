@@ -55,12 +55,12 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-          <div className="col-span-12 md:col-span-8">
+          <div className="col-span-12 lg:col-span-8 min-w-0">
             <h1 className="font-display leading-[0.92] tracking-tight">
-              <span className="hero-word block text-[15vw] md:text-[9.5vw] lg:text-[8.4rem] text-gradient">
+              <span className="hero-word block text-[15vw] md:text-[11vw] lg:text-[8vw] xl:text-[7.2rem] text-gradient">
                 Engineering
               </span>
-              <span className="hero-word hero-word--offset block pl-[12vw] md:pl-[18vw] -mt-2 md:-mt-4 text-[15vw] md:text-[9.5vw] lg:text-[8.4rem]">
+              <span className="hero-word hero-word--offset block pl-[10vw] md:pl-[12vw] lg:pl-[8vw] -mt-2 md:-mt-3 text-[15vw] md:text-[11vw] lg:text-[8vw] xl:text-[7.2rem]">
                 <span className="relative inline-block text-gradient-accent">
                   Tomorrow
                   <svg
@@ -80,14 +80,14 @@ export function Hero() {
                   </svg>
                 </span>
               </span>
-              <span className="hero-word block text-[15vw] md:text-[9.5vw] lg:text-[8.4rem] text-gradient -mt-2 md:-mt-4">
+              <span className="hero-word block text-[15vw] md:text-[11vw] lg:text-[8vw] xl:text-[7.2rem] text-gradient -mt-2 md:-mt-3">
                 Today<span className="text-primary">.</span>
               </span>
             </h1>
           </div>
 
           {/* Right column — synopsis */}
-          <div className="col-span-12 md:col-span-3 md:pt-6">
+          <div className="col-span-12 lg:col-span-3 lg:pt-6 mt-6 lg:mt-0 relative z-10">
             <div className="label-mono mb-3">
               <span className="text-primary">●</span>&nbsp; Studio Note
             </div>
