@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://invonicstechnologies.com/sitemap.xml
