@@ -1,6 +1,6 @@
 import { Reveal } from "./Reveal";
 import { Linkedin, Mail } from "lucide-react";
-import t1 from "@/assets/team-1.jpeg";
+import t1 from "@/assets/passportred.png";
 import t2 from "@/assets/team-2.jpg";
 import t3 from "@/assets/team-3.jpg";
 import t4 from "@/assets/team-4.jpeg";
