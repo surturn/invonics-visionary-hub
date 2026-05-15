@@ -10,27 +10,35 @@ const team = [
     img: t1,
     name: "Sydney Kamau",
     role: "Founder & Systems Lead",
+    email: "sydneykamau2005@gmail.com",
+    linkedin: "https://www.linkedin.com/in/sydney-kamau",
     bio: "Engineers the studio's software architecture, infrastructure rollouts and client systems end-to-end.",
     span: "lg:col-span-5 lg:row-span-2",
   },
   {
     img: t2,
-    name: "Amani Wanjiru",
+    name: "Finnly Baraka",
     role: "Software Engineer",
+    email: "finnleybaraka@gmail.com",
+    linkedin: "https://www.linkedin.com/in/finnley-baraka",
     bio: "Designs and ships the school management tooling, internal automations and front-end systems.",
     span: "lg:col-span-4",
   },
   {
     img: t3,
-    name: "Brian Otieno",
+    name: "Sybil Mutethya",
     role: "Brand & Interface Designer",
+    email: "sybillmutethya@gmail.com",
+    linkedin: "https://www.linkedin.com/in/sybil-mutethya",
     bio: "Owns the visual language — websites, identity systems and the studio's editorial direction.",
     span: "lg:col-span-3 lg:row-span-2",
   },
   {
     img: t4,
-    name: "Naliaka Mbeki",
+    name: "Ian Mdogoo",
     role: "Operations & Client Success",
+    email: "ianroberts17030@gmail.com",
+    linkedin: "https://www.linkedin.com/in/ian-roberts",
     bio: "Coordinates deployments, school onboarding and the day-to-day rhythm of every engagement.",
     span: "lg:col-span-4",
   },
@@ -99,14 +107,14 @@ export function Team() {
                   </p>
                   <div className="mt-4 flex items-center gap-2">
                     <a
-                      href="#contact"
-                      aria-label={`Email ${m.name}`}
+                      href={`mailto:${m.email}`}
+                      aria-label={`Email ${m.name} at ${m.email}`}
                       className="grid h-8 w-8 place-items-center border border-border text-foreground/80 hover:text-primary hover:border-primary/60 transition-colors"
                     >
                       <Mail className="h-3.5 w-3.5" strokeWidth={1.6} />
                     </a>
                     <a
-                      href="https://linkedin.com"
+                      href={m.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${m.name} on LinkedIn`}

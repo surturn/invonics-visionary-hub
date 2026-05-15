@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const PHONE = "254786669572"; // Kenya placeholder — update to real WhatsApp Business number
+const PHONE = "254786669572";
 const MSG = encodeURIComponent("Hi Invonics Technologies 👋 — I'd like to discuss a project.");
 
 export const WA_LINK = `https://wa.me/${PHONE}?text=${MSG}`;
