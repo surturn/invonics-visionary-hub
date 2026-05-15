@@ -87,10 +87,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "A premium technology studio for software, connectivity, automation and identity systems.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:site_name", content: "Invonics Technologies" },
+      { property: "og:image", content: "/og-image.jpg" },
+      { property: "og:image:alt", content: "Invonics Technologies — Engineering Tomorrow, Today." },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@invonics" },
+      { name: "twitter:image", content: "/og-image.jpg" },
+      { name: "theme-color", content: "#0b0d12" },
     ],
     links: [
+      { rel: "icon", type: "image/jpeg", href: "/favicon.jpg" },
+      { rel: "apple-touch-icon", href: "/favicon.jpg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
