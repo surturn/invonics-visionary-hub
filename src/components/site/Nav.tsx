@@ -3,6 +3,8 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { ThemeToggle } from "./Theme";
 import logo from "@/assets/logo.jpeg";
 
+const CALENDLY_LINK = "https://calendly.com/invonicstechnologies/30min";
+
 const links = [
   { href: "/#services", label: "Services", index: "01" },
   { href: "/#work", label: "Work", index: "02" },
@@ -30,12 +32,8 @@ export function Nav() {
       setActiveHash("");
       return;
     }
-    const ids = links
-      .filter((l) => l.href.startsWith("/#"))
-      .map((l) => l.href.replace("/#", ""));
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
+    const ids = links.filter((l) => l.href.startsWith("/#")).map((l) => l.href.replace("/#", ""));
+    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
     if (!sections.length) return;
     const obs = new IntersectionObserver(
       (entries) => {
@@ -122,14 +120,18 @@ export function Nav() {
                   </span>
                   <span
                     className={`text-sm transition-colors ${
-                      active ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
+                      active
+                        ? "text-foreground"
+                        : "text-muted-foreground group-hover:text-foreground"
                     }`}
                   >
                     {l.label}
                   </span>
                   <span
                     className={`absolute left-5 right-5 bottom-0 h-px origin-left transition-transform duration-500 ${
-                      active ? "scale-x-100 bg-primary" : "scale-x-0 bg-foreground/40 group-hover:scale-x-100"
+                      active
+                        ? "scale-x-100 bg-primary"
+                        : "scale-x-0 bg-foreground/40 group-hover:scale-x-100"
                     }`}
                   />
                 </>
@@ -153,13 +155,15 @@ export function Nav() {
             <div className="hidden sm:flex items-center px-3 border-l border-border/60">
               <ThemeToggle />
             </div>
-            <Link
-              to="/contact"
+            <a
+              href={CALENDLY_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 px-5 border-l border-border/60 text-sm text-foreground hover:bg-secondary transition-colors"
             >
               Book a call
               <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-glow" />
-            </Link>
+            </a>
             <button
               onClick={() => setOpen((o) => !o)}
               className="md:hidden inline-flex items-center justify-center w-12 border-l border-border/60"
@@ -203,14 +207,16 @@ export function Nav() {
             })}
             <div className="flex items-center justify-between py-4">
               <ThemeToggle />
-              <Link
-                to="/contact"
+              <a
+                href={CALENDLY_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
                 className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 text-sm"
               >
                 Book a call
                 <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

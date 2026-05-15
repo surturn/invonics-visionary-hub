@@ -154,8 +154,16 @@ export function Magnetic({
   }, [strength]);
 
   if (href) {
+    const isExternal = href.startsWith("http");
+
     return (
-      <a ref={ref as React.Ref<HTMLAnchorElement>} href={href} className={`magnetic ${className}`}>
+      <a
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        href={href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        className={`magnetic ${className}`}
+      >
         {children}
       </a>
     );
