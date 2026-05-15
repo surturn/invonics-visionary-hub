@@ -61,7 +61,7 @@ export function Booking() {
                   {/* Glow behind the robot */}
                   <div className="absolute inset-x-8 bottom-4 h-12 rounded-full bg-primary/15 blur-2xl" />
                   <img
-                    src={mascot} 
+                    src={mascot}
                     alt="Invonics Assistant robot mascot"
                     loading="lazy"
                     decoding="async"
