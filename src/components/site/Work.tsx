@@ -81,8 +81,12 @@ export function Work() {
   }, []);
 
   // Pause on hover
-  const handleMouseEnter = () => { isPausedRef.current = true; };
-  const handleMouseLeave = () => { isPausedRef.current = false; };
+  const handleMouseEnter = () => {
+    isPausedRef.current = true;
+  };
+  const handleMouseLeave = () => {
+    isPausedRef.current = false;
+  };
 
   // Drag-to-scroll (mouse)
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -95,7 +99,9 @@ export function Work() {
     const delta = dragStartXRef.current - e.clientX;
     railRef.current!.scrollLeft = dragScrollStartRef.current + delta;
   };
-  const handleMouseUp = () => { isDraggingRef.current = false; };
+  const handleMouseUp = () => {
+    isDraggingRef.current = false;
+  };
 
   // Dot navigation
   const scrollToCard = (idx: number) => {
@@ -164,9 +170,7 @@ export function Work() {
             style={{ width: activeIndex === i ? "2.5rem" : "0.375rem" }}
           >
             <span className="absolute inset-0 rounded-full bg-border group-hover:bg-primary/40 transition-colors" />
-            {activeIndex === i && (
-              <span className="absolute inset-0 rounded-full bg-primary" />
-            )}
+            {activeIndex === i && <span className="absolute inset-0 rounded-full bg-primary" />}
           </button>
         ))}
       </div>

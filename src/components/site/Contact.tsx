@@ -110,7 +110,7 @@ export function Contact() {
                 sub="48-hr response"
               />
               <SecondaryCTA
-                href="/#work"
+                href="https://github.com/surturn"
                 icon={<FolderOpen className="h-4 w-4" />}
                 label="View Portfolio"
                 sub="Selected work"
@@ -204,6 +204,8 @@ function SecondaryCTA({
   return (
     <a
       href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       className="group h-full rounded-2xl glass p-5 transition-all hover:-translate-y-1 hover:ring-glow flex flex-col justify-between"
     >
       <div className="grid h-10 w-10 place-items-center rounded-xl bg-secondary border border-border text-primary">
