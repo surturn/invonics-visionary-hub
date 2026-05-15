@@ -41,7 +41,7 @@ const socials = [
   {
     name: "Email",
     handle: "hello@invonics.tech",
-    href: "mailto:sydneykamau2005@gmail.com",
+    href: "mailto:invonicstechnologies@gmail.com",
     icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
     accent: "oklch(0.7 0.16 80)",
   },

@@ -112,7 +112,7 @@ export function Hero() {
                 </svg>
               </Magnetic>
               <Magnetic
-                href="#contact"
+                href="https://calendly.com/invonicstechnologies/30min"
                 className="inline-flex items-center justify-between rounded-full border border-border px-5 py-3 text-sm text-foreground hover:border-primary/60 transition-colors"
               >
                 <span>Book a consult</span>
