@@ -143,12 +143,12 @@ export function Magnetic({
       schedule();
     };
 
-    el.addEventListener("pointermove", onMove, { passive: true });
-    el.addEventListener("pointerleave", onLeave);
+    (el as HTMLElement).addEventListener("pointermove", onMove as EventListener, { passive: true });
+    (el as HTMLElement).addEventListener("pointerleave", onLeave as EventListener);
 
     return () => {
-      el.removeEventListener("pointermove", onMove);
-      el.removeEventListener("pointerleave", onLeave);
+      (el as HTMLElement).removeEventListener("pointermove", onMove as EventListener);
+      (el as HTMLElement).removeEventListener("pointerleave", onLeave as EventListener);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, [strength]);
@@ -225,7 +225,7 @@ export function ParallaxLayer({
   className = "",
   speed = 0.08,
 }: {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   speed?: number;
 }) {
