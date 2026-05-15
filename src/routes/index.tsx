@@ -6,6 +6,7 @@ import { Ecosystem } from "@/components/site/Ecosystem";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { Work } from "@/components/site/Work";
+import { Team } from "@/components/site/Team";
 import { Footer } from "@/components/site/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { MotionSystem } from "@/components/site/MotionSystem";
@@ -60,6 +61,7 @@ function Index() {
           <About />
           <Services />
           <Work />
+          <Team />
           <Suspense fallback={null}>
             <Showcase />
             <Process />

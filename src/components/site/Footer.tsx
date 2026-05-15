@@ -90,8 +90,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a className="text-foreground/80 hover:text-foreground" href="/#vision">
-                  Vision
+                <a className="text-foreground/80 hover:text-foreground" href="/#team">
+                  Team
                 </a>
               </li>
               <li>
