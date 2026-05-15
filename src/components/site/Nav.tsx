@@ -1,89 +1,170 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { ThemeToggle } from "./Theme";
+import logo from "@/assets/logo.jpeg";
 
 const links = [
-  { href: "/#services", label: "Services" },
-  { href: "/#work", label: "Work" },
-  { href: "/#process", label: "Process" },
-  { href: "/#vision", label: "Vision" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#services", label: "Services", index: "01" },
+  { href: "/#work", label: "Work", index: "02" },
+  { href: "/#process", label: "Process", index: "03" },
+  { href: "/#team", label: "Team", index: "04" },
+  { href: "/contact", label: "Contact", index: "05" },
 ];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState<string>("");
+  const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Track which section is in view for hash links on the homepage
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setActiveHash("");
+      return;
+    }
+    const ids = links
+      .filter((l) => l.href.startsWith("/#"))
+      .map((l) => l.href.replace("/#", ""));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+    if (!sections.length) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveHash(`#${visible.target.id}`);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    sections.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [location.pathname]);
+
+  const isActive = (href: string) => {
+    if (href.startsWith("/#")) {
+      return location.pathname === "/" && activeHash === href.replace("/", "");
+    }
+    return location.pathname === href;
+  };
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-3" : "py-5"
+        scrolled
+          ? "bg-background/85 backdrop-blur-md border-b border-border/60"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5">
-        <div
-          className={`flex items-center justify-between rounded-full px-4 sm:px-6 py-2.5 transition-all duration-500 ${
-            scrolled ? "glass-strong" : "bg-transparent border border-transparent"
-          }`}
-        >
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <span className="relative inline-flex h-7 w-7 items-center justify-center rounded-md bg-accent-gradient shadow-glow">
-              <span className="absolute inset-0 rounded-md blur-md bg-accent-gradient opacity-50 group-hover:opacity-80 transition-opacity" />
-              <span className="relative font-display font-bold text-primary-foreground text-sm">
-                I
+      {/* Top engineering meta-bar */}
+      <div className="hidden md:block border-b border-border/40">
+        <div className="mx-auto max-w-[1400px] px-6 flex items-center justify-between label-mono py-1.5">
+          <div className="flex items-center gap-5">
+            <span>
+              <span className="text-primary">◆</span>&nbsp; INV-001
+            </span>
+            <span className="opacity-60">NAIROBI · KE</span>
+            <span className="opacity-60">v2026.05</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.72_0.18_150)] pulse-glow" />
+              OPERATIONAL
+            </span>
+            <span className="opacity-60">EAT · 24h</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+        <div className="flex items-stretch justify-between h-16">
+          {/* Logo block — sharp, bracketed */}
+          <Link
+            to="/"
+            className="group flex items-center gap-3 pr-5 md:pr-7 border-r border-border/60"
+          >
+            <span className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden border border-border bg-secondary">
+              <img
+                src={logo}
+                alt="Invonics Technologies logo"
+                width={36}
+                height={36}
+                className="h-full w-full object-cover"
+              />
+            </span>
+            <span className="flex flex-col leading-none">
+              <span className="font-display font-semibold tracking-tight text-foreground text-[15px]">
+                Invonics
               </span>
-            </span>
-            <span className="font-display font-semibold tracking-tight text-foreground">
-              Invonics
-            </span>
-            <span className="hidden sm:inline text-xs uppercase tracking-[0.2em] text-muted-foreground/70 ml-1">
-              Technologies
+              <span className="text-[9px] uppercase tracking-[0.28em] text-muted-foreground/80 mt-1">
+                Technologies
+              </span>
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-7">
-            {links.map((l) =>
-              l.href.startsWith("/#") ? (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {l.label}
+          {/* Modular nav grid */}
+          <nav className="hidden md:flex items-stretch flex-1">
+            {links.map((l) => {
+              const active = isActive(l.href);
+              const inner = (
+                <>
+                  <span className="label-mono text-[10px] opacity-50 group-hover:opacity-100 group-hover:text-primary transition-colors">
+                    {l.index}
+                  </span>
+                  <span
+                    className={`text-sm transition-colors ${
+                      active ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
+                    }`}
+                  >
+                    {l.label}
+                  </span>
+                  <span
+                    className={`absolute left-5 right-5 bottom-0 h-px origin-left transition-transform duration-500 ${
+                      active ? "scale-x-100 bg-primary" : "scale-x-0 bg-foreground/40 group-hover:scale-x-100"
+                    }`}
+                  />
+                </>
+              );
+              const classes =
+                "group relative flex flex-col justify-center gap-1 px-5 border-r border-border/40 last:border-r-0";
+              return l.href.startsWith("/#") ? (
+                <a key={l.href} href={l.href} className={classes}>
+                  {inner}
                 </a>
               ) : (
-                <Link
-                  key={l.href}
-                  to={l.href}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {l.label}
+                <Link key={l.href} to={l.href} className={classes}>
+                  {inner}
                 </Link>
-              ),
-            )}
+              );
+            })}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <ThemeToggle className="hidden sm:inline-flex" />
+          {/* Right action cluster */}
+          <div className="flex items-stretch">
+            <div className="hidden sm:flex items-center px-3 border-l border-border/60">
+              <ThemeToggle />
+            </div>
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-sm text-foreground hover:ring-glow transition-all"
+              className="hidden md:inline-flex items-center gap-2 px-5 border-l border-border/60 text-sm text-foreground hover:bg-secondary transition-colors"
             >
               Book a call
               <span className="h-1.5 w-1.5 rounded-full bg-primary pulse-glow" />
             </Link>
-
             <button
               onClick={() => setOpen((o) => !o)}
-              className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full glass"
-              aria-label="Menu"
+              className="md:hidden inline-flex items-center justify-center w-12 border-l border-border/60"
+              aria-label="Toggle menu"
+              aria-expanded={open}
             >
               <span className="relative block w-4 h-3">
                 <span
@@ -99,45 +180,41 @@ export function Nav() {
             </button>
           </div>
         </div>
+      </div>
 
-        {open && (
-          <div className="md:hidden mt-2 glass-strong rounded-2xl p-4 animate-fade-in">
-            <div className="flex flex-col">
-              {links.map((l) =>
-                l.href.startsWith("/#") ? (
-                  <a
-                    key={l.href}
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="py-2.5 text-sm text-foreground/90 border-b border-border last:border-0"
-                  >
-                    {l.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={l.href}
-                    to={l.href}
-                    onClick={() => setOpen(false)}
-                    className="py-2.5 text-sm text-foreground/90 border-b border-border last:border-0"
-                  >
-                    {l.label}
-                  </Link>
-                ),
-              )}
-              <div className="mt-3 flex items-center justify-between">
-                <ThemeToggle />
-                <Link
-                  to="/contact"
-                  onClick={() => setOpen(false)}
-                  className="inline-flex justify-center rounded-full bg-accent-gradient px-4 py-2.5 text-sm font-medium text-primary-foreground"
-                >
-                  Book a call
+      {/* Mobile drawer */}
+      {open && (
+        <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-md animate-fade-in">
+          <div className="mx-auto max-w-[1400px] px-4">
+            {links.map((l) => {
+              const cls =
+                "flex items-center justify-between py-3.5 border-b border-border/40 text-sm text-foreground/90";
+              return l.href.startsWith("/#") ? (
+                <a key={l.href} href={l.href} onClick={() => setOpen(false)} className={cls}>
+                  <span>{l.label}</span>
+                  <span className="label-mono opacity-60">{l.index}</span>
+                </a>
+              ) : (
+                <Link key={l.href} to={l.href} onClick={() => setOpen(false)} className={cls}>
+                  <span>{l.label}</span>
+                  <span className="label-mono opacity-60">{l.index}</span>
                 </Link>
-              </div>
+              );
+            })}
+            <div className="flex items-center justify-between py-4">
+              <ThemeToggle />
+              <Link
+                to="/contact"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2.5 text-sm"
+              >
+                Book a call
+                <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/80" />
+              </Link>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 }
