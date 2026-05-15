@@ -48,7 +48,7 @@ export function Footer() {
                 <WhatsAppIcon className="h-3.5 w-3.5" /> WhatsApp
               </a>
               <a
-                href="mailto:hello@invonics.tech"
+                href="mailto:invonicstechnologies@gmail.com"
                 className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-2 text-xs"
               >
                 hello@invonics.tech
