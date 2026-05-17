@@ -10,17 +10,17 @@ import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact the Nairobi Tech Ecosystem | Invonics Technologies" },
+      { title: "Contact the Nairobi Tech Ecosystem | Invonics" },
       {
         name: "description",
         content:
-          "Contact our React Native development Nairobi experts. Whether you need custom backend systems in Westlands or across Kenya, we are here to help your business.",
+          "Discuss intelligent digital solutions, React Native development Nairobi, and Docker containerization and server infrastructure. Contact us to scale efficiently.",
       },
-      { property: "og:title", content: "Contact the Nairobi Tech Ecosystem | Invonics Technologies" },
+      { property: "og:title", content: "Contact the Nairobi Tech Ecosystem | Invonics" },
       {
         property: "og:description",
         content:
-          "Contact our React Native development Nairobi experts. Whether you need custom backend systems in Westlands or across Kenya, we are here to help your business.",
+          "Discuss intelligent digital solutions, React Native development Nairobi, and Docker containerization and server infrastructure. Contact us to scale efficiently.",
       },
     ],
   }),
