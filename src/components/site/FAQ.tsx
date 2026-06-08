@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { Plus } from "lucide-react";
 
-const faqs = [
+export const faqs = [
   {
     q: "What services does Invonics Technologies offer?",
-    a: "We offer software platforms, management systems, workflow automation, system integrations, branding & graphic design, motion graphics, SEO & content, IT equipment supply, Starlink installation, and event technology — all engineered to interlock as one ecosystem.",
+    a: "Invonics Technologies offers custom software development, AI workflow automation, web development, mobile app development, business management systems, M-Pesa API integrations, branding and logo design, motion graphics, SEO services, IT equipment supply, and event management software — all from our studio in Nairobi, Kenya.",
   },
   {
     q: "How long does a project usually take?",
@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "Do you build custom systems?",
-    a: "Yes. Every system we ship is custom-engineered to your operations, team and growth plan. We never resell template products as bespoke work.",
+    a: "Yes. Every system is custom-engineered to your operations and growth plan. We specialise in custom software development in Kenya — from school management platforms and ERP systems to AI-powered automation tools and M-Pesa-integrated applications. No templates. No off-the-shelf resells.",
   },
   {
     q: "Can businesses combine multiple services?",
@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: "Do you work with schools and organizations?",
-    a: "Yes. Schools, NGOs and government bodies are a core part of our portfolio — including school OS platforms, connectivity rollouts and digital transformation programs.",
+    a: "Yes. Schools, NGOs and government bodies across Kenya and East Africa are a core part of our portfolio. We build school management software and run digital transformation programs for institutions. Our Akademi School OS currently serves 26,000+ learners across Kenya.",
   },
 ];
 

@@ -68,8 +68,9 @@ function Tile({
     >
       <img
         src={img}
-        alt={title}
+        alt={`${title} — Invonics Technologies, Nairobi Kenya`}
         loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1600ms] group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />

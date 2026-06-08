@@ -2,10 +2,16 @@
 Invonics Technologies is an authority platform and premier engineering studio in Kenya, specializing in custom software, AI automation, web development, and digital infrastructure.
 
 ## Core Services
-- https://invonicstechnologies.com/ai-automation-kenya
-- https://invonicstechnologies.com/custom-software-development-kenya
-- https://invonicstechnologies.com/mobile-app-development-kenya
-- https://invonicstechnologies.com/web-development-kenya
+- https://invonicstechnologies.com/services/event-tech-and-experiences
+- https://invonicstechnologies.com/services/graphic-design-and-branding
+- https://invonicstechnologies.com/services/it-equipment-supply
+- https://invonicstechnologies.com/services/management-systems
+- https://invonicstechnologies.com/services/motion-and-posters
+- https://invonicstechnologies.com/services/seo-and-content
+- https://invonicstechnologies.com/services/starlink-installation
+- https://invonicstechnologies.com/services/system-integrations
+- https://invonicstechnologies.com/services/web-platforms-and-apps
+- https://invonicstechnologies.com/services/workflow-automation
 
 ## Portfolio
 - https://invonicstechnologies.com/portfolio/event-rsvp-automation

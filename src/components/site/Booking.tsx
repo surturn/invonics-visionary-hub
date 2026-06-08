@@ -62,7 +62,7 @@ export function Booking() {
                   <div className="absolute inset-x-8 bottom-4 h-12 rounded-full bg-primary/15 blur-2xl" />
                   <img
                     src={mascot}
-                    alt="Invonics Assistant robot mascot"
+                    alt="Invonics Assistant robot mascot — Invonics Technologies, Nairobi Kenya"
                     loading="lazy"
                     decoding="async"
                     className="relative w-full h-auto object-contain drop-shadow-none"

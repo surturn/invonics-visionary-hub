@@ -10,6 +10,8 @@ import { Team } from "@/components/site/Team";
 import { Footer } from "@/components/site/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { MotionSystem } from "@/components/site/MotionSystem";
+import { StructuredData, buildFAQSchema } from "@/components/seo/StructuredData";
+import { faqs } from "@/components/site/FAQ";
 
 const Showcase = lazy(() =>
   import("@/components/site/Showcase").then((m) => ({ default: m.Showcase })),
@@ -32,20 +34,28 @@ const Socials = lazy(() =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Invonics Technologies — Engineering Tomorrow, Today." },
+      { title: "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies" },
       {
         name: "description",
         content:
-          "Invonics Technologies builds intelligent digital ecosystems — software, automation, branding, IT supply, Starlink installation and modern digital experiences.",
+          "Invonics Technologies builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa. Get a free consultation.",
       },
-      { property: "og:title", content: "Invonics Technologies — Engineering Tomorrow, Today." },
+      {
+        name: "keywords",
+        content:
+          "software development Nairobi, custom software Kenya, AI automation Nairobi, web development company Kenya, mobile app development Nairobi, M-Pesa integration Kenya, branding company Nairobi, motion graphics Kenya, management systems Kenya, workflow automation Nairobi, school management software Kenya, event management software Kenya, ROI tracking software Kenya, digital transformation East Africa",
+      },
+      { property: "og:title", content: "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies" },
       {
         property: "og:description",
         content:
-          "Software, infrastructure, automation and brand — engineered to interlock into one scalable ecosystem.",
+          "Invonics Technologies builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa. Get a free consultation.",
       },
       { property: "og:type", content: "website" },
     ],
+    links: [
+      { rel: "canonical", href: "https://invonicstechnologies.com/" }
+    ]
   }),
   component: Index,
 });
@@ -54,6 +64,30 @@ function Index() {
   return (
     <MotionSystem>
       <div className="relative z-10 min-h-screen bg-background/80 text-foreground">
+        <StructuredData
+          type="LocalBusiness"
+          data={{
+            name: "Invonics Technologies",
+            image: "https://invonicstechnologies.com/og-image.jpg",
+            "@id": "https://invonicstechnologies.com",
+            url: "https://invonicstechnologies.com",
+            telephone: "+254786669572",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "259a, Njambi road, Oreteti Heights, Ongata Rongai",
+              addressLocality: "Nairobi",
+              addressRegion: "Nairobi",
+              postalCode: "00100",
+              addressCountry: "KE"
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: -1.286389,
+              longitude: 36.817223
+            }
+          }}
+        />
+        <StructuredData type="FAQPage" data={buildFAQSchema(faqs)} />
         <Nav />
         <main>
           <Hero />

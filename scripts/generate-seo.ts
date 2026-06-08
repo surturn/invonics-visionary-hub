@@ -34,7 +34,7 @@ async function generate() {
 `;
 
   services.forEach(slug => {
-    sitemap += `  <url><loc>https://invonicstechnologies.com/${slug}</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>\n`;
+    sitemap += `  <url><loc>https://invonicstechnologies.com/services/${slug}</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>\n`;
   });
   portfolio.forEach(slug => {
     sitemap += `  <url><loc>https://invonicstechnologies.com/portfolio/${slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
@@ -51,7 +51,7 @@ async function generate() {
 Invonics Technologies is an authority platform and premier engineering studio in Kenya, specializing in custom software, AI automation, web development, and digital infrastructure.
 
 ## Core Services
-${services.map(s => `- https://invonicstechnologies.com/${s}`).join("\n")}
+${services.map(s => `- https://invonicstechnologies.com/services/${s}`).join("\n")}
 
 ## Portfolio
 ${portfolio.map(s => `- https://invonicstechnologies.com/portfolio/${s}`).join("\n")}
@@ -63,6 +63,15 @@ ${portfolio.map(s => `- https://invonicstechnologies.com/portfolio/${s}`).join("
 
   fs.writeFileSync(path.join(publicDir, "llms.txt"), llms);
   fs.writeFileSync(path.join(publicDir, "llms-full.txt"), llms);
+
+  // 3. Generate robots.txt
+  const robotsTxt = `User-agent: *
+Disallow: /assets/
+Allow: /
+
+Sitemap: https://invonicstechnologies.com/sitemap.xml
+`;
+  fs.writeFileSync(path.join(publicDir, "robots.txt"), robotsTxt);
 
   console.log("SEO files generated successfully in /public");
 }
