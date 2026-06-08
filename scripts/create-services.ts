@@ -60,10 +60,10 @@ const services = [
     slug: "event-tech-and-experiences",
     title: "Event Tech and Experiences",
     desc: "Innovative event technology and digital experiences deployed in Nairobi, Kenya. From automated RSVP systems and QR-code ticketing to interactive displays, we engineer seamless digital touchpoints that elevate corporate events, conferences, and brand activations.",
-  }
+  },
 ];
 
-services.forEach(s => {
+services.forEach((s) => {
   const fileContent = `import { ServicePage } from "../../types/content";
 
 export const service: ServicePage = {

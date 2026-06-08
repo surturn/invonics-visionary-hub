@@ -12,9 +12,10 @@ const publicDir = path.join(rootDir, "public");
 function getSlugsFromDir(dirName: string) {
   const dirPath = path.join(rootDir, "src", "content", dirName);
   if (!fs.existsSync(dirPath)) return [];
-  return fs.readdirSync(dirPath)
-    .filter(file => file.endsWith('.ts') && file !== 'index.ts')
-    .map(file => file.replace('.ts', ''));
+  return fs
+    .readdirSync(dirPath)
+    .filter((file) => file.endsWith(".ts") && file !== "index.ts")
+    .map((file) => file.replace(".ts", ""));
 }
 
 async function generate() {
@@ -33,13 +34,13 @@ async function generate() {
   <url><loc>https://invonicstechnologies.com/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 `;
 
-  services.forEach(slug => {
+  services.forEach((slug) => {
     sitemap += `  <url><loc>https://invonicstechnologies.com/services/${slug}</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>\n`;
   });
-  portfolio.forEach(slug => {
+  portfolio.forEach((slug) => {
     sitemap += `  <url><loc>https://invonicstechnologies.com/portfolio/${slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
   });
-  blogs.forEach(slug => {
+  blogs.forEach((slug) => {
     sitemap += `  <url><loc>https://invonicstechnologies.com/blog/${slug}</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
   });
   sitemap += `</urlset>`;
@@ -51,10 +52,10 @@ async function generate() {
 Invonics Technologies is an authority platform and premier engineering studio in Kenya, specializing in custom software, AI automation, web development, and digital infrastructure.
 
 ## Core Services
-${services.map(s => `- https://invonicstechnologies.com/services/${s}`).join("\n")}
+${services.map((s) => `- https://invonicstechnologies.com/services/${s}`).join("\n")}
 
 ## Portfolio
-${portfolio.map(s => `- https://invonicstechnologies.com/portfolio/${s}`).join("\n")}
+${portfolio.map((s) => `- https://invonicstechnologies.com/portfolio/${s}`).join("\n")}
 
 ## Contact
 - Website: https://invonicstechnologies.com

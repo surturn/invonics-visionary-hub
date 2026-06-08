@@ -11,7 +11,8 @@ export const Route = createFileRoute("/about")({
       { title: "About Us — Invonics Technologies" },
       {
         name: "description",
-        content: "Invonics Technologies is a premier engineering studio in Kenya, specializing in custom software, AI automation, and digital infrastructure.",
+        content:
+          "Invonics Technologies is a premier engineering studio in Kenya, specializing in custom software, AI automation, and digital infrastructure.",
       },
       { property: "og:title", content: "About Us — Invonics Technologies" },
       { rel: "canonical", href: "https://invonicstechnologies.com/about" },
@@ -28,7 +29,8 @@ function AboutPage() {
         data={{
           name: "Invonics Technologies",
           url: "https://invonicstechnologies.com",
-          description: "Premier engineering studio specializing in custom software and AI automation.",
+          description:
+            "Premier engineering studio specializing in custom software and AI automation.",
         }}
       />
       <Nav />

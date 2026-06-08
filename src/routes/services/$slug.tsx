@@ -21,7 +21,10 @@ export const Route = createFileRoute("/services/$slug")({
       meta: [
         { title: `${service.title} in Nairobi, Kenya | Invonics Technologies` },
         { name: "description", content: service.metaDescription || service.summary },
-        { property: "og:title", content: `${service.title} in Nairobi, Kenya | Invonics Technologies` },
+        {
+          property: "og:title",
+          content: `${service.title} in Nairobi, Kenya | Invonics Technologies`,
+        },
         { property: "og:description", content: service.summary },
         { rel: "canonical", href: `https://invonicstechnologies.com/services/${service.slug}` },
       ],
@@ -46,7 +49,7 @@ function ServiceLandingPage() {
       {service.faqs && service.faqs.length > 0 && (
         <StructuredData type="FAQPage" data={buildFAQSchema(service.faqs)} />
       )}
-      
+
       <Nav />
       <main className="pt-32 pb-24">
         {/* Breadcrumb & Hero Section */}
@@ -55,12 +58,16 @@ function ServiceLandingPage() {
             <nav className="flex text-sm text-muted-foreground mb-8" aria-label="Breadcrumb">
               <ol className="inline-flex items-center space-x-1 md:space-x-3">
                 <li className="inline-flex items-center">
-                  <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+                  <Link to="/" className="hover:text-primary transition-colors">
+                    Home
+                  </Link>
                 </li>
                 <li>
                   <div className="flex items-center">
                     <span className="mx-2 text-border">/</span>
-                    <Link to="/services" className="hover:text-primary transition-colors">Services</Link>
+                    <Link to="/services" className="hover:text-primary transition-colors">
+                      Services
+                    </Link>
                   </div>
                 </li>
                 <li aria-current="page">
@@ -79,11 +86,11 @@ function ServiceLandingPage() {
               <p>{service.summary}</p>
               <p>{service.description}</p>
             </div>
-            
+
             <div className="mt-10">
-              <a 
-                href={WA_LINK} 
-                target="_blank" 
+              <a
+                href={WA_LINK}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
               >
@@ -102,7 +109,9 @@ function ServiceLandingPage() {
                 <ul className="space-y-4">
                   {service.benefits.map((benefit, i) => (
                     <li key={i} className="flex items-start gap-4">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">✓</span>
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                        ✓
+                      </span>
                       <span className="text-muted-foreground">{benefit}</span>
                     </li>
                   ))}
@@ -130,4 +139,3 @@ function ServiceLandingPage() {
     </div>
   );
 }
-

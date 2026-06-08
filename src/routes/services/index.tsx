@@ -11,7 +11,8 @@ export const Route = createFileRoute("/services/")({
       { title: "Our Services — Invonics Technologies" },
       {
         name: "description",
-        content: "Discover our full range of services including web development, AI automation, mobile apps, and IT infrastructure.",
+        content:
+          "Discover our full range of services including web development, AI automation, mobile apps, and IT infrastructure.",
       },
       { property: "og:title", content: "Our Services — Invonics Technologies" },
       { rel: "canonical", href: "https://invonicstechnologies.com/services" },

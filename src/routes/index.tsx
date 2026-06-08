@@ -34,7 +34,10 @@ const Socials = lazy(() =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies" },
+      {
+        title:
+          "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies",
+      },
       {
         name: "description",
         content:
@@ -45,7 +48,11 @@ export const Route = createFileRoute("/")({
         content:
           "software development Nairobi, custom software Kenya, AI automation Nairobi, web development company Kenya, mobile app development Nairobi, M-Pesa integration Kenya, branding company Nairobi, motion graphics Kenya, management systems Kenya, workflow automation Nairobi, school management software Kenya, event management software Kenya, ROI tracking software Kenya, digital transformation East Africa",
       },
-      { property: "og:title", content: "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies" },
+      {
+        property: "og:title",
+        content:
+          "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies",
+      },
       {
         property: "og:description",
         content:
@@ -53,9 +60,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
     ],
-    links: [
-      { rel: "canonical", href: "https://invonicstechnologies.com/" }
-    ]
+    links: [{ rel: "canonical", href: "https://invonicstechnologies.com/" }],
   }),
   component: Index,
 });
@@ -78,13 +83,13 @@ function Index() {
               addressLocality: "Nairobi",
               addressRegion: "Nairobi",
               postalCode: "00100",
-              addressCountry: "KE"
+              addressCountry: "KE",
             },
             geo: {
               "@type": "GeoCoordinates",
               latitude: -1.286389,
-              longitude: 36.817223
-            }
+              longitude: 36.817223,
+            },
           }}
         />
         <StructuredData type="FAQPage" data={buildFAQSchema(faqs)} />

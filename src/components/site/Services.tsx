@@ -81,7 +81,6 @@ const services: Service[] = [
       "We improve technical SEO, page structure, metadata, content plans, keyword targeting, and analytics so customers can find your brand and understand your offer faster.",
     outcomes: ["SEO audit", "Content plan", "Analytics setup"],
   },
-
 ];
 
 export function Services() {

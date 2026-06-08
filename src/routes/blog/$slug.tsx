@@ -8,7 +8,7 @@ import { StructuredData } from "@/components/seo/StructuredData";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
-    const post = getAllBlogPosts().find(p => p.slug === params.slug);
+    const post = getAllBlogPosts().find((p) => p.slug === params.slug);
     if (!post) {
       throw notFound();
     }
@@ -52,7 +52,9 @@ function BlogDetail() {
         <article className="mx-auto max-w-3xl px-5">
           <Reveal>
             <div className="mb-6 flex items-center gap-3 text-sm text-muted-foreground">
-              <span className="font-medium text-primary uppercase tracking-wider">{post.category}</span>
+              <span className="font-medium text-primary uppercase tracking-wider">
+                {post.category}
+              </span>
               <span>•</span>
               <span>{post.publishedAt}</span>
             </div>
@@ -60,12 +62,19 @@ function BlogDetail() {
               {post.title}
             </h1>
           </Reveal>
-          
+
           <Reveal delay={100}>
             {/* Extremely simple markdown/HTML renderer for MVP */}
-            <div 
+            <div
               className="prose prose-invert prose-lg max-w-none text-muted-foreground"
-              dangerouslySetInnerHTML={{ __html: post.content.replace(/\n\n/g, '<br/><br/>').replace(/### (.*?)\n/g, '<h3 class="text-2xl text-foreground mt-8 mb-4 font-display">$1</h3>') }} 
+              dangerouslySetInnerHTML={{
+                __html: post.content
+                  .replace(/\n\n/g, "<br/><br/>")
+                  .replace(
+                    /### (.*?)\n/g,
+                    '<h3 class="text-2xl text-foreground mt-8 mb-4 font-display">$1</h3>',
+                  ),
+              }}
             />
           </Reveal>
         </article>
