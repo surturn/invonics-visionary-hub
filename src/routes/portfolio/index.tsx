@@ -13,10 +13,14 @@ export const Route = createFileRoute("/portfolio/")({
       { title: "Portfolio & Case Studies — Invonics Technologies" },
       {
         name: "description",
-        content: "Explore our portfolio of software platforms, automation systems, and digital ecosystems engineered for modern organizations.",
+        content:
+          "Explore our portfolio of software platforms, automation systems, and digital ecosystems engineered for modern organizations.",
       },
       { property: "og:title", content: "Portfolio & Case Studies — Invonics Technologies" },
-      { property: "og:description", content: "Explore our latest engineering and automation projects." },
+      {
+        property: "og:description",
+        content: "Explore our latest engineering and automation projects.",
+      },
       { rel: "canonical", href: "https://invonicstechnologies.com/portfolio" },
     ],
   }),
@@ -66,12 +70,13 @@ function PortfolioIndex() {
                     <h3 className="mb-3 font-display text-2xl text-foreground group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {project.summary}
-                    </p>
+                    <p className="text-muted-foreground leading-relaxed">{project.summary}</p>
                     <div className="mt-6 flex flex-wrap gap-2">
                       {project.services.slice(0, 3).map((service) => (
-                        <span key={service} className="rounded-full border border-border/80 bg-background/50 px-3 py-1 text-[11px] text-muted-foreground">
+                        <span
+                          key={service}
+                          className="rounded-full border border-border/80 bg-background/50 px-3 py-1 text-[11px] text-muted-foreground"
+                        >
                           {service}
                         </span>
                       ))}

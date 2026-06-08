@@ -33,17 +33,14 @@ export const buildOrganizationSchema = () => ({
   name: "Invonics Technologies",
   url: "https://invonicstechnologies.com",
   logo: "https://invonicstechnologies.com/logo.png",
-  sameAs: [
-    "https://twitter.com/invonics",
-    "https://linkedin.com/company/invonics"
-  ],
+  sameAs: ["https://twitter.com/invonics", "https://linkedin.com/company/invonics"],
 });
 
 export const buildCreativeWorkSchema = (
   title: string,
   summary: string,
   url: string,
-  datePublished?: string
+  datePublished?: string,
 ) => ({
   name: title,
   description: summary,

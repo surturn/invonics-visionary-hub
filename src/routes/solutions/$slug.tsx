@@ -67,7 +67,9 @@ function IndustryLandingPage() {
                 <ul className="space-y-6">
                   {industry.challenges.map((challenge, i) => (
                     <li key={i} className="flex items-start gap-4">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-destructive/10 text-destructive text-sm font-bold">✕</span>
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-destructive/10 text-destructive text-sm font-bold">
+                        ✕
+                      </span>
                       <span className="text-muted-foreground leading-relaxed">{challenge}</span>
                     </li>
                   ))}
@@ -81,8 +83,12 @@ function IndustryLandingPage() {
                 <ul className="space-y-6">
                   {industry.solutions.map((solution, i) => (
                     <li key={i} className="flex items-start gap-4">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary text-sm font-bold">✓</span>
-                      <span className="text-foreground leading-relaxed font-medium">{solution}</span>
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-primary text-sm font-bold">
+                        ✓
+                      </span>
+                      <span className="text-foreground leading-relaxed font-medium">
+                        {solution}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -96,7 +102,10 @@ function IndustryLandingPage() {
             <h2 className="font-display text-3xl text-center mb-10">Business Outcomes</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {industry.benefits.map((benefit, i) => (
-                <div key={i} className="p-6 rounded-2xl glass border border-border/60 text-center flex flex-col items-center justify-center">
+                <div
+                  key={i}
+                  className="p-6 rounded-2xl glass border border-border/60 text-center flex flex-col items-center justify-center"
+                >
                   <p className="text-foreground font-medium">{benefit}</p>
                 </div>
               ))}
@@ -106,8 +115,8 @@ function IndustryLandingPage() {
 
         <section className="mx-auto max-w-4xl px-5">
           <Reveal>
-            <ConsultationCTA 
-              title="Transform your operations" 
+            <ConsultationCTA
+              title="Transform your operations"
               description="Let's discuss how we can engineer a custom ecosystem for your business."
             />
           </Reveal>

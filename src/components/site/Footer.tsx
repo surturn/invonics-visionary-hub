@@ -37,14 +37,22 @@ export function Footer() {
               institutions of the next decade.
             </p>
             <p className="mt-3 max-w-sm text-sm text-muted-foreground leading-relaxed footer-geo-desc">
-              Custom software development, AI automation, web design and branding company based in Nairobi, Kenya. Serving SMEs, schools and institutions across East Africa.
+              Custom software development, AI automation, web design and branding company based in
+              Nairobi, Kenya. Serving SMEs, schools and institutions across East Africa.
             </p>
 
             <address className="mt-6 text-sm text-muted-foreground not-italic footer-nap">
-              259a, Njambi road, Oreteti Heights, Ongata Rongai, Nairobi, Kenya &nbsp;&middot;&nbsp; 
-              <a href="mailto:hello@invonicstechnologies.com" className="hover:text-primary transition-colors">hello@invonicstechnologies.com</a> 
-              &nbsp;&middot;&nbsp; 
-              <a href="tel:+254786669572" className="hover:text-primary transition-colors">+254 786 669 572</a>
+              259a, Njambi road, Oreteti Heights, Ongata Rongai, Nairobi, Kenya &nbsp;&middot;&nbsp;
+              <a
+                href="mailto:hello@invonicstechnologies.com"
+                className="hover:text-primary transition-colors"
+              >
+                hello@invonicstechnologies.com
+              </a>
+              &nbsp;&middot;&nbsp;
+              <a href="tel:+254786669572" className="hover:text-primary transition-colors">
+                +254 786 669 572
+              </a>
             </address>
 
             <div className="mt-6 flex flex-wrap gap-2">

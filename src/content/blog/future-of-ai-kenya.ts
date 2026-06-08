@@ -4,7 +4,8 @@ export const futureOfAiKenya: BlogPost = {
   title: "The Future of AI Automation in Kenyan Enterprises",
   slug: "future-of-ai-automation-kenya",
   category: "AI Automation",
-  summary: "How SMEs in East Africa are bypassing traditional software curves and moving straight to AI-driven workflows.",
+  summary:
+    "How SMEs in East Africa are bypassing traditional software curves and moving straight to AI-driven workflows.",
   content: `
 Historically, technology adoption in East Africa leapfrogged landlines straight to mobile money. We are seeing the exact same pattern happen today with enterprise software. Instead of spending years deploying rigid ERP systems, companies are adopting AI automation workflows.
 
@@ -16,7 +17,8 @@ At Invonics Technologies, we focus on observable, reliable automation. We don't 
   `,
   author: "Invonics Engineering",
   publishedAt: "2024-04-12",
-  metaDescription: "Discover how Kenyan enterprises are leveraging AI automation workflows to bypass traditional software bottlenecks."
+  metaDescription:
+    "Discover how Kenyan enterprises are leveraging AI automation workflows to bypass traditional software bottlenecks.",
 };
 
 export default futureOfAiKenya;

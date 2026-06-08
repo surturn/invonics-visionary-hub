@@ -58,7 +58,9 @@ export function Hero() {
 
           {/* Headline */}
           <div className="col-span-12 lg:col-span-8 min-w-0">
-            <h1 className="sr-only">Software Development & AI Automation Company in Nairobi, Kenya</h1>
+            <h1 className="sr-only">
+              Software Development & AI Automation Company in Nairobi, Kenya
+            </h1>
             <p className="font-display leading-[0.92] tracking-tight" aria-label="brand tagline">
               <span className="hero-word block text-[15vw] md:text-[11vw] lg:text-[8vw] xl:text-[7.2rem] text-gradient">
                 Engineering
@@ -95,7 +97,9 @@ export function Hero() {
               <span className="text-primary">●</span>&nbsp; Studio Note
             </div>
             <p className="text-sm md:text-[15px] text-muted-foreground leading-relaxed">
-              Invonics Technologies is a software development and AI automation studio based in Nairobi, Kenya — building custom platforms, workflow automations, and brand systems for businesses and schools across East Africa.
+              Invonics Technologies is a software development and AI automation studio based in
+              Nairobi, Kenya — building custom platforms, workflow automations, and brand systems
+              for businesses and schools across East Africa.
             </p>
             <div className="mt-6 flex flex-col gap-2.5">
               <Magnetic
