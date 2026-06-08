@@ -4,7 +4,7 @@ import { TiltCard } from "./MotionSystem";
 import saas from "@/assets/project-saas.jpg";
 import school from "@/assets/project-school.jpg";
 import branding from "@/assets/project-branding.jpg";
-import starlink from "@/assets/project-starlink.jpg";
+import rsvp from "@/assets/project-rsvp.png";
 
 const projects = [
   {
@@ -13,13 +13,6 @@ const projects = [
     title: "Greenfields Academy Portal",
     sub: "A clean, fast website and information hub for a 700-learner school — built to be edited by staff and trusted by parents.",
     metric: "~700 learners",
-  },
-  {
-    img: starlink,
-    tag: "Connectivity Pilot",
-    title: "Campus Starlink Setup",
-    sub: "Survey, install and configuration of Starlink for a partner school — getting classrooms reliably online for the first time.",
-    metric: "01 site live",
   },
   {
     img: saas,
@@ -34,6 +27,13 @@ const projects = [
     title: "Invonics Brand System",
     sub: "Logo, type, motion and the editorial language you're reading right now — built in-house and applied across every touchpoint.",
     metric: "v2026.05",
+  },
+  {
+    img: rsvp,
+    tag: "Event Tech · Platform",
+    title: "Digital RSVP & Ticketing",
+    sub: "A custom event management platform with QR-code invitations and M-Pesa integrated guest payments for corporate and social events.",
+    metric: "12k+ check-ins",
   },
 ];
 
@@ -198,8 +198,9 @@ function ProjectCard({
       <div className="absolute inset-0">
         <img
           src={img}
-          alt={title}
+          alt={`${title} — Invonics Technologies, Nairobi Kenya`}
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover transition-transform duration-[1800ms] ease-out group-hover:scale-[1.055]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--color-background)_0%,oklch(0.13_0.008_260/0.78)_35%,transparent_76%)]" />

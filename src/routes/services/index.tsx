@@ -5,7 +5,7 @@ import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { Services as ServicesComponent } from "@/components/site/Services";
 import { StructuredData } from "@/components/seo/StructuredData";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Our Services — Invonics Technologies" },

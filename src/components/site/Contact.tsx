@@ -15,7 +15,9 @@ export function Contact() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget));
     const r = schema.safeParse(data);
@@ -26,7 +28,22 @@ export function Contact() {
       return;
     }
     setErrors({});
-    setSent(true);
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(r.data),
+      });
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
+      setSent(true);
+    } catch (err) {
+      setErrors({ message: "Failed to send message. Please try WhatsApp instead." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

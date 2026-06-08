@@ -16,13 +16,7 @@ export function About() {
 
           <Reveal delay={120} className="lg:col-span-7">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Invonics Technologies helps businesses, schools and institutions across Africa
-              modernize operations and elevate their digital presence — through integrated software,
-              infrastructure, automation and creative systems engineered to last.
-            </p>
-            <p className="mt-5 text-base text-muted-foreground/85 leading-relaxed">
-              We work at the intersection of engineering and design — building dependable platforms,
-              connectivity, and brand systems that compound in value as you scale.
+              We modernize the way organizations in Nairobi, Kenya and across East Africa operate, build and grow. Invonics Technologies delivers custom software development, AI-powered automation, web platforms, and brand systems — engineered end-to-end for businesses, schools, SMEs and government institutions. From M-Pesa-integrated management systems to motion graphics, every solution is built to compound in value as you scale.
             </p>
 
             <div className="mt-10 grid grid-cols-3 gap-6">

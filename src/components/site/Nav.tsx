@@ -93,7 +93,9 @@ export function Nav() {
             <span className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden border border-border bg-secondary">
               <img
                 src={logo}
-                alt="Invonics Technologies logo"
+                alt="Invonics Technologies logo — Software Development Company in Nairobi, Kenya"
+                loading="eager"
+                decoding="async"
                 width={36}
                 height={36}
                 className="h-full w-full object-cover"
