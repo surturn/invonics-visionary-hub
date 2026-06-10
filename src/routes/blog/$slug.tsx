@@ -23,6 +23,8 @@ export const Route = createFileRoute("/blog/$slug")({
         { name: "description", content: post.metaDescription || post.summary },
         { property: "og:title", content: post.title },
         { property: "og:type", content: "article" },
+      ],
+      links: [
         { rel: "canonical", href: `https://invonicstechnologies.com/blog/${post.slug}` },
       ],
     };

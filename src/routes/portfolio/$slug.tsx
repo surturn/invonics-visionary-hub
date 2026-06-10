@@ -28,6 +28,8 @@ export const Route = createFileRoute("/portfolio/$slug")({
         { name: "description", content: project.metaDescription || project.summary },
         { property: "og:title", content: `${project.title} | Case Study` },
         { property: "og:description", content: project.summary },
+      ],
+      links: [
         { rel: "canonical", href: `https://invonicstechnologies.com/portfolio/${project.slug}` },
       ],
     };

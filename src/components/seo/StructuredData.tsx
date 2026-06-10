@@ -33,7 +33,12 @@ export const buildOrganizationSchema = () => ({
   name: "Invonics Technologies",
   url: "https://invonicstechnologies.com",
   logo: "https://invonicstechnologies.com/logo.png",
-  sameAs: ["https://twitter.com/invonics", "https://linkedin.com/company/invonics"],
+  sameAs: [
+    "https://www.tiktok.com/@invonicstechnologies",
+    "https://x.com/invonicstech",
+    "https://www.instagram.com/invonicstechnologies",
+    "https://www.facebook.com/invonicstechnologies"
+  ],
 });
 
 export const buildCreativeWorkSchema = (

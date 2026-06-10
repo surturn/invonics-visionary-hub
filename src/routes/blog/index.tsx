@@ -16,6 +16,8 @@ export const Route = createFileRoute("/blog/")({
           "Thoughts on software engineering, AI automation, and digital transformation in East Africa.",
       },
       { property: "og:title", content: "Insights & Articles" },
+    ],
+    links: [
       { rel: "canonical", href: "https://invonicstechnologies.com/blog" },
     ],
   }),

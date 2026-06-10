@@ -15,6 +15,8 @@ export const Route = createFileRoute("/about")({
           "Invonics Technologies is a premier engineering studio in Kenya, specializing in custom software, AI automation, and digital infrastructure.",
       },
       { property: "og:title", content: "About Us — Invonics Technologies" },
+    ],
+    links: [
       { rel: "canonical", href: "https://invonicstechnologies.com/about" },
     ],
   }),

@@ -26,6 +26,8 @@ export const Route = createFileRoute("/services/$slug")({
           content: `${service.title} in Nairobi, Kenya | Invonics Technologies`,
         },
         { property: "og:description", content: service.summary },
+      ],
+      links: [
         { rel: "canonical", href: `https://invonicstechnologies.com/services/${service.slug}` },
       ],
     };

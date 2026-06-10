@@ -23,6 +23,8 @@ export const Route = createFileRoute("/solutions/$slug")({
         { title: `${industry.title} | Invonics Technologies` },
         { name: "description", content: industry.metaDescription || industry.summary },
         { property: "og:title", content: industry.title },
+      ],
+      links: [
         { rel: "canonical", href: `https://invonicstechnologies.com/solutions/${industry.slug}` },
       ],
     };

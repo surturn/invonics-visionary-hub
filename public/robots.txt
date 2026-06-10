@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /assets/
 Allow: /
 
 Sitemap: https://invonicstechnologies.com/sitemap.xml

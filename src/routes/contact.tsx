@@ -22,6 +22,9 @@ export const Route = createFileRoute("/contact")({
         content: "WhatsApp, the Invonics Assistant, inquiries and socials — all in one place.",
       },
     ],
+    links: [
+      { rel: "canonical", href: "https://invonicstechnologies.com/contact" },
+    ],
   }),
   component: ContactPage,
 });
