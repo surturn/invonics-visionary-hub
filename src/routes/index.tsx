@@ -1,17 +1,23 @@
 import { Suspense, lazy } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
-import { Hero } from "@/components/site/Hero";
-import { Ecosystem } from "@/components/site/Ecosystem";
-import { About } from "@/components/site/About";
-import { Services } from "@/components/site/Services";
-import { Work } from "@/components/site/Work";
-import { Team } from "@/components/site/Team";
-import { Footer } from "@/components/site/Footer";
-import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { MotionSystem } from "@/components/site/MotionSystem";
 import { StructuredData, buildFAQSchema } from "@/components/seo/StructuredData";
 import { faqs } from "@/components/site/FAQ";
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+const Ecosystem = lazy(() =>
+  import("@/components/site/Ecosystem").then((m) => ({ default: m.Ecosystem })),
+);
+const About = lazy(() => import("@/components/site/About").then((m) => ({ default: m.About })));
+const Services = lazy(() =>
+  import("@/components/site/Services").then((m) => ({ default: m.Services })),
+);
+const Work = lazy(() => import("@/components/site/Work").then((m) => ({ default: m.Work })));
+const Team = lazy(() => import("@/components/site/Team").then((m) => ({ default: m.Team })));
+const Footer = lazy(() => import("@/components/site/Footer").then((m) => ({ default: m.Footer })));
+const FloatingWhatsApp = lazy(() =>
+  import("@/components/site/FloatingWhatsApp").then((m) => ({ default: m.FloatingWhatsApp })),
+);
 
 const Showcase = lazy(() =>
   import("@/components/site/Showcase").then((m) => ({ default: m.Showcase })),
@@ -96,12 +102,12 @@ function Index() {
         <Nav />
         <main>
           <Hero />
-          <Ecosystem />
-          <About />
-          <Services />
-          <Work />
-          <Team />
           <Suspense fallback={null}>
+            <Ecosystem />
+            <About />
+            <Services />
+            <Work />
+            <Team />
             <Showcase />
             <Process />
             <Vision />
@@ -111,8 +117,10 @@ function Index() {
             <Socials />
           </Suspense>
         </main>
-        <Footer />
-        <FloatingWhatsApp />
+        <Suspense fallback={null}>
+          <Footer />
+          <FloatingWhatsApp />
+        </Suspense>
       </div>
     </MotionSystem>
   );

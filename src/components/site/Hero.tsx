@@ -1,4 +1,3 @@
-import heroBg from "@/assets/hero-bg.jpg";
 import { Magnetic, ParallaxLayer } from "./MotionSystem";
 
 export function Hero() {
@@ -10,10 +9,11 @@ export function Hero() {
       {/* Layered backgrounds */}
       <div className="absolute inset-0 -z-20">
         <img
-          src={heroBg}
+          src="/hero-bg.jpg"
           alt="Invonics Technologies software studio — Nairobi, Kenya"
           loading="eager"
-          decoding="async"
+          fetchpriority="high"
+          decoding="sync"
           className="h-full w-full object-cover opacity-25 mix-blend-luminosity"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
