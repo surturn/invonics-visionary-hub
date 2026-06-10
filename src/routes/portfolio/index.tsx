@@ -21,6 +21,8 @@ export const Route = createFileRoute("/portfolio/")({
         property: "og:description",
         content: "Explore our latest engineering and automation projects.",
       },
+    ],
+    links: [
       { rel: "canonical", href: "https://invonicstechnologies.com/portfolio" },
     ],
   }),

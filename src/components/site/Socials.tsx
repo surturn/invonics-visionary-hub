@@ -20,7 +20,7 @@ const socials = [
   {
     name: "TikTok",
     handle: "@invonicstechnologies",
-    href: "https://www.tiktok.com/@invonicstechnologies?/",
+    href: "https://www.tiktok.com/@invonicstechnologies",
     icon: <TikTokIcon className="h-５ w-５" />,
     accent: "oklch(0.7 0.18 200)",
   },
@@ -34,7 +34,7 @@ const socials = [
   {
     name: "Facebook",
     handle: "Invonics Technologies",
-    href: "https://www.facebook.com/share/1BFcFJHC1w/",
+    href: "https://www.facebook.com/invonicstechnologies",
     icon: <Facebook className="h-5 w-5" strokeWidth={1.6} />,
     accent: "oklch(0.55 0.2 250)",
   },
