@@ -59,7 +59,7 @@ export function Hero() {
           {/* Headline */}
           <div className="col-span-12 lg:col-span-8 min-w-0">
             <h1 className="sr-only">
-              Software Development & AI Automation Company in Nairobi, Kenya
+              Software Engineering & AI Automation Studio
             </h1>
             <p className="font-display leading-[0.92] tracking-tight" aria-label="brand tagline">
               <span className="hero-word block text-[15vw] md:text-[11vw] lg:text-[8vw] xl:text-[7.2rem] text-gradient">
