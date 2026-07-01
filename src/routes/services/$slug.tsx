@@ -5,6 +5,7 @@ import { FloatingWhatsApp, WA_LINK } from "@/components/site/FloatingWhatsApp";
 import { Reveal } from "@/components/site/Reveal";
 import { getServiceBySlug } from "@/lib/content";
 import { StructuredData, buildFAQSchema } from "@/components/seo/StructuredData";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -27,9 +28,7 @@ export const Route = createFileRoute("/services/$slug")({
         },
         { property: "og:description", content: service.summary },
       ],
-      links: [
-        { rel: "canonical", href: `https://invonicstechnologies.com/services/${service.slug}` },
-      ],
+      links: [{ rel: "canonical", href: absoluteUrl(`/services/${service.slug}`) }],
     };
   },
   component: ServiceLandingPage,
@@ -45,7 +44,7 @@ function ServiceLandingPage() {
         data={{
           name: service.title,
           description: service.summary,
-          url: `https://invonicstechnologies.com/services/${service.slug}`,
+          url: absoluteUrl(`/services/${service.slug}`),
         }}
       />
       {service.faqs && service.faqs.length > 0 && (

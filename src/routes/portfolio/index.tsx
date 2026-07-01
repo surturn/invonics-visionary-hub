@@ -6,6 +6,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { TiltCard } from "@/components/site/MotionSystem";
 import { getAllPortfolioItems } from "@/lib/content";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/portfolio/")({
   head: () => ({
@@ -22,9 +23,7 @@ export const Route = createFileRoute("/portfolio/")({
         content: "Explore our latest engineering and automation projects.",
       },
     ],
-    links: [
-      { rel: "canonical", href: "https://invonicstechnologies.com/portfolio" },
-    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/portfolio") }],
   }),
   loader: () => {
     return {
@@ -43,7 +42,7 @@ function PortfolioIndex() {
         type="WebSite"
         data={{
           name: "Portfolio - Invonics Technologies",
-          url: "https://invonicstechnologies.com/portfolio",
+          url: absoluteUrl("/portfolio"),
         }}
       />
       <Nav />

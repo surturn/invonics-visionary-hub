@@ -5,6 +5,7 @@ import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { Reveal } from "@/components/site/Reveal";
 import { getAllBlogPosts } from "@/lib/content";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -24,9 +25,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: post.title },
         { property: "og:type", content: "article" },
       ],
-      links: [
-        { rel: "canonical", href: `https://invonicstechnologies.com/blog/${post.slug}` },
-      ],
+      links: [{ rel: "canonical", href: absoluteUrl(`/blog/${post.slug}`) }],
     };
   },
   component: BlogDetail,

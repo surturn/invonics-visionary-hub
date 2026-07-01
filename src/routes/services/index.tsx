@@ -4,6 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { Services as ServicesComponent } from "@/components/site/Services";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -16,9 +17,7 @@ export const Route = createFileRoute("/services/")({
       },
       { property: "og:title", content: "Our Services — Invonics Technologies" },
     ],
-    links: [
-      { rel: "canonical", href: "https://invonicstechnologies.com/services" },
-    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/services") }],
   }),
   component: ServicesPage,
 });
@@ -30,7 +29,7 @@ function ServicesPage() {
         type="WebSite"
         data={{
           name: "Services - Invonics Technologies",
-          url: "https://invonicstechnologies.com/services",
+          url: absoluteUrl("/services"),
         }}
       />
       <Nav />

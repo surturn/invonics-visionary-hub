@@ -5,6 +5,7 @@ import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { Reveal } from "@/components/site/Reveal";
 import { getAllBlogPosts } from "@/lib/content";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
@@ -17,9 +18,7 @@ export const Route = createFileRoute("/blog/")({
       },
       { property: "og:title", content: "Insights & Articles" },
     ],
-    links: [
-      { rel: "canonical", href: "https://invonicstechnologies.com/blog" },
-    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/blog") }],
   }),
   loader: () => {
     return {
@@ -38,7 +37,7 @@ function BlogIndex() {
         type="WebSite"
         data={{
           name: "Blog - Invonics Technologies",
-          url: "https://invonicstechnologies.com/blog",
+          url: absoluteUrl("/blog"),
         }}
       />
       <Nav />

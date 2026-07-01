@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MotionSystem } from "@/components/site/MotionSystem";
 import { StructuredData, buildFAQSchema } from "@/components/seo/StructuredData";
 import { faqs } from "@/components/site/FAQ";
+import { SITE_URL, absoluteUrl } from "@/lib/site";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 const Ecosystem = lazy(() =>
@@ -66,7 +67,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: "https://invonicstechnologies.com/" }],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
   component: Index,
 });
@@ -79,9 +80,9 @@ function Index() {
           type="LocalBusiness"
           data={{
             name: "Invonics Technologies",
-            image: "https://invonicstechnologies.com/og-image.jpg",
-            "@id": "https://invonicstechnologies.com",
-            url: "https://invonicstechnologies.com",
+            image: absoluteUrl("/og-image.jpg"),
+            "@id": SITE_URL,
+            url: SITE_URL,
             telephone: "+254786669572",
             address: {
               "@type": "PostalAddress",
