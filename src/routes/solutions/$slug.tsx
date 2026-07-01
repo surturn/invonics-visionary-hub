@@ -6,6 +6,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { getIndustryBySlug } from "@/lib/content";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { ConsultationCTA } from "@/components/site/ConsultationCTA";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/solutions/$slug")({
   loader: ({ params }) => {
@@ -24,9 +25,7 @@ export const Route = createFileRoute("/solutions/$slug")({
         { name: "description", content: industry.metaDescription || industry.summary },
         { property: "og:title", content: industry.title },
       ],
-      links: [
-        { rel: "canonical", href: `https://invonicstechnologies.com/solutions/${industry.slug}` },
-      ],
+      links: [{ rel: "canonical", href: absoluteUrl(`/solutions/${industry.slug}`) }],
     };
   },
   component: IndustryLandingPage,
@@ -42,7 +41,7 @@ function IndustryLandingPage() {
         data={{
           name: industry.title,
           description: industry.summary,
-          url: `https://invonicstechnologies.com/solutions/${industry.slug}`,
+          url: absoluteUrl(`/solutions/${industry.slug}`),
         }}
       />
       <Nav />

@@ -1,16 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { Reveal } from "@/components/site/Reveal";
 import { getPortfolioBySlug, getRelatedPortfolioItems } from "@/lib/content";
 import { StructuredData, buildCreativeWorkSchema } from "@/components/seo/StructuredData";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/portfolio/$slug")({
   loader: ({ params }) => {
     const project = getPortfolioBySlug(params.slug);
     if (!project) {
-      throw new Error("Project not found");
+      throw notFound();
     }
     const related = project.services[0]
       ? getRelatedPortfolioItems(project.services[0], project.slug)
@@ -18,9 +19,7 @@ export const Route = createFileRoute("/portfolio/$slug")({
     return { project, related };
   },
   head: ({ loaderData }) => {
-    // @ts-expect-error - bypassing type generation until tsr generate runs
     if (!loaderData?.project) return { meta: [] };
-    // @ts-expect-error
     const { project } = loaderData;
     return {
       meta: [
@@ -29,9 +28,7 @@ export const Route = createFileRoute("/portfolio/$slug")({
         { property: "og:title", content: `${project.title} | Case Study` },
         { property: "og:description", content: project.summary },
       ],
-      links: [
-        { rel: "canonical", href: `https://invonicstechnologies.com/portfolio/${project.slug}` },
-      ],
+      links: [{ rel: "canonical", href: absoluteUrl(`/portfolio/${project.slug}`) }],
     };
   },
   component: PortfolioDetail,
@@ -47,7 +44,7 @@ function PortfolioDetail() {
         data={buildCreativeWorkSchema(
           project.title,
           project.summary,
-          `https://invonicstechnologies.com/portfolio/${project.slug}`,
+          absoluteUrl(`/portfolio/${project.slug}`),
           project.publishedAt,
         )}
       />

@@ -1,3 +1,5 @@
+import { SITE_URL, absoluteUrl } from "@/lib/site";
+
 export type SchemaType =
   | "Organization"
   | "LocalBusiness"
@@ -31,13 +33,13 @@ export function StructuredData({ type, data }: StructuredDataProps) {
 
 export const buildOrganizationSchema = () => ({
   name: "Invonics Technologies",
-  url: "https://invonicstechnologies.com",
-  logo: "https://invonicstechnologies.com/logo.png",
+  url: SITE_URL,
+  logo: absoluteUrl("/logo.png"),
   sameAs: [
     "https://www.tiktok.com/@invonicstechnologies",
     "https://x.com/invonicstech",
     "https://www.instagram.com/invonicstechnologies",
-    "https://www.facebook.com/invonicstechnologies"
+    "https://www.facebook.com/invonicstechnologies",
   ],
 });
 

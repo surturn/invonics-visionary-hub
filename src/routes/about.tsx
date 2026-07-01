@@ -4,6 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { About as AboutComponent } from "@/components/site/About";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { SITE_URL, absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -16,9 +17,7 @@ export const Route = createFileRoute("/about")({
       },
       { property: "og:title", content: "About Us — Invonics Technologies" },
     ],
-    links: [
-      { rel: "canonical", href: "https://invonicstechnologies.com/about" },
-    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/about") }],
   }),
   component: AboutPage,
 });
@@ -30,7 +29,7 @@ function AboutPage() {
         type="Organization"
         data={{
           name: "Invonics Technologies",
-          url: "https://invonicstechnologies.com",
+          url: SITE_URL,
           description:
             "Premier engineering studio specializing in custom software and AI automation.",
         }}
