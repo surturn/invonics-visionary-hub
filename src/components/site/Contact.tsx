@@ -127,10 +127,10 @@ export function Contact() {
                 sub="48-hr response"
               />
               <SecondaryCTA
-                href="https://github.com/surturn"
+                href="/work"
                 icon={<FolderOpen className="h-4 w-4" />}
                 label="View Portfolio"
-                sub="Selected work"
+                sub="Coming soon"
               />
             </div>
           </div>
