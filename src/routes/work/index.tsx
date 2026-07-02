@@ -75,6 +75,14 @@ function WorkIndex() {
 function WorkCard({ solution, index }: { solution: WorkSolution; index: number }) {
   const id = `WORK / ${String(index).padStart(2, "0")}`;
   const shot = solution.screenshots?.[0];
+  // Initials for the branded fallback shown until a real screenshot exists.
+  const monogram =
+    solution.title
+      .split(/\s+/)
+      .filter((w) => /^[A-Za-z]/.test(w))
+      .slice(0, 2)
+      .map((w) => w[0].toUpperCase())
+      .join("") || "IN";
 
   return (
     <div className="group h-full overflow-hidden rounded-2xl border border-border/60 bg-card motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5">
@@ -88,8 +96,17 @@ function WorkCard({ solution, index }: { solution: WorkSolution; index: number }
             className="h-full w-full object-cover object-top motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]"
           />
         ) : (
-          <div className="grid h-full w-full place-items-center bg-gradient-to-br from-secondary/60 to-background">
-            <span className="font-display text-2xl text-muted-foreground/50">{solution.title}</span>
+          // Branded cover shown until a real screenshot is added — designed to
+          // read as intentional art, not a missing/broken image.
+          <div
+            aria-hidden
+            className="relative grid h-full w-full place-items-center overflow-hidden bg-gradient-to-br from-secondary/70 via-background to-background"
+          >
+            <div className="absolute -right-10 -top-12 h-44 w-44 rounded-full bg-primary/25 blur-3xl" />
+            <div className="absolute -bottom-14 -left-8 h-44 w-44 rounded-full bg-primary/10 blur-3xl" />
+            <span className="relative select-none font-display text-6xl font-semibold text-gradient motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105">
+              {monogram}
+            </span>
           </div>
         )}
         {/* Category chip (top-left) */}
