@@ -1,4 +1,5 @@
 import { WorkSolution } from "../../types/content";
+import accountingHero from "../../assets/work/accounting-hero.jpg";
 
 const solution: WorkSolution = {
   slug: "accounting-finance-system",
@@ -10,6 +11,12 @@ const solution: WorkSolution = {
   order: 2,
   demoUrl: "https://accounting.invonicstechnologies.com/",
   demoLabel: "Try the live demo",
+  screenshots: [
+    {
+      src: accountingHero,
+      caption: "Invonics Accounting — KRA-compliant income, expense and Turnover Tax dashboard.",
+    },
+  ],
   metaDescription:
     "A KRA-compliant accounting dashboard that logs income, tracks expenses and auto-calculates Turnover Tax for Kenyan sole proprietors and micro-businesses.",
 };
