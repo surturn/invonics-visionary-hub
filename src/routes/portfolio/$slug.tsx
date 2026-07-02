@@ -145,7 +145,7 @@ function PortfolioDetail() {
               <h2 className="mb-10 font-display text-3xl text-foreground">Related Projects</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {related.slice(0, 3).map((rel) => (
-                  <Link key={rel.slug} to={`/portfolio/${rel.slug}`} className="block h-full">
+                  <Link key={rel.slug} to="/portfolio/$slug" params={{ slug: rel.slug }} className="block h-full">
                     <div className="rounded-2xl border border-border/60 glass p-6 transition-all hover:border-primary/50 h-full">
                       <h3 className="mb-2 font-display text-xl text-foreground">{rel.title}</h3>
                       <p className="text-sm text-muted-foreground line-clamp-2">{rel.summary}</p>

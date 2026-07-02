@@ -63,7 +63,7 @@ function PortfolioIndex() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((project, i) => (
               <Reveal key={project.slug} delay={i * 50}>
-                <Link to={`/portfolio/${project.slug}`} className="block h-full">
+                <Link to="/portfolio/$slug" params={{ slug: project.slug }} className="block h-full">
                   <TiltCard className="group h-full rounded-2xl glass p-8 transition-all hover:ring-glow">
                     <div className="mb-4 text-xs font-medium uppercase tracking-wider text-primary">
                       {project.industry}

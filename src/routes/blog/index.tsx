@@ -56,7 +56,7 @@ function BlogIndex() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {posts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 50}>
-                <Link to={`/blog/${post.slug}`} className="block h-full">
+                <Link to="/blog/$slug" params={{ slug: post.slug }} className="block h-full">
                   <div className="group h-full rounded-2xl glass border border-border/60 p-8 transition-all hover:ring-glow">
                     <div className="mb-4 flex items-center justify-between text-xs text-muted-foreground">
                       <span className="font-medium text-primary uppercase tracking-wider">
