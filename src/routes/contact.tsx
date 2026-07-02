@@ -6,6 +6,7 @@ import { FAQ } from "@/components/site/FAQ";
 import { Socials } from "@/components/site/Socials";
 import { Footer } from "@/components/site/Footer";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/contact")({
           "Discuss intelligent digital solutions, React Native development Nairobi, and Docker containerization and server infrastructure. Contact us to scale efficiently.",
       },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/contact") }],
   }),
   component: ContactPage,
 });

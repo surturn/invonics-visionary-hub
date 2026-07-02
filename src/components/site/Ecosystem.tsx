@@ -4,19 +4,11 @@ import { TiltCard } from "./MotionSystem";
 import saas from "@/assets/project-saas.jpg";
 import school from "@/assets/project-school.jpg";
 import branding from "@/assets/project-branding.jpg";
-import starlink from "@/assets/project-starlink.jpg";
 import motion from "@/assets/showcase-motion.jpg";
 import poster from "@/assets/showcase-poster.jpg";
 import brand from "@/assets/showcase-brand.jpg";
 
 const nodes = [
-  {
-    img: starlink,
-    code: "NODE-01",
-    kind: "Infrastructure",
-    title: "Starlink Deployment",
-    meta: "14 sites · 99.99% uptime",
-  },
   {
     img: saas,
     code: "NODE-02",
@@ -190,8 +182,9 @@ function NodeCard({
       <div className="absolute inset-0">
         <img
           src={img}
-          alt={title}
+          alt={`${title} — Invonics Technologies, Nairobi Kenya`}
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-[1.04]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />

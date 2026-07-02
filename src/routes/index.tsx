@@ -1,15 +1,24 @@
 import { Suspense, lazy } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { MotionSystem } from "@/components/site/MotionSystem";
+import { StructuredData, buildFAQSchema } from "@/components/seo/StructuredData";
+import { faqs } from "@/components/site/FAQ";
+import { SITE_URL, absoluteUrl } from "@/lib/site";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
-import { Ecosystem } from "@/components/site/Ecosystem";
-import { About } from "@/components/site/About";
-import { Services } from "@/components/site/Services";
-import { Work } from "@/components/site/Work";
-import { Team } from "@/components/site/Team";
-import { Footer } from "@/components/site/Footer";
-import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
-import { MotionSystem } from "@/components/site/MotionSystem";
+const Ecosystem = lazy(() =>
+  import("@/components/site/Ecosystem").then((m) => ({ default: m.Ecosystem })),
+);
+const About = lazy(() => import("@/components/site/About").then((m) => ({ default: m.About })));
+const Services = lazy(() =>
+  import("@/components/site/Services").then((m) => ({ default: m.Services })),
+);
+const Work = lazy(() => import("@/components/site/Work").then((m) => ({ default: m.Work })));
+const Team = lazy(() => import("@/components/site/Team").then((m) => ({ default: m.Team })));
+const Footer = lazy(() => import("@/components/site/Footer").then((m) => ({ default: m.Footer })));
+const FloatingWhatsApp = lazy(() =>
+  import("@/components/site/FloatingWhatsApp").then((m) => ({ default: m.FloatingWhatsApp })),
+);
 
 const Showcase = lazy(() =>
   import("@/components/site/Showcase").then((m) => ({ default: m.Showcase })),
@@ -32,20 +41,33 @@ const Socials = lazy(() =>
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Software Developer & AI Automation Company Nairobi" },
+      {
+        title:
+          "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies",
+      },
       {
         name: "description",
         content:
-          "Build intelligent AI systems, workflow automation Kenya, custom backend systems Westlands, and M-Pesa Daraja API integration in Nairobi to scale operations.",
+          "Invonics Technologies builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa. Get a free consultation.",
       },
-      { property: "og:title", content: "Software Developer & AI Automation Company Nairobi" },
+      {
+        name: "keywords",
+        content:
+          "software development Nairobi, custom software Kenya, AI automation Nairobi, web development company Kenya, mobile app development Nairobi, M-Pesa integration Kenya, branding company Nairobi, motion graphics Kenya, management systems Kenya, workflow automation Nairobi, school management software Kenya, event management software Kenya, ROI tracking software Kenya, digital transformation East Africa",
+      },
+      {
+        property: "og:title",
+        content:
+          "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies",
+      },
       {
         property: "og:description",
         content:
-          "Build intelligent AI systems, workflow automation Kenya, custom backend systems Westlands, and M-Pesa Daraja API integration in Nairobi to scale operations.",
+          "Invonics Technologies builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa. Get a free consultation.",
       },
       { property: "og:type", content: "website" },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
   component: Index,
 });
@@ -54,15 +76,39 @@ function Index() {
   return (
     <MotionSystem>
       <div className="relative z-10 min-h-screen bg-background/80 text-foreground">
+        <StructuredData
+          type="LocalBusiness"
+          data={{
+            name: "Invonics Technologies",
+            image: absoluteUrl("/og-image.jpg"),
+            "@id": SITE_URL,
+            url: SITE_URL,
+            telephone: "+254786669572",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "259a, Njambi road, Oreteti Heights, Ongata Rongai",
+              addressLocality: "Nairobi",
+              addressRegion: "Nairobi",
+              postalCode: "00100",
+              addressCountry: "KE",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: -1.286389,
+              longitude: 36.817223,
+            },
+          }}
+        />
+        <StructuredData type="FAQPage" data={buildFAQSchema(faqs)} />
         <Nav />
         <main>
           <Hero />
-          <Ecosystem />
-          <About />
-          <Services />
-          <Work />
-          <Team />
           <Suspense fallback={null}>
+            <Ecosystem />
+            <About />
+            <Services />
+            <Work />
+            <Team />
             <Showcase />
             <Process />
             <Vision />
@@ -72,8 +118,10 @@ function Index() {
             <Socials />
           </Suspense>
         </main>
-        <Footer />
-        <FloatingWhatsApp />
+        <Suspense fallback={null}>
+          <Footer />
+          <FloatingWhatsApp />
+        </Suspense>
       </div>
     </MotionSystem>
   );

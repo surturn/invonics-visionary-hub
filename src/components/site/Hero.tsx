@@ -1,4 +1,3 @@
-import heroBg from "@/assets/hero-bg.jpg";
 import { Magnetic, ParallaxLayer } from "./MotionSystem";
 
 export function Hero() {
@@ -10,8 +9,11 @@ export function Hero() {
       {/* Layered backgrounds */}
       <div className="absolute inset-0 -z-20">
         <img
-          src={heroBg}
-          alt=""
+          src="/hero-bg.jpg"
+          alt="Invonics Technologies software studio — Nairobi, Kenya"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
           className="h-full w-full object-cover opacity-25 mix-blend-luminosity"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
@@ -56,7 +58,10 @@ export function Hero() {
 
           {/* Headline */}
           <div className="col-span-12 lg:col-span-8 min-w-0">
-            <h1 className="font-display leading-[0.92] tracking-tight">
+            <h1 className="sr-only">
+              Software Engineering & AI Automation Studio
+            </h1>
+            <p className="font-display leading-[0.92] tracking-tight" aria-label="brand tagline">
               <span className="hero-word block text-[15vw] md:text-[11vw] lg:text-[8vw] xl:text-[7.2rem] text-gradient">
                 Engineering
               </span>
@@ -83,7 +88,7 @@ export function Hero() {
               <span className="hero-word block text-[15vw] md:text-[11vw] lg:text-[8vw] xl:text-[7.2rem] text-gradient -mt-2 md:-mt-3">
                 Today<span className="text-primary">.</span>
               </span>
-            </h1>
+            </p>
           </div>
 
           {/* Right column — synopsis */}
@@ -92,8 +97,9 @@ export function Hero() {
               <span className="text-primary">●</span>&nbsp; Studio Note
             </div>
             <p className="text-sm md:text-[15px] text-muted-foreground leading-relaxed">
-              Invonics is a creative technology studio engineering software, connectivity and brand
-              systems for the next decade — built in Africa, deployed everywhere.
+              Invonics Technologies is a software development and AI automation studio based in
+              Nairobi, Kenya — building custom platforms, workflow automations, and brand systems
+              for businesses and schools across East Africa.
             </p>
             <div className="mt-6 flex flex-col gap-2.5">
               <Magnetic

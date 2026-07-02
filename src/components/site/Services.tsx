@@ -25,84 +25,61 @@ type Service = {
 
 const services: Service[] = [
   {
-    icon: Satellite,
-    title: "Starlink Installation",
-    desc: "End-to-end satellite internet deployment, alignment and uptime SLAs for sites of any scale.",
-    details:
-      "We survey your site, plan the best mounting position, install and align the Starlink kit, configure routers, test speeds, and document the setup so your team has reliable connectivity from day one.",
-    outcomes: ["Site survey", "Mounting & alignment", "Wi-Fi/network setup"],
-  },
-  {
     icon: Cpu,
-    title: "IT Equipment & Supply",
-    desc: "Curated workstations, networking and peripherals — sourced, configured, delivered and supported.",
+    title: "IT Equipment Supply Kenya",
+    desc: "Curated workstations, networking hardware and peripherals sourced, configured, delivered and supported for businesses in Nairobi.",
     details:
       "We recommend the right hardware for your budget, source trusted equipment, configure devices, deliver them ready to use, and support your team with warranties, replacements, and setup guidance.",
     outcomes: ["Procurement", "Device configuration", "Delivery & support"],
   },
   {
     icon: Globe,
-    title: "Web Platforms & Apps",
-    desc: "Production-grade websites, portals and applications built for speed, SEO and longevity.",
+    title: "Web Development Company Nairobi",
+    desc: "Custom websites, web applications and client portals — production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.",
     details:
       "We design and build responsive websites, dashboards, portals, and custom apps with fast loading, clean user journeys, analytics, SEO foundations, and a maintainable codebase.",
     outcomes: ["UX/UI design", "Frontend/backend build", "Launch optimization"],
   },
   {
     icon: LayoutDashboard,
-    title: "Management Systems",
-    desc: "Operational dashboards for schools, finance, HR and logistics with real-time visibility.",
+    title: "Business Management Systems Kenya",
+    desc: "Custom ERP, school management, HR and finance dashboards with real-time visibility. M-Pesa integrated. Built for Kenyan businesses and institutions.",
     details:
       "We turn manual operations into secure management systems with roles, records, approvals, reports, dashboards, and alerts that help leaders see what is happening in real time.",
     outcomes: ["Role-based access", "Dashboards & reports", "Data workflows"],
   },
   {
     icon: Workflow,
-    title: "Workflow Automation",
-    desc: "Replace manual ops with reliable, observable automations across your stack.",
+    title: "AI Workflow Automation Nairobi",
+    desc: "Replace manual operations with reliable AI-powered automations. 3.4M+ monthly executions across client stacks. Serving SMEs and enterprises in Kenya.",
     details:
       "We map repetitive tasks, identify bottlenecks, and automate approvals, notifications, data entry, reminders, and handoffs so your team spends less time chasing routine work.",
     outcomes: ["Process mapping", "Automated triggers", "Monitoring & handover"],
   },
-  {
-    icon: PlugZap,
-    title: "System Integrations",
-    desc: "Connect payments, comms, data and SaaS into one coherent, governable system.",
-    details:
-      "We connect your tools through APIs and data pipelines, making payments, CRM, messaging, accounting, and internal systems share information without duplicate entry.",
-    outcomes: ["API connections", "Data sync", "Integration testing"],
-  },
+
   {
     icon: Palette,
-    title: "Graphic Design & Branding",
-    desc: "Identity systems, design languages and brand guidelines crafted with editorial precision.",
+    title: "Branding Agency Nairobi",
+    desc: "Identity systems, logo design, brand guidelines and design languages crafted for Kenyan businesses that want to stand out.",
     details:
       "We create logos, brand systems, color palettes, typography, pitch decks, company profiles, and social templates that make your business look consistent and credible everywhere.",
     outcomes: ["Visual identity", "Brand guidelines", "Marketing assets"],
   },
   {
     icon: Film,
-    title: "Motion & Posters",
-    desc: "Cinematic motion graphics, campaign posters and visual storytelling for launches.",
+    title: "Motion Graphics Company Kenya",
+    desc: "Cinematic motion graphics, explainer videos and campaign posters for product launches, brands and events across East Africa.",
     details:
       "We produce launch posters, animated visuals, short promotional clips, event screens, and campaign graphics that communicate your message clearly and memorably.",
     outcomes: ["Poster concepts", "Motion graphics", "Campaign exports"],
   },
   {
     icon: Search,
-    title: "SEO & Content",
-    desc: "Search-first content systems and technical SEO that compound traffic over quarters.",
+    title: "SEO Services Nairobi Kenya",
+    desc: "Search-first content systems and technical SEO that build organic traffic and compound your Google rankings over time.",
     details:
       "We improve technical SEO, page structure, metadata, content plans, keyword targeting, and analytics so customers can find your brand and understand your offer faster.",
     outcomes: ["SEO audit", "Content plan", "Analytics setup"],
-  },
-  {
-    icon: Sparkles,
-    title: "Event Tech & Experiences",
-    desc: "Digital experiences, live visuals and on-site systems that make events unforgettable.",
-    details:
-      "We support events with registration systems, check-in tools, screens, live visuals, digital signage, and technical coordination so guests get a smooth experience.",
-    outcomes: ["Registration flow", "On-site tech", "Live visual support"],
   },
 ];
 

@@ -79,8 +79,9 @@ export function Team() {
                 <div className="absolute inset-0">
                   <img
                     src={m.img}
-                    alt={`${m.name}, ${m.role} at Invonics Technologies`}
+                    alt={`${m.name}, ${m.role} at Invonics Technologies in Nairobi Kenya`}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />

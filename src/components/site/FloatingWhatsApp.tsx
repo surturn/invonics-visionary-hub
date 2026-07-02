@@ -54,9 +54,7 @@ export function FloatingWhatsApp() {
         onClick={() => setOpen((o) => !o)}
         onMouseEnter={() => setOpen(true)}
         aria-label="Chat on WhatsApp"
-        className={`fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[oklch(0.62_0.18_150)] text-white wa-pulse transition-all duration-500 hover:scale-105 ${
-          scrolled ? "opacity-100 translate-y-0" : "opacity-90"
-        }`}
+        className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[oklch(0.62_0.18_150)] text-white wa-pulse opacity-100 transition-all duration-500 hover:scale-105"
       >
         <WhatsAppIcon className="h-7 w-7" />
       </button>
