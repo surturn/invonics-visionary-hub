@@ -10,7 +10,7 @@ const solution: WorkSolution = {
     "Track every school device and asset — loans, returns, invoices and a full audit trail — across administrators, teachers, librarians and staff.",
   order: 1,
 
-  demoUrl: "https://asset-manager-tan-rho.vercel.app/",
+  demoUrl: "https://assetflow.invonicstechnologies.com/",
   demoLabel: "Try the live demo",
 
   hasCaseStudy: true,
