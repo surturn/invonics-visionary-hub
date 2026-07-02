@@ -12,7 +12,7 @@ export function Hero() {
           src="/hero-bg.jpg"
           alt="Invonics Technologies software studio — Nairobi, Kenya"
           loading="eager"
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="sync"
           className="h-full w-full object-cover opacity-25 mix-blend-luminosity"
         />
