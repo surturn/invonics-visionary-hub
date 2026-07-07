@@ -7,7 +7,7 @@ const solution: WorkSolution = {
   category: "Finance",
   statChip: "KRA-compliant · Turnover Tax",
   summary:
-    "Log income, track expenses and auto-calculate KRA Turnover Tax from one dashboard — built for Kenyan sole proprietors and micro-businesses.",
+    "Real-time financial visibility for growing operations. Move past fragmented spreadsheets with automated reconciliation, custom reporting, and instant cash flow insights.",
   order: 2,
 
   demoUrl: "https://accounting.invonicstechnologies.com/",

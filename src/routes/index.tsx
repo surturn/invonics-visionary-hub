@@ -6,6 +6,10 @@ import { faqs } from "@/components/site/FAQ";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
+import { TrustBar } from "@/components/site/TrustBar";
+const FeaturedSolutions = lazy(() =>
+  import("@/components/site/FeaturedSolutions").then((m) => ({ default: m.FeaturedSolutions })),
+);
 const Ecosystem = lazy(() =>
   import("@/components/site/Ecosystem").then((m) => ({ default: m.Ecosystem })),
 );
@@ -103,7 +107,9 @@ function Index() {
         <Nav />
         <main>
           <Hero />
+          <TrustBar />
           <Suspense fallback={null}>
+            <FeaturedSolutions />
             <Ecosystem />
             <About />
             <Services />

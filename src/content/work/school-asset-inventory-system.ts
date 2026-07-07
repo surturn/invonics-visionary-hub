@@ -7,7 +7,7 @@ const solution: WorkSolution = {
   category: "School Systems",
   statChip: "Loans · Invoices · Audit trail",
   summary:
-    "Track every school device and asset — loans, returns, invoices and a full audit trail — across administrators, teachers, librarians and staff.",
+    "Stops asset shrinkage before it costs you — a single system that tracks every device, automates depreciation, and holds every borrower accountable.",
   order: 1,
 
   demoUrl: "https://assetflow.invonicstechnologies.com/",
