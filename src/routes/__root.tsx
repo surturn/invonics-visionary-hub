@@ -94,6 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@invonics" },
       { name: "twitter:image", content: "/og-image.jpg" },
       { name: "theme-color", content: "#0b0d12" },
+      { name: "p:domain_verify", content: "b3a1d9ae250081bdf8993cbaa6bd9cf0" },
     ],
     links: [
       { rel: "icon", type: "image/jpeg", href: "/favicon.jpg" },
