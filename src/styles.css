@@ -317,8 +317,8 @@
   }
 
   .wa-pulse {
-    position: relative;
-    z-index: 1;
+    /* position: relative; removed because the button is already fixed/positioned */
+    z-index: 50;
   }
   .wa-pulse::after {
     content: "";

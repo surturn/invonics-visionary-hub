@@ -54,7 +54,7 @@ export function FloatingWhatsApp() {
         onClick={() => setOpen((o) => !o)}
         onMouseEnter={() => setOpen(true)}
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[oklch(0.62_0.18_150)] text-white wa-pulse opacity-100 transition-all duration-500 hover:scale-105"
+        className="hidden md:grid fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-50 h-14 w-14 place-items-center rounded-full bg-[oklch(0.62_0.18_150)] text-white wa-pulse opacity-100 transition-all duration-500 hover:scale-105"
       >
         <WhatsAppIcon className="h-7 w-7" />
       </button>
@@ -64,9 +64,7 @@ export function FloatingWhatsApp() {
         href={WA_LINK}
         target="_blank"
         rel="noopener noreferrer"
-        className={`md:hidden fixed bottom-4 left-4 right-20 z-40 inline-flex items-center justify-center gap-2 rounded-full bg-[oklch(0.62_0.18_150)] text-white text-sm font-medium px-5 py-3.5 shadow-glow transition-all duration-500 ${
-          scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 pointer-events-none"
-        }`}
+        className="md:hidden fixed bottom-4 right-4 z-50 inline-flex items-center justify-center gap-2 rounded-full bg-[oklch(0.62_0.18_150)] text-white text-sm font-medium px-5 py-3.5 shadow-glow transition-all duration-500 opacity-100"
       >
         <WhatsAppIcon className="h-4 w-4" />
         Chat on WhatsApp

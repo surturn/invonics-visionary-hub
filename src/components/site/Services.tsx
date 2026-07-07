@@ -2,16 +2,11 @@ import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { TiltCard } from "./MotionSystem";
 import {
-  Satellite,
-  Cpu,
   Globe,
   LayoutDashboard,
-  Workflow,
-  PlugZap,
   Palette,
-  Film,
   Search,
-  Sparkles,
+  Zap,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -25,60 +20,38 @@ type Service = {
 
 const services: Service[] = [
   {
-    icon: Cpu,
-    title: "IT Equipment Supply Kenya",
-    desc: "Curated workstations, networking hardware and peripherals sourced, configured, delivered and supported for businesses in Nairobi.",
-    details:
-      "We recommend the right hardware for your budget, source trusted equipment, configure devices, deliver them ready to use, and support your team with warranties, replacements, and setup guidance.",
-    outcomes: ["Procurement", "Device configuration", "Delivery & support"],
-  },
-  {
     icon: Globe,
-    title: "Web Development Company Nairobi",
+    title: "Custom Software & Web Platforms",
     desc: "Custom websites, web applications and client portals — production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.",
-    details:
-      "We design and build responsive websites, dashboards, portals, and custom apps with fast loading, clean user journeys, analytics, SEO foundations, and a maintainable codebase.",
+    details: "We design and build responsive websites, dashboards, portals, and custom apps with fast loading, clean user journeys, analytics, SEO foundations, and a maintainable codebase.",
     outcomes: ["UX/UI design", "Frontend/backend build", "Launch optimization"],
   },
   {
     icon: LayoutDashboard,
-    title: "Business Management Systems Kenya",
+    title: "Business Management Systems",
     desc: "Custom ERP, school management, HR and finance dashboards with real-time visibility. M-Pesa integrated. Built for Kenyan businesses and institutions.",
-    details:
-      "We turn manual operations into secure management systems with roles, records, approvals, reports, dashboards, and alerts that help leaders see what is happening in real time.",
+    details: "We turn manual operations into secure management systems with roles, records, approvals, reports, dashboards, and alerts that help leaders see what is happening in real time.",
     outcomes: ["Role-based access", "Dashboards & reports", "Data workflows"],
   },
   {
-    icon: Workflow,
-    title: "AI Workflow Automation Nairobi",
-    desc: "Replace manual operations with reliable AI-powered automations. 3.4M+ monthly executions across client stacks. Serving SMEs and enterprises in Kenya.",
-    details:
-      "We map repetitive tasks, identify bottlenecks, and automate approvals, notifications, data entry, reminders, and handoffs so your team spends less time chasing routine work.",
+    icon: Zap,
+    title: "AI & Workflow Automation",
+    desc: "Cut hours of manual work with smart automation — WhatsApp ordering bots, automated invoicing, appointment reminders, and AI-powered customer replies. Designed around M-Pesa and how Kenyan businesses actually operate.",
+    details: "We map repetitive tasks, identify bottlenecks, and automate approvals, notifications, data entry, reminders, and handoffs so your team spends less time chasing routine work.",
     outcomes: ["Process mapping", "Automated triggers", "Monitoring & handover"],
   },
-
   {
     icon: Palette,
-    title: "Branding Agency Nairobi",
-    desc: "Identity systems, logo design, brand guidelines and design languages crafted for Kenyan businesses that want to stand out.",
-    details:
-      "We create logos, brand systems, color palettes, typography, pitch decks, company profiles, and social templates that make your business look consistent and credible everywhere.",
-    outcomes: ["Visual identity", "Brand guidelines", "Marketing assets"],
-  },
-  {
-    icon: Film,
-    title: "Motion Graphics Company Kenya",
-    desc: "Cinematic motion graphics, explainer videos and campaign posters for product launches, brands and events across East Africa.",
-    details:
-      "We produce launch posters, animated visuals, short promotional clips, event screens, and campaign graphics that communicate your message clearly and memorably.",
-    outcomes: ["Poster concepts", "Motion graphics", "Campaign exports"],
+    title: "Brand Design & Motion Graphics",
+    desc: "Identity systems, logo design, campaign visuals, explainer videos and motion posters for product launches, brands and events across East Africa.",
+    details: "We create logos, brand systems, typography, pitch decks, animated visuals, short promotional clips, and campaign graphics that communicate your message clearly and memorably.",
+    outcomes: ["Visual identity", "Motion graphics", "Marketing assets"],
   },
   {
     icon: Search,
-    title: "SEO Services Nairobi Kenya",
+    title: "SEO & Digital Visibility",
     desc: "Search-first content systems and technical SEO that build organic traffic and compound your Google rankings over time.",
-    details:
-      "We improve technical SEO, page structure, metadata, content plans, keyword targeting, and analytics so customers can find your brand and understand your offer faster.",
+    details: "We improve technical SEO, page structure, metadata, content plans, keyword targeting, and analytics so customers can find your brand and understand your offer faster.",
     outcomes: ["SEO audit", "Content plan", "Analytics setup"],
   },
 ];
@@ -108,7 +81,7 @@ export function Services() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 50} variant="grid">
               <ServiceCard
