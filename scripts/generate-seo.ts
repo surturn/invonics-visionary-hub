@@ -79,7 +79,54 @@ Sitemap: https://invonicstechnologies.com/sitemap.xml
 `;
   fs.writeFileSync(path.join(publicDir, "robots.txt"), robotsTxt);
 
-  console.log("SEO files generated successfully in /public");
+  // 4. Generate rss.xml
+  let rssItems = "";
+  blogs.forEach((fileSlug) => {
+    const filePath = path.join(rootDir, "src", "content", "blog", `${fileSlug}.ts`);
+    if (!fs.existsSync(filePath)) return;
+    const content = fs.readFileSync(filePath, "utf-8");
+
+    const titleMatch = content.match(/title:\s*["']([^"']+)["']/);
+    const slugMatch = content.match(/slug:\s*["']([^"']+)["']/);
+    const descMatch = content.match(/summary:\s*["']([^"']+)["']/);
+    const dateMatch = content.match(/publishedAt:\s*["']([^"']+)["']/);
+
+    if (titleMatch && slugMatch) {
+      const title = titleMatch[1];
+      const link = `https://invonicstechnologies.com/blog/${slugMatch[1]}`;
+      const description = descMatch ? descMatch[1] : "";
+      const pubDate = dateMatch ? new Date(dateMatch[1]).toUTCString() : new Date().toUTCString();
+
+      rssItems += `
+    <item>
+      <title><![CDATA[${title}]]></title>
+      <link>${link}</link>
+      <description><![CDATA[${description}]]></description>
+      <pubDate>${pubDate}</pubDate>
+      <guid>${link}</guid>
+    </item>`;
+    }
+  });
+
+  const rss = `<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Invonics Technologies Blog</title>
+    <link>https://invonicstechnologies.com/blog</link>
+    <description>Invonics Technologies builds vertical operating systems, custom web/app software, e-commerce, and brand design for African SMEs. Engineering Tomorrow, Today.</description>
+    <language>en-us</language>
+    <image>
+      <url>https://invonicstechnologies.com/logo.jpeg</url>
+      <title>Invonics Technologies</title>
+      <link>https://invonicstechnologies.com</link>
+    </image>
+    <atom:link href="https://invonicstechnologies.com/rss.xml" rel="self" type="application/rss+xml" />${rssItems}
+  </channel>
+</rss>`;
+
+  fs.writeFileSync(path.join(publicDir, "rss.xml"), rss);
+
+  console.log("SEO and RSS files generated successfully in /public");
 }
 
 generate().catch(console.error);
