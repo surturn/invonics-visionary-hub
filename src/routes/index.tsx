@@ -20,9 +20,6 @@ const Services = lazy(() =>
 const Work = lazy(() => import("@/components/site/Work").then((m) => ({ default: m.Work })));
 const Team = lazy(() => import("@/components/site/Team").then((m) => ({ default: m.Team })));
 const Footer = lazy(() => import("@/components/site/Footer").then((m) => ({ default: m.Footer })));
-const FloatingWhatsApp = lazy(() =>
-  import("@/components/site/FloatingWhatsApp").then((m) => ({ default: m.FloatingWhatsApp })),
-);
 
 const Showcase = lazy(() =>
   import("@/components/site/Showcase").then((m) => ({ default: m.Showcase })),
@@ -126,7 +123,6 @@ function Index() {
         </main>
         <Suspense fallback={null}>
           <Footer />
-          <FloatingWhatsApp />
         </Suspense>
       </div>
     </MotionSystem>

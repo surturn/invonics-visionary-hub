@@ -11,7 +11,7 @@ The Invonics marketing site renders content-driven pages (services, portfolio ca
 
 This refactor consolidates that scattered knowledge into single-owner modules **and, in the same pass, closes the local-SEO gaps that directly limit rankings and visibility in Nairobi/Kenya**. It is primarily a **structural refactor** — no new user-facing pages, no visual redesign — but the driving business goal is explicit: **great UX while maximizing SEO, search rankings, and online visibility/availability for the Invonics portfolio in Nairobi and Kenya.** Every decision below uses that goal as the tiebreaker.
 
-The payoff: (1) eliminate a class of *silent SEO bugs* where the sitemap/llms artifacts drift from the live routes and pages quietly go un-indexed; (2) guarantee canonical-URL correctness so ranking signal isn't lost to a mis-pathed host; (3) extend the local-business structured data that currently exists **only on the homepage** to the money pages (service and solution landing pages), so Google can attach location + `areaServed` signals to the exact pages targeting "…in Nairobi, Kenya" queries; (4) cut per-page edit cost so the small team ships content and layout changes without touching 6–10 files.
+The payoff: (1) eliminate a class of _silent SEO bugs_ where the sitemap/llms artifacts drift from the live routes and pages quietly go un-indexed; (2) guarantee canonical-URL correctness so ranking signal isn't lost to a mis-pathed host; (3) extend the local-business structured data that currently exists **only on the homepage** to the money pages (service and solution landing pages), so Google can attach location + `areaServed` signals to the exact pages targeting "…in Nairobi, Kenya" queries; (4) cut per-page edit cost so the small team ships content and layout changes without touching 6–10 files.
 
 Audience: the engineer(s) maintaining this codebase — currently a solo/small team.
 
@@ -25,6 +25,7 @@ The same fact lives in multiple places, so a one-line intent becomes a multi-fil
 A new content type `guides/` is added, or the `industries/` directory is renamed to `solutions/` to match its URL. The site renders correctly because `lib/content.ts` (Vite `import.meta.glob`) picks it up. But `scripts/generate-seo.ts` discovers content independently via `fs.readdirSync` and encodes the `industries → /solutions` URL mapping separately. The sitemap.xml, llms.txt, and llms-full.txt now silently omit (or mis-path) the new content. There is **no error, no failing test, no TypeScript complaint** — the gap only surfaces weeks later as missing search/AI-crawler coverage. For a site whose stated purpose is SEO and AI-authority, a sitemap that disagrees with the live routes is the most expensive possible defect and the current structure makes it the most likely one.
 
 **Supporting pain points:**
+
 - The production domain `https://invonicstechnologies.com` is hardcoded in ~15 source locations (canonical tags, OG tags, JSON-LD, the SEO script). A domain/staging change is a find-replace where one miss ships a wrong canonical.
 - Every route re-implements the page shell (`Nav` / `main` / `Footer` / `FloatingWhatsApp`), and the copies have already drifted (e.g. `solutions/$slug` omits the WhatsApp widget others include).
 - `StructuredData` hides almost nothing — each caller hand-builds the schema.org payload, typed as `Record<string, any>`, so wrong fields pass type-checking.
@@ -76,24 +77,29 @@ Here "user" is the developer/maintainer, plus one crawler-facing flow.
 ### Functional Requirements
 
 **Content registry (single source of truth) — addresses G1, G2, G3**
+
 - **FR-1:** A single module MUST own the set of content types and their `{ contentDir, routePrefix }` mappings, including the non-obvious `industries → /solutions` mapping stated exactly once.
 - **FR-2:** `lib/content.ts` accessors (page rendering) MUST derive their content-type/route knowledge from the registry in FR-1.
 - **FR-3:** `scripts/generate-seo.ts` MUST derive the list of `{ routePrefix, slug }` URLs from the same registry / content source used by rendering, rather than independently re-scanning the filesystem with its own hardcoded path mappings.
 - **FR-4:** Adding a new content directory + registry entry MUST cause the corresponding URLs to appear in sitemap.xml and llms.txt with no other code changes (verifies US-1).
 
 **Base URL & canonical construction — addresses G2**
+
 - **FR-5:** The production base URL MUST be defined once (config constant or env var) and imported by all consumers: route `head` blocks, `StructuredData`/schema builders, and the SEO generation script.
 - **FR-6:** A single helper MUST construct canonical/absolute URLs from a path, used by every route that emits a canonical link or OG URL.
 
 **Page shell — addresses G2, G4-adjacent consistency**
+
 - **FR-7:** A single `PageShell` component MUST own the shared chrome (`min-h-screen` wrapper, `Nav`, `main`, `Footer`, `FloatingWhatsApp`), and all content routes MUST render their body through it.
 - **FR-8:** After FR-7, the WhatsApp widget and footer MUST appear consistently on all content pages (fixes the current `solutions/$slug` omission).
 
 **Structured data — addresses G4**
+
 - **FR-9:** Structured-data emission MUST expose one typed function/component per schema type in use (e.g. `ServiceSchema`, `CreativeWorkSchema`, `FaqSchema`, `WebSiteSchema`), each taking domain-level typed inputs rather than a `Record<string, any>`.
 - **FR-10:** Call sites MUST NOT hand-assemble `@context`/`@type` or raw schema.org field names; that knowledge lives inside the schema module.
 
 **Local SEO enrichment — addresses G3 (the ranking-driver added for the business goal)**
+
 - **FR-15:** The `LocalBusiness` NAP + geo (name, telephone, full `PostalAddress`, `GeoCoordinates`) MUST be defined **once** with a stable `@id` (e.g. `https://invonicstechnologies.com#business`) — reusing the values currently inline in `index.tsx` — so no page re-declares the address by hand.
 - **FR-16:** Service landing pages (`/services/$slug`) MUST emit `ProfessionalService` structured data that references the business via `provider: { "@id": … }` and includes `areaServed` (Nairobi, Kenya, and East Africa), rather than the current bare `{ name, description, url }`. Solution pages (`/solutions/$slug`) MUST likewise carry `areaServed`.
 - **FR-17:** Nested pages that already render a visual breadcrumb (e.g. `/services/$slug`) MUST also emit a `BreadcrumbList` JSON-LD schema so the breadcrumb can appear in search results; the breadcrumb trail MUST be generated from route data, not hand-written per page.
@@ -101,6 +107,7 @@ Here "user" is the developer/maintainer, plus one crawler-facing flow.
 - **FR-19 (cleanup):** The stale one-off generators `patch-services.js` and `scripts/create-services.ts`, which duplicate content now owned by `src/content/*`, MUST be removed (or clearly quarantined) so they can't reintroduce drift. _Confirm neither is wired into `build`/`postinstall` before deletion — a quick grep shows they are not in `package.json` scripts._
 
 **Cross-references & error handling — addresses G4, US-6, US-7**
+
 - **FR-11:** Portfolio→service relatedness MUST resolve via a stable identifier (service slug) rather than free-text service-name string equality.
 - **FR-12:** All `$slug` routes MUST throw `notFound()` (proper 404) for missing content; the portfolio route MUST stop throwing a bare `Error`.
 - **FR-13:** The `@ts-expect-error` suppressions in `portfolio/$slug.tsx` MUST be removed once loader types are correct (no new suppressions introduced).
@@ -134,11 +141,12 @@ Measured against the codebase immediately after merge (no new analytics required
 The prior open questions are **resolved** using the SEO/visibility/UX goal as the tiebreaker:
 
 - **D-1 (was OQ-1, Vite glob in a Node script) → Option (a): registry exposes a plain-Node filesystem discovery path.** The SEO generator stays fast and dependency-light while deriving URLs from the same registry the routes use, so the sitemap/llms **cannot** drift — directly serving G1 (visibility/availability). Rejected: (b) running generation through Vite (heavier, more failure surface on a critical build step) and (c) generating from route loaders (couples the build to runtime rendering).
-- **D-2 (was OQ-2, equivalence verification) → Mandatory before/after snapshot diff.** Because SEO correctness *is* the deliverable, a script snapshots `public/sitemap.xml`, `public/llms*.txt`, and the rendered `<head>` + JSON-LD of a representative URL per content type before and after each milestone; any unintended diff blocks merge (NFR-1/G6). Kept as a repo script for reuse, not built into CI for now (scope).
+- **D-2 (was OQ-2, equivalence verification) → Mandatory before/after snapshot diff.** Because SEO correctness _is_ the deliverable, a script snapshots `public/sitemap.xml`, `public/llms*.txt`, and the rendered `<head>` + JSON-LD of a representative URL per content type before and after each milestone; any unintended diff blocks merge (NFR-1/G6). Kept as a repo script for reuse, not built into CI for now (scope).
 - **D-3 (was OQ-3, portfolio service refs) → Option (a): migrate `CaseStudy.services` to service slugs.** Enables the build-time dangling-reference check (FR-14) that protects internal linking and "related projects" — a ranking + UX factor. Cost is trivial (2 portfolio files). A display label is derived via `getServiceBySlug`, so UI text is unchanged.
 - **D-4 (title templates, was Risk-3) → RESOLVED by inspection: the `"in Nairobi, Kenya"` service-title suffix is a deliberate local-SEO choice** (present on services, absent on blog/portfolio by design). Centralization preserves per-type templates (FR-18); it does **not** unify titles into one pattern.
 
 **Remaining risks:**
+
 - **Risk-1 — silent equivalence miss:** a subtle change (trailing slash, OG suffix) could itself hurt SEO. Mitigation: D-2 snapshot diff is non-negotiable.
 - **Risk-2 — scope creep into redesign:** extracting `PageShell` invites "while we're here" layout tweaks. Mitigation: Non-Goals forbid visual change.
 - **Risk-3 — geo/NAP accuracy:** the homepage `GeoCoordinates` (-1.286389, 36.817223) point to Nairobi CBD while the street address is Ongata Rongai. Not caused by this refactor, but since FR-15 makes NAP the single source reused everywhere, **correct the coordinates once** during FR-15 so the wrong value isn't propagated to more pages. _Owner to confirm the true business coordinates._

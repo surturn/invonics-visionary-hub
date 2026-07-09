@@ -1,7 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { FloatingWhatsApp, WA_LINK } from "@/components/site/FloatingWhatsApp";
+import { WA_LINK } from "@/components/site/FloatingWhatsApp";
 import { Reveal } from "@/components/site/Reveal";
 import { getWorkBySlug } from "@/lib/work";
 import { absoluteUrl } from "@/lib/site";
@@ -83,6 +83,11 @@ function WorkDetail() {
                 {solution.demoLabel ?? "Try the live demo"} ↗
               </a>
             )}
+            {solution.demoInProgress && (
+              <p className="text-sm italic text-muted-foreground/70">
+                Currently being rebuilt as a dedicated app — live demo temporarily unavailable.
+              </p>
+            )}
           </Reveal>
 
           {/* Screenshots */}
@@ -90,7 +95,10 @@ function WorkDetail() {
             <Reveal delay={100}>
               <div className="mt-14 space-y-4">
                 {solution.screenshots.map((shot) => (
-                  <figure key={shot.src} className="overflow-hidden rounded-2xl border border-border/60">
+                  <figure
+                    key={shot.src}
+                    className="overflow-hidden rounded-2xl border border-border/60"
+                  >
                     <img
                       src={shot.src}
                       alt={shot.caption}
@@ -110,7 +118,9 @@ function WorkDetail() {
             {solution.challenge && (
               <Reveal>
                 <h2 className="mb-4 font-display text-3xl text-foreground">The Challenge</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">{solution.challenge}</p>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {solution.challenge}
+                </p>
               </Reveal>
             )}
 
@@ -215,7 +225,6 @@ function WorkDetail() {
         </article>
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }

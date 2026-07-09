@@ -1,8 +1,8 @@
 export const SITE_URL = "https://invonicstechnologies.com";
 
-export const LOGO_URL = `${SITE_URL}/logo.jpeg`; 
+export const LOGO_URL = `${SITE_URL}/logo.jpeg`;
 
-export const FOUNDER_NAME = "Sydney Kamau"; 
+export const FOUNDER_NAME = "Sydney Kamau";
 
 export const BASE_ORGANIZATION_SCHEMA = {
   "@type": "Organization",
@@ -13,24 +13,25 @@ export const BASE_ORGANIZATION_SCHEMA = {
     "@type": "ImageObject",
     url: LOGO_URL,
   },
-  description: "Invonics Technologies builds vertical operating systems, custom web/app software, e-commerce, inventory and event-management systems, payment integrations, and brand/motion design for African SMEs, with deep East African market expertise.",
+  description:
+    "Invonics Technologies builds vertical operating systems, custom web/app software, e-commerce, inventory and event-management systems, payment integrations, and brand/motion design for African SMEs, with deep East African market expertise.",
   slogan: "Engineering Tomorrow, Today",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Nairobi",
-    addressCountry: "KE"
+    addressCountry: "KE",
   },
   telephone: "+254786669572",
   email: "invonicstechnologies@gmail.com",
   founder: {
     "@type": "Person",
-    name: FOUNDER_NAME
+    name: FOUNDER_NAME,
   },
   sameAs: [
     "https://facebook.com/Invonics",
     "https://instagram.com/invonicstechnologies",
     "https://tiktok.com/@invonicstechnologies",
-    "https://x.com/invonicstech"
+    "https://x.com/invonicstech",
   ],
   areaServed: ["Kenya", "East Africa"],
   knowsAbout: [
@@ -40,8 +41,8 @@ export const BASE_ORGANIZATION_SCHEMA = {
     "Inventory Management",
     "Event Management",
     "Payment Integration",
-    "Motion Graphics"
-  ]
+    "Motion Graphics",
+  ],
 };
 
 export const BASE_WEBSITE_SCHEMA = {
@@ -50,8 +51,8 @@ export const BASE_WEBSITE_SCHEMA = {
   url: SITE_URL,
   name: "Invonics Technologies",
   publisher: {
-    "@id": `${SITE_URL}/#organization`
-  }
+    "@id": `${SITE_URL}/#organization`,
+  },
 };
 
 export function generateOfferCatalogSchema(services: any[]) {
@@ -66,11 +67,11 @@ export function generateOfferCatalogSchema(services: any[]) {
         name: service.name,
         description: service.description,
         provider: {
-          "@id": `${SITE_URL}/#organization`
+          "@id": `${SITE_URL}/#organization`,
         },
-        areaServed: ["Kenya", "East Africa"]
-      }
-    }))
+        areaServed: ["Kenya", "East Africa"],
+      },
+    })),
   };
 }
 
@@ -82,11 +83,11 @@ export function generateSoftwareApplicationSchema(product: any) {
     operatingSystem: "Web",
     description: product.description,
     provider: {
-      "@id": `${SITE_URL}/#organization`
+      "@id": `${SITE_URL}/#organization`,
     },
     publisher: {
-      "@id": `${SITE_URL}/#organization`
-    }
+      "@id": `${SITE_URL}/#organization`,
+    },
   };
 
   if (product.offers && product.offers.length > 0) {
@@ -94,7 +95,7 @@ export function generateSoftwareApplicationSchema(product: any) {
       "@type": "Offer",
       name: offer.name,
       price: offer.price,
-      priceCurrency: "KES"
+      priceCurrency: "KES",
     }));
   }
 
@@ -107,10 +108,10 @@ export function generateCreativeWorkSchema(item: any) {
     name: item.name,
     description: item.description,
     creator: {
-      "@id": `${SITE_URL}/#organization`
+      "@id": `${SITE_URL}/#organization`,
     },
     about: item.keywords || item.category,
-    url: item.url || `${SITE_URL}/portfolio/${item.slug}` 
+    url: item.url || `${SITE_URL}/portfolio/${item.slug}`,
   };
 }
 
@@ -121,14 +122,14 @@ export function generateBreadcrumbSchema(items: { name: string; item: string }[]
       "@type": "ListItem",
       position: index + 1,
       name: breadcrumb.name,
-      item: breadcrumb.item
-    }))
+      item: breadcrumb.item,
+    })),
   };
 }
 
 export function generateGraphSchema(nodes: any[]) {
   return {
     "@context": "https://schema.org",
-    "@graph": nodes
+    "@graph": nodes,
   };
 }

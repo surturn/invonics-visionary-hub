@@ -121,26 +121,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               url: "https://invonicstechnologies.com",
               logo: {
                 "@type": "ImageObject",
-                url: "https://invonicstechnologies.com/logo.jpeg"
+                url: "https://invonicstechnologies.com/logo.jpeg",
               },
-              description: "Invonics Technologies builds vertical operating systems, custom web/app software, e-commerce, inventory and event-management systems, payment integrations, and brand/motion design for African SMEs, with deep East African market expertise.",
+              description:
+                "Invonics Technologies builds vertical operating systems, custom web/app software, e-commerce, inventory and event-management systems, payment integrations, and brand/motion design for African SMEs, with deep East African market expertise.",
               slogan: "Engineering Tomorrow, Today",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Nairobi",
-                addressCountry: "KE"
+                addressCountry: "KE",
               },
               telephone: "+254786669572",
               email: "invonicstechnologies@gmail.com",
               founder: {
                 "@type": "Person",
-                name: "Sydney Kamau"
+                name: "Sydney Kamau",
               },
               sameAs: [
                 "https://facebook.com/Invonics",
                 "https://instagram.com/invonicstechnologies",
                 "https://tiktok.com/@invonicstechnologies",
-                "https://x.com/invonicstech"
+                "https://x.com/invonicstech",
               ],
               areaServed: ["Kenya", "East Africa"],
               knowsAbout: [
@@ -150,8 +151,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 "Inventory Management",
                 "Event Management",
                 "Payment Integration",
-                "Motion Graphics"
-              ]
+                "Motion Graphics",
+              ],
             },
             {
               "@type": "WebSite",
@@ -159,13 +160,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               url: "https://invonicstechnologies.com",
               name: "Invonics Technologies",
               publisher: {
-                "@id": "https://invonicstechnologies.com/#organization"
-              }
-            }
-          ]
-        })
-      }
-    ]
+                "@id": "https://invonicstechnologies.com/#organization",
+              },
+            },
+          ],
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

@@ -9,7 +9,7 @@ export async function onRequestPost(context) {
     if (!name || !email || !brief) {
       return new Response(JSON.stringify({ error: "Missing required fields" }), {
         status: 400,
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
       });
     }
 
@@ -19,7 +19,7 @@ export async function onRequestPost(context) {
       console.error("BREVO_API_KEY is not configured in Cloudflare Pages environments.");
       return new Response(JSON.stringify({ error: "Server configuration error" }), {
         status: 500,
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
       });
     }
 
@@ -27,54 +27,53 @@ export async function onRequestPost(context) {
     const payload = {
       sender: {
         name: name,
-        email: email
+        email: email,
       },
       to: [
         {
           email: "hello@invonicstechnologies.com",
-          name: "Invonics Inquiries"
-        }
+          name: "Invonics Inquiries",
+        },
       ],
-      subject: \`New Project Inquiry from \${name} \${company ? "(" + company + ")" : ""}\`,
-      htmlContent: \`
+      subject: `New Project Inquiry from ${name} ${company ? "(" + company + ")" : ""}`,
+      htmlContent: `
         <h2>New Contact Request</h2>
-        <p><strong>Name:</strong> \${name}</p>
-        <p><strong>Email:</strong> \${email}</p>
-        <p><strong>Company:</strong> \${company || "N/A"}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Company:</strong> ${company || "N/A"}</p>
         <br />
         <p><strong>Brief:</strong></p>
-        <p>\${brief}</p>
-      \`
+        <p>${brief}</p>
+      `,
     };
 
     // Send request to Brevo
     const response = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
-        "api-key": BREVO_API_KEY
+        "api-key": BREVO_API_KEY,
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
       return new Response(JSON.stringify({ error: "Failed to send email", details: errorText }), {
         status: 500,
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
       });
     }
 
     return new Response(JSON.stringify({ success: true, message: "Email sent successfully" }), {
       status: 200,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
-
   } catch (err) {
     return new Response(JSON.stringify({ error: "Internal Server Error", details: err.message }), {
       status: 500,
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
   }
 }

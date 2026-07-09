@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { About as AboutComponent } from "@/components/site/About";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
@@ -42,7 +41,6 @@ function AboutPage() {
         </div>
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }

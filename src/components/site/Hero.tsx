@@ -45,10 +45,10 @@ export function Hero() {
             Enterprise Software, Engineered for Kenya&rsquo;s Growth.
           </h1>
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Invonics Technologies builds mission-critical operating systems for hospitality
-            groups, schools, and enterprise across Nairobi and beyond — replacing manual
-            processes and legacy tools with automated, accountable, revenue-protecting
-            infrastructure. Fewer losses. Faster operations. Full visibility.
+            Invonics Technologies builds mission-critical operating systems for hospitality groups,
+            schools, and enterprise across Nairobi and beyond — replacing manual processes and
+            legacy tools with automated, accountable, revenue-protecting infrastructure. Fewer
+            losses. Faster operations. Full visibility.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">

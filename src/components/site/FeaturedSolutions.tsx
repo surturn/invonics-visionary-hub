@@ -1,14 +1,31 @@
+import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 import registryShot from "@/assets/work/school-asset-registry.jpg";
+import accountingShot from "@/assets/work/accounting-hero.jpg";
 
-const solutions = [
+type FeaturedSolution = {
+  id: string;
+  tag: string;
+  title: string;
+  pitch: string;
+  metric: string;
+  img: string;
+  imgAlt: string;
+  reverse: boolean;
+  // Either a live demo link, or a case-study link + an in-progress note — not both.
+  demoUrl?: string;
+  caseStudySlug?: string;
+  demoInProgress?: boolean;
+};
+
+const solutions: FeaturedSolution[] = [
   {
     id: "01",
     tag: "School Systems · AssetFlow",
     title: "Stop losing what you already paid for.",
     pitch:
-      "AssetFlow eliminates the silent cost of asset shrinkage in schools and institutions by giving administrators a single source of truth for every device, resource, and physical asset on campus. It automates depreciation tracking and audit trails so finance teams stop reconciling spreadsheets and start making informed budget decisions. The result: full accountability from procurement to write-off, and a measurable reduction in unexplained losses.",
-    metric: "Full audit trail · zero unaccounted assets",
+      "Schools and institutions lose real money every year to equipment that goes missing or quietly disappears off the books — with no one able to say exactly what happened or when. AssetFlow gives administrators a complete, always-current picture of everything the school owns, from the day it's bought to the day it's retired. The result is fewer unexplained losses, tighter budgets, and a level of accountability schools have never had before.",
+    metric: "Full visibility · fewer unexplained losses",
     img: registryShot,
     imgAlt: "AssetFlow asset registry dashboard — Invonics Technologies",
     demoUrl: "https://assetflow.invonicstechnologies.com/",
@@ -16,14 +33,30 @@ const solutions = [
   },
   {
     id: "02",
-    tag: "Hospitality · TableWise",
-    title: "Turn more tables. Lose fewer orders.",
+    tag: "Finance · Invonics Accounting",
+    title: "Know your numbers. File on time, every time.",
     pitch:
-      "TableWise streamlines the entire dining floor into one intelligent operating layer, so orders move from table to kitchen to bill without manual re-entry or error. By eliminating miscommunication between front-of-house and kitchen staff, restaurants cut order errors and refire costs while serving more covers per shift. The result is faster table turnover, higher staff productivity, and a measurable lift in nightly revenue capacity.",
-    metric: "Fewer order errors · faster table turnover",
+      "Most small business owners in Kenya track their finances through M-Pesa messages, paper receipts and memory — with no real sense of whether they're actually making money, and tax season is a scramble. Invonics Accounting gives them a simple, always-up-to-date view of income, expenses and profit, and handles their KRA tax obligations automatically in the background. The result is business owners who finally know their numbers, file on time without stress, and never need to hire an accountant to do it.",
+    metric: "Always tax-ready · zero late filings",
+    img: accountingShot,
+    imgAlt: "Invonics Accounting dashboard — Invonics Technologies",
+    caseStudySlug: "accounting-finance-system",
+    demoInProgress: true,
     reverse: true,
   },
 ];
+
+function monogram(tag: string): string {
+  const product = tag.split("·").pop()?.trim() ?? tag;
+  return (
+    product
+      .split(/\s+/)
+      .filter((w) => /^[A-Za-z]/.test(w))
+      .slice(0, 2)
+      .map((w) => w[0].toUpperCase())
+      .join("") || "IN"
+  );
+}
 
 export function FeaturedSolutions() {
   return (
@@ -41,7 +74,10 @@ export function FeaturedSolutions() {
 
         <div className="mt-20 space-y-24 md:mt-28 md:space-y-32">
           {solutions.map((s) => (
-            <Reveal key={s.id} className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
+            <Reveal
+              key={s.id}
+              className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14"
+            >
               <div className={s.reverse ? "md:order-2" : ""}>
                 {s.img ? (
                   <div className="relative overflow-hidden rounded-2xl border border-border/60 shadow-card">
@@ -58,14 +94,16 @@ export function FeaturedSolutions() {
                     <div className="absolute -right-10 -top-12 h-44 w-44 rounded-full bg-primary/25 blur-3xl" />
                     <div className="absolute -bottom-14 -left-8 h-44 w-44 rounded-full bg-primary/10 blur-3xl" />
                     <span className="relative select-none font-display text-6xl font-semibold text-gradient">
-                      TW
+                      {monogram(s.tag)}
                     </span>
                   </div>
                 )}
               </div>
 
               <div className={s.reverse ? "md:order-1" : ""}>
-                <div className="label-mono mb-4">§ {s.id} / {s.tag}</div>
+                <div className="label-mono mb-4">
+                  § {s.id} / {s.tag}
+                </div>
                 <h3 className="font-display text-3xl leading-[1.06] text-foreground md:text-4xl">
                   {s.title}
                 </h3>
@@ -86,7 +124,21 @@ export function FeaturedSolutions() {
                       Try the live demo ↗
                     </a>
                   )}
+                  {s.caseStudySlug && (
+                    <Link
+                      to="/work/$slug"
+                      params={{ slug: s.caseStudySlug }}
+                      className="text-sm font-semibold text-foreground/90 hover:text-primary transition-colors"
+                    >
+                      View case study →
+                    </Link>
+                  )}
                 </div>
+                {s.demoInProgress && (
+                  <p className="mt-3 text-xs italic text-muted-foreground/70">
+                    Currently being rebuilt as a dedicated app — live demo temporarily unavailable.
+                  </p>
+                )}
               </div>
             </Reveal>
           ))}

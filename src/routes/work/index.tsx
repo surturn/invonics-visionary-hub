@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { Reveal } from "@/components/site/Reveal";
 import { getAllWorkSolutions } from "@/lib/work";
 import { absoluteUrl } from "@/lib/site";
@@ -19,7 +18,10 @@ export const Route = createFileRoute("/work/")({
       },
       // Kept out of the index until all case studies + sitemap are finalised.
       { name: "robots", content: "noindex, follow" },
-      { property: "og:title", content: "Our Work — Solutions & Case Studies | Invonics Technologies" },
+      {
+        property: "og:title",
+        content: "Our Work — Solutions & Case Studies | Invonics Technologies",
+      },
     ],
     links: [{ rel: "canonical", href: absoluteUrl("/work") }],
   }),
@@ -67,7 +69,6 @@ function WorkIndex() {
         </section>
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }
@@ -87,7 +88,7 @@ function WorkCard({ solution, index }: { solution: WorkSolution; index: number }
   return (
     <div className="group h-full overflow-hidden rounded-2xl border border-border/60 bg-card motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5">
       {/* Media + on-image chips */}
-      <div className="relative aspect-[16/9] overflow-hidden bg-secondary/40">
+      <div className="relative aspect-video overflow-hidden bg-secondary/40">
         {shot ? (
           <img
             src={shot.src}
@@ -100,7 +101,7 @@ function WorkCard({ solution, index }: { solution: WorkSolution; index: number }
           // read as intentional art, not a missing/broken image.
           <div
             aria-hidden
-            className="relative grid h-full w-full place-items-center overflow-hidden bg-gradient-to-br from-secondary/70 via-background to-background"
+            className="relative grid h-full w-full place-items-center overflow-hidden bg-linear-to-br from-secondary/70 via-background to-background"
           >
             <div className="absolute -right-10 -top-12 h-44 w-44 rounded-full bg-primary/25 blur-3xl" />
             <div className="absolute -bottom-14 -left-8 h-44 w-44 rounded-full bg-primary/10 blur-3xl" />

@@ -1,7 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { FloatingWhatsApp, WA_LINK } from "@/components/site/FloatingWhatsApp";
+import { WA_LINK } from "@/components/site/FloatingWhatsApp";
 import { Reveal } from "@/components/site/Reveal";
 import { getServiceBySlug } from "@/lib/content";
 import { StructuredData, buildFAQSchema } from "@/components/seo/StructuredData";
@@ -136,7 +136,6 @@ function ServiceLandingPage() {
         </section>
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { Booking } from "@/components/site/Booking";
 import { FAQ } from "@/components/site/FAQ";
 import { Socials } from "@/components/site/Socials";
 import { Footer } from "@/components/site/Footer";
-import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 import { absoluteUrl } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
@@ -39,7 +38,6 @@ function ContactPage() {
         <Socials />
       </main>
       <Footer />
-      <FloatingWhatsApp />
     </div>
   );
 }

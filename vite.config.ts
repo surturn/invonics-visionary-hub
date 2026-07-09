@@ -40,8 +40,8 @@ export default defineConfig(({ command }) => {
         "react/jsx-runtime",
         "react/jsx-dev-runtime",
         "@tanstack/react-query",
-        "@tanstack/query-core"
-      ]
+        "@tanstack/query-core",
+      ],
     },
     plugins,
   };

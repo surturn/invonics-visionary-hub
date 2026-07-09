@@ -10,8 +10,7 @@ const solution: WorkSolution = {
     "Real-time financial visibility for growing operations. Move past fragmented spreadsheets with automated reconciliation, custom reporting, and instant cash flow insights.",
   order: 2,
 
-  demoUrl: "https://accounting.invonicstechnologies.com/",
-  demoLabel: "Try the live demo",
+  demoInProgress: true,
 
   hasCaseStudy: true,
   challenge:

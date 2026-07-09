@@ -39,7 +39,15 @@ const solution: WorkSolution = {
     "Clear accountability through a complete audit trail",
     "Usable by all staff, including assistive-tech users (WCAG AA)",
   ],
-  technology: ["Django 5", "Django REST Framework", "PostgreSQL", "React 18", "TypeScript", "Celery", "Redis"],
+  technology: [
+    "Django 5",
+    "Django REST Framework",
+    "PostgreSQL",
+    "React 18",
+    "TypeScript",
+    "Celery",
+    "Redis",
+  ],
   screenshots: [
     {
       src: registryShot,

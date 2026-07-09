@@ -52,6 +52,7 @@ export interface WorkSolution {
   // Live demo (self-serve). When absent, the card falls back to a contact CTA.
   demoUrl?: string;
   demoLabel?: string; // e.g. "Try the live demo"
+  demoInProgress?: boolean; // true => show an "app in progress" note instead of a demo link
 
   // Detail page (optional). Present => a /work/$slug case study is rendered.
   hasCaseStudy?: boolean;

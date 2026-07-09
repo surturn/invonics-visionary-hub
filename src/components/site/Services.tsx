@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { TiltCard } from "./MotionSystem";
-import {
-  Globe,
-  LayoutDashboard,
-  Palette,
-  Search,
-  Zap,
-} from "lucide-react";
+import { Globe, LayoutDashboard, Palette, Search, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Service = {
@@ -23,35 +17,40 @@ const services: Service[] = [
     icon: Globe,
     title: "Custom Software & Web Platforms",
     desc: "Custom websites, web applications and client portals — production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.",
-    details: "We design and build responsive websites, dashboards, portals, and custom apps with fast loading, clean user journeys, analytics, SEO foundations, and a maintainable codebase.",
+    details:
+      "We design and build responsive websites, dashboards, portals, and custom apps with fast loading, clean user journeys, analytics, SEO foundations, and a maintainable codebase.",
     outcomes: ["UX/UI design", "Frontend/backend build", "Launch optimization"],
   },
   {
     icon: LayoutDashboard,
     title: "Business Management Systems",
     desc: "Custom ERP, school management, HR and finance dashboards with real-time visibility. M-Pesa integrated. Built for Kenyan businesses and institutions.",
-    details: "We turn manual operations into secure management systems with roles, records, approvals, reports, dashboards, and alerts that help leaders see what is happening in real time.",
+    details:
+      "We turn manual operations into secure management systems with roles, records, approvals, reports, dashboards, and alerts that help leaders see what is happening in real time.",
     outcomes: ["Role-based access", "Dashboards & reports", "Data workflows"],
   },
   {
     icon: Zap,
     title: "AI & Workflow Automation",
     desc: "Cut hours of manual work with smart automation — WhatsApp ordering bots, automated invoicing, appointment reminders, and AI-powered customer replies. Designed around M-Pesa and how Kenyan businesses actually operate.",
-    details: "We map repetitive tasks, identify bottlenecks, and automate approvals, notifications, data entry, reminders, and handoffs so your team spends less time chasing routine work.",
+    details:
+      "We map repetitive tasks, identify bottlenecks, and automate approvals, notifications, data entry, reminders, and handoffs so your team spends less time chasing routine work.",
     outcomes: ["Process mapping", "Automated triggers", "Monitoring & handover"],
   },
   {
     icon: Palette,
     title: "Brand Design & Motion Graphics",
     desc: "Identity systems, logo design, campaign visuals, explainer videos and motion posters for product launches, brands and events across East Africa.",
-    details: "We create logos, brand systems, typography, pitch decks, animated visuals, short promotional clips, and campaign graphics that communicate your message clearly and memorably.",
+    details:
+      "We create logos, brand systems, typography, pitch decks, animated visuals, short promotional clips, and campaign graphics that communicate your message clearly and memorably.",
     outcomes: ["Visual identity", "Motion graphics", "Marketing assets"],
   },
   {
     icon: Search,
     title: "SEO & Digital Visibility",
     desc: "Search-first content systems and technical SEO that build organic traffic and compound your Google rankings over time.",
-    details: "We improve technical SEO, page structure, metadata, content plans, keyword targeting, and analytics so customers can find your brand and understand your offer faster.",
+    details:
+      "We improve technical SEO, page structure, metadata, content plans, keyword targeting, and analytics so customers can find your brand and understand your offer faster.",
     outcomes: ["SEO audit", "Content plan", "Analytics setup"],
   },
 ];

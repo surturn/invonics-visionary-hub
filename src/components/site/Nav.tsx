@@ -10,7 +10,8 @@ const links = [
   { href: "/#work", label: "Work", index: "02" },
   { href: "/#process", label: "Process", index: "03" },
   { href: "/#team", label: "Team", index: "04" },
-  { href: "/contact", label: "Contact", index: "05" },
+  { href: "/blog", label: "Blog", index: "05" },
+  { href: "/contact", label: "Contact", index: "06" },
 ];
 
 export function Nav() {
