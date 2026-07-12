@@ -85,9 +85,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a className="text-foreground/80 hover:text-foreground" href="/#work">
+                <Link className="text-foreground/80 hover:text-foreground" to="/portfolio">
                   Projects & Case Studies
-                </a>
+                </Link>
               </li>
               <li>
                 <a className="text-foreground/80 hover:text-foreground" href="/#process">
@@ -103,9 +103,9 @@ export function Footer() {
             </div>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a className="text-foreground/80 hover:text-foreground" href="/#about">
+                <Link className="text-foreground/80 hover:text-foreground" to="/about">
                   About Invonics Technologies
-                </a>
+                </Link>
               </li>
               <li>
                 <a className="text-foreground/80 hover:text-foreground" href="/#team">

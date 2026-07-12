@@ -19,7 +19,6 @@ function getSlugsFromDir(dirName: string) {
 }
 
 async function generate() {
-  const services = getSlugsFromDir("services");
   const portfolio = getSlugsFromDir("portfolio");
   const blogs = getSlugsFromDir("blog");
   const solutions = getSlugsFromDir("industries");
@@ -31,15 +30,11 @@ async function generate() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://invonicstechnologies.com/</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://invonicstechnologies.com/about</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://invonicstechnologies.com/services</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://invonicstechnologies.com/portfolio</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://invonicstechnologies.com/contact</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://invonicstechnologies.com/blog</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 `;
 
-  services.forEach((slug) => {
-    sitemap += `  <url><loc>https://invonicstechnologies.com/services/${slug}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>\n`;
-  });
   portfolio.forEach((slug) => {
     sitemap += `  <url><loc>https://invonicstechnologies.com/portfolio/${slug}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
   });
@@ -57,8 +52,8 @@ async function generate() {
   const llms = `# Invonics Technologies
 Invonics Technologies is an authority platform and premier engineering studio in Kenya, specializing in custom software, AI automation, web development, and digital infrastructure.
 
-## Core Services
-${services.map((s) => `- https://invonicstechnologies.com/services/${s}`).join("\n")}
+## About
+- https://invonicstechnologies.com/about
 
 ## Portfolio
 ${portfolio.map((s) => `- https://invonicstechnologies.com/portfolio/${s}`).join("\n")}
