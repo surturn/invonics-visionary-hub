@@ -7,8 +7,8 @@ const CALENDLY_LINK = "https://calendly.com/invonicstechnologies/30min";
 
 const links = [
   { href: "/#services", label: "Services", index: "01" },
-  { href: "/#work", label: "Work", index: "02" },
-  { href: "/#process", label: "Process", index: "03" },
+  { href: "/about", label: "About", index: "02" },
+  { href: "/portfolio", label: "Portfolio", index: "03" },
   { href: "/#team", label: "Team", index: "04" },
   { href: "/blog", label: "Blog", index: "05" },
   { href: "/contact", label: "Contact", index: "06" },
