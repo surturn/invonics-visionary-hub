@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SearchRouteImport } from './routes/search'
+import { Route as HomeV2RouteImport } from './routes/home-v2'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConceptNodeRouteImport } from './routes/concept-node'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
@@ -28,9 +30,19 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeV2Route = HomeV2RouteImport.update({
+  id: '/home-v2',
+  path: '/home-v2',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConceptNodeRoute = ConceptNodeRouteImport.update({
+  id: '/concept-node',
+  path: '/concept-node',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -92,7 +104,9 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/concept-node': typeof ConceptNodeRoute
   '/contact': typeof ContactRoute
+  '/home-v2': typeof HomeV2Route
   '/search': typeof SearchRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
@@ -107,7 +121,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/concept-node': typeof ConceptNodeRoute
   '/contact': typeof ContactRoute
+  '/home-v2': typeof HomeV2Route
   '/search': typeof SearchRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
@@ -123,7 +139,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/concept-node': typeof ConceptNodeRoute
   '/contact': typeof ContactRoute
+  '/home-v2': typeof HomeV2Route
   '/search': typeof SearchRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/$slug': typeof PortfolioSlugRoute
@@ -140,7 +158,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/concept-node'
     | '/contact'
+    | '/home-v2'
     | '/search'
     | '/blog/$slug'
     | '/portfolio/$slug'
@@ -155,7 +175,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/concept-node'
     | '/contact'
+    | '/home-v2'
     | '/search'
     | '/blog/$slug'
     | '/portfolio/$slug'
@@ -170,7 +192,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/concept-node'
     | '/contact'
+    | '/home-v2'
     | '/search'
     | '/blog/$slug'
     | '/portfolio/$slug'
@@ -186,7 +210,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ConceptNodeRoute: typeof ConceptNodeRoute
   ContactRoute: typeof ContactRoute
+  HomeV2Route: typeof HomeV2Route
   SearchRoute: typeof SearchRoute
   BlogSlugRoute: typeof BlogSlugRoute
   PortfolioSlugRoute: typeof PortfolioSlugRoute
@@ -208,11 +234,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/home-v2': {
+      id: '/home-v2'
+      path: '/home-v2'
+      fullPath: '/home-v2'
+      preLoaderRoute: typeof HomeV2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept-node': {
+      id: '/concept-node'
+      path: '/concept-node'
+      fullPath: '/concept-node'
+      preLoaderRoute: typeof ConceptNodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -298,7 +338,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ConceptNodeRoute: ConceptNodeRoute,
   ContactRoute: ContactRoute,
+  HomeV2Route: HomeV2Route,
   SearchRoute: SearchRoute,
   BlogSlugRoute: BlogSlugRoute,
   PortfolioSlugRoute: PortfolioSlugRoute,

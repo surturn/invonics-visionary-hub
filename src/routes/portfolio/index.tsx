@@ -3,6 +3,8 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { TiltCard } from "@/components/site/MotionSystem";
+import { Gallery } from "@/components/gallery/Gallery";
+import { FeaturedSolutions } from "@/components/site/FeaturedSolutions";
 import { getAllPortfolioItems } from "@/lib/content";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { absoluteUrl } from "@/lib/site";
@@ -89,6 +91,27 @@ function PortfolioIndex() {
                 </Link>
               </Reveal>
             ))}
+          </div>
+        </div>
+
+        <FeaturedSolutions />
+
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="mt-28">
+            <Reveal>
+              <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">
+                <span className="text-primary">●</span>&nbsp; Brand &amp; Content Strategy
+              </div>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-gradient leading-[1.04] mb-6">
+                Campaign work, engineered like product.
+              </h2>
+              <p className="max-w-2xl text-lg text-muted-foreground mb-12">
+                Layered poster compositions and content systems built for brand and campaign
+                clients — move your cursor over a piece to see it respond.
+              </p>
+            </Reveal>
+
+            <Gallery />
           </div>
         </div>
       </main>
