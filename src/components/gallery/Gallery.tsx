@@ -2,9 +2,7 @@ import { Reveal } from "../site/Reveal";
 import { MotionReel } from "./MotionReel";
 
 // WebP Poster Imports
-import blueberry from "@/assets/Graphics/BLUEBERRY.webp";
 import culturalVibes from "@/assets/Graphics/CULTURAL VIBES.webp";
-import iceCream from "@/assets/Graphics/Pink Pastel Ice Cream Advertisement Instagram Post.webp";
 import chocolateFlavor from "@/assets/Graphics/chocolate flavor.webp";
 import chocolate from "@/assets/Graphics/chocolate.webp";
 import milkshake from "@/assets/Graphics/milkshake.webp";
@@ -17,11 +15,9 @@ const posters = [
   { img: culturalVibes, title: "Cultural Vibes", tag: "Poster" },
   { img: nike, title: "Walk with Nike", tag: "Campaign" },
   { img: redbull, title: "Energy Surge", tag: "Promo" },
-  { img: blueberry, title: "Blueberry Fresh", tag: "Product" },
   { img: chocolateFlavor, title: "Choco Flavor", tag: "Ad" },
   { img: restaurant, title: "Restaurant Special", tag: "Social" },
   { img: milkshake, title: "Classic Milkshake", tag: "Promo" },
-  { img: iceCream, title: "Pink Pastel Ice Cream", tag: "Social" },
   { img: newFlavours, title: "New Flavours Launch", tag: "Launch" },
   { img: chocolate, title: "Premium Chocolate", tag: "Product" },
 ];
