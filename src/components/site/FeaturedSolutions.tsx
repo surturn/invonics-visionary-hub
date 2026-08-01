@@ -24,7 +24,7 @@ const solutions: FeaturedSolution[] = [
     tag: "School Systems · AssetFlow",
     title: "Stop losing what you already paid for.",
     pitch:
-      "Schools and institutions lose real money every year to equipment that goes missing or quietly disappears off the books — with no one able to say exactly what happened or when. AssetFlow gives administrators a complete, always-current picture of everything the school owns, from the day it's bought to the day it's retired. The result is fewer unexplained losses, tighter budgets, and a level of accountability schools have never had before.",
+      "Schools and institutions lose real money every year to equipment that goes missing or quietly disappears off the books, and no one is able to say exactly what happened or when. AssetFlow gives administrators a complete, always-current picture of everything the school owns, from the day it's bought to the day it's retired. The result is fewer unexplained losses, tighter budgets, and a level of accountability schools have never had before.",
     metric: "Full visibility · fewer unexplained losses",
     img: registryShot,
     imgAlt: "AssetFlow asset registry dashboard — Invonics Technologies",
@@ -36,7 +36,7 @@ const solutions: FeaturedSolution[] = [
     tag: "Finance · Invonics Accounting",
     title: "Know your numbers. File on time, every time.",
     pitch:
-      "Most small business owners in Kenya track their finances through M-Pesa messages, paper receipts and memory — with no real sense of whether they're actually making money, and tax season is a scramble. Invonics Accounting gives them a simple, always-up-to-date view of income, expenses and profit, and handles their KRA tax obligations automatically in the background. The result is business owners who finally know their numbers, file on time without stress, and never need to hire an accountant to do it.",
+      "Most small business owners in Kenya track their finances through M-Pesa messages, paper receipts and memory. They have no real sense of whether they're actually making money, and tax season is a scramble. Invonics Accounting gives them a simple, always-up-to-date view of income, expenses and profit, and handles their KRA tax obligations automatically in the background. The result is business owners who finally know their numbers, file on time without stress, and never need to hire an accountant to do it.",
     metric: "Always tax-ready · zero late filings",
     img: accountingShot,
     imgAlt: "Invonics Accounting dashboard — Invonics Technologies",
@@ -136,7 +136,7 @@ export function FeaturedSolutions() {
                 </div>
                 {s.demoInProgress && (
                   <p className="mt-3 text-xs italic text-muted-foreground/70">
-                    Currently being rebuilt as a dedicated app — live demo temporarily unavailable.
+                    Currently being rebuilt as a dedicated app, so the live demo is temporarily unavailable.
                   </p>
                 )}
               </div>

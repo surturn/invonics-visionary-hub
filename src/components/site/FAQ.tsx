@@ -5,7 +5,7 @@ import { Plus } from "lucide-react";
 export const faqs = [
   {
     q: "What services does Invonics Technologies offer?",
-    a: "Invonics Technologies offers custom software development, AI workflow automation, web development, mobile app development, business management systems, M-Pesa API integrations, branding and logo design, motion graphics, SEO services, IT equipment supply, and event management software — all from our studio in Nairobi, Kenya.",
+    a: "We offer five core services: custom software and web platforms, business management systems, AI and workflow automation, brand design and motion graphics, and SEO and digital visibility. Everything is built in-house from our studio in Nairobi, Kenya.",
   },
   {
     q: "How long does a project usually take?",
@@ -13,15 +13,15 @@ export const faqs = [
   },
   {
     q: "Do you build custom systems?",
-    a: "Yes. Every system is custom-engineered to your operations and growth plan. We specialise in custom software development in Kenya — from school management platforms and ERP systems to AI-powered automation tools and M-Pesa-integrated applications. No templates. No off-the-shelf resells.",
+    a: "Yes. Every system is custom-engineered to your operations and growth plan. We specialise in custom software development in Kenya, from school management platforms and ERP systems to AI-powered automation tools and M-Pesa-integrated applications. No templates. No off-the-shelf resells.",
   },
   {
     q: "Can businesses combine multiple services?",
-    a: "Absolutely — most of our clients combine 2–4 services (e.g. brand + website + automation + IT supply). Bundles keep delivery coordinated with one point of accountability.",
+    a: "Absolutely, most of our clients combine 2–4 services (e.g. brand + website + automation). Bundles keep delivery coordinated with one point of accountability.",
   },
   {
     q: "Do you offer post-launch support?",
-    a: "Yes. Every engagement ends with a support plan — uptime monitoring, monthly enhancements, priority response and on-call options for mission-critical systems.",
+    a: "Yes. Every engagement ends with a support plan including uptime monitoring, monthly enhancements, priority response and on-call options for mission-critical systems.",
   },
   {
     q: "How does the consultation process work?",
@@ -29,11 +29,15 @@ export const faqs = [
   },
   {
     q: "Can you manage branding and digital content?",
-    a: "Yes — we run identity systems, content calendars, motion graphics, posters and ongoing creative production as a managed service.",
+    a: "Yes, we run identity systems, content calendars, motion graphics, posters and ongoing creative production as a managed service.",
   },
   {
-    q: "Do you work with schools and organizations?",
-    a: "Yes. Schools, NGOs and government bodies across Kenya and East Africa are a core part of our portfolio. We build school management software and run digital transformation programs for institutions. Our Akademi School OS currently serves 26,000+ learners across Kenya.",
+    q: "Do you work with brands and businesses of all sizes?",
+    a: "Yes. We partner with many different types of organizations. Our clients include growing local brands, hospitality groups, schools, NGOs, and enterprise businesses across Kenya and East Africa. Whether you need a full brand identity, custom management software, or digital transformation, we build systems tailored to your specific industry and goals.",
+  },
+  {
+    q: "What does the delivery process look like once we start?",
+    a: "We work in weekly cycles, so you see working software every seven days, not a big reveal after months. Most projects run 4–12 weeks from kickoff to first deployment. We scope timelines during a discovery sprint, with milestones every two weeks.",
   },
 ];
 
@@ -52,7 +56,7 @@ export function FAQ() {
               Questions, answered.
             </h2>
             <p className="mt-6 text-muted-foreground max-w-md">
-              Still curious? Reach out on WhatsApp — most teams get a tailored answer in under five
+              Still curious? Reach out on WhatsApp, and most teams get a tailored answer in under five
               minutes.
             </p>
           </Reveal>

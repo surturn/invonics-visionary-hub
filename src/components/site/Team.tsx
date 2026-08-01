@@ -30,7 +30,7 @@ const team = [
     role: "Brand & Interface Designer",
     email: "sybillmutethya@gmail.com",
     linkedin: "https://www.linkedin.com/in/sybil-mutethya",
-    bio: "Owns the visual language — websites, identity systems and the studio's editorial direction.",
+    bio: "Owns the visual language, including websites, identity systems and the studio's editorial direction.",
     span: "lg:col-span-3 lg:row-span-2",
   },
   {
@@ -66,7 +66,7 @@ export function Team() {
           </div>
           <div className="col-span-12 md:col-span-4 md:col-start-9">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Four operators across engineering, design and delivery — building real systems for
+              Four operators across engineering, design and delivery, building real systems for
               schools, SMEs and growing teams.
             </p>
           </div>

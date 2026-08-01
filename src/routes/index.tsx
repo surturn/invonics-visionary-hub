@@ -6,14 +6,17 @@ import { faqs } from "@/components/site/FAQ";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
-import { TrustBar } from "@/components/site/TrustBar";
+import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+const TrustBar = lazy(() =>
+  import("@/components/site/TrustBar").then((m) => ({ default: m.TrustBar })),
+);
 const FeaturedSolutions = lazy(() =>
   import("@/components/site/FeaturedSolutions").then((m) => ({ default: m.FeaturedSolutions })),
 );
-const Ecosystem = lazy(() =>
-  import("@/components/site/Ecosystem").then((m) => ({ default: m.Ecosystem })),
-);
-const About = lazy(() => import("@/components/site/About").then((m) => ({ default: m.About })));
+import { Belief } from "@/components/site/Belief";
+import { About } from "@/components/site/About";
+import { Process } from "@/components/site/Process";
+
 const Services = lazy(() =>
   import("@/components/site/Services").then((m) => ({ default: m.Services })),
 );
@@ -24,15 +27,9 @@ const Footer = lazy(() => import("@/components/site/Footer").then((m) => ({ defa
 const Showcase = lazy(() =>
   import("@/components/site/Showcase").then((m) => ({ default: m.Showcase })),
 );
-const Process = lazy(() =>
-  import("@/components/site/Process").then((m) => ({ default: m.Process })),
-);
 const Vision = lazy(() => import("@/components/site/Vision").then((m) => ({ default: m.Vision })));
 const Contact = lazy(() =>
   import("@/components/site/Contact").then((m) => ({ default: m.Contact })),
-);
-const Booking = lazy(() =>
-  import("@/components/site/Booking").then((m) => ({ default: m.Booking })),
 );
 const FAQ = lazy(() => import("@/components/site/FAQ").then((m) => ({ default: m.FAQ })));
 const Socials = lazy(() =>
@@ -76,7 +73,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <MotionSystem>
-      <div className="relative z-10 min-h-screen bg-background/80 text-foreground">
+      <div className="relative z-10 min-h-screen w-full overflow-x-hidden bg-background/80 text-foreground flex flex-col">
         <StructuredData
           type="LocalBusiness"
           data={{
@@ -102,29 +99,35 @@ function Index() {
         />
         <StructuredData type="FAQPage" data={buildFAQSchema(faqs)} />
         <Nav />
+        <FloatingWhatsApp />
         <main>
           <Hero />
-          <TrustBar />
-          <Suspense fallback={null}>
-            <FeaturedSolutions />
-            <Ecosystem />
-            <About />
-            <Services />
-            <Work />
-            <Team />
-            <Showcase />
-            <Process />
-            <Vision />
-            <Contact />
-            <Booking />
-            <FAQ />
-            <Socials />
-          </Suspense>
+          <Belief />
+          <Process />
+          <Suspense fallback={<SectionSpinner />}><FeaturedSolutions /></Suspense>
+          <Suspense fallback={<SectionSpinner />}><Services /></Suspense>
+          <Suspense fallback={<SectionSpinner />}><Work /></Suspense>
+          <About />
+          <Suspense fallback={<SectionSpinner />}><Team /></Suspense>
+          <Suspense fallback={<SectionSpinner />}><Showcase /></Suspense>
+          <Suspense fallback={<SectionSpinner />}><TrustBar /></Suspense>
+          <Suspense fallback={<SectionSpinner />}><Vision /></Suspense>
+          <Suspense fallback={<SectionSpinner />}><Contact /></Suspense>
+          <Suspense fallback={<SectionSpinner />}><FAQ /></Suspense>
+          <Suspense fallback={<SectionSpinner />}><Socials /></Suspense>
         </main>
-        <Suspense fallback={null}>
+        <Suspense fallback={<SectionSpinner />}>
           <Footer />
         </Suspense>
       </div>
     </MotionSystem>
+  );
+}
+
+function SectionSpinner() {
+  return (
+    <div className="py-24 flex justify-center opacity-50">
+      <div className="h-8 w-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
+    </div>
   );
 }

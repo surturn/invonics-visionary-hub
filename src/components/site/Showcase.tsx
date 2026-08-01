@@ -23,7 +23,7 @@ export function Showcase() {
             <Tile img={motion} title="Motion Reel · 04" tag="Motion" tall />
           </Reveal>
           <Reveal delay={100} className="col-span-12 md:col-span-7 grid grid-rows-2 gap-4 md:gap-5">
-            <Tile img={brand} title="Identity System — Sirine" tag="Branding" />
+            <Tile img={brand} title="Identity System for Sirine" tag="Branding" />
             <div className="grid grid-cols-2 gap-4 md:gap-5">
               <Tile img={poster} title="Poster Series" tag="Print" />
               <div className="rounded-3xl glass p-7 flex flex-col justify-between min-h-[220px]">

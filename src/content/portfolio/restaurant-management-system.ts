@@ -6,11 +6,11 @@ export const restaurantManagementSystem: CaseStudy = {
   industry: "Hospitality",
   services: ["Management Systems", "System Integrations", "Web Platforms & Apps"],
   summary:
-    "A unified restaurant management platform featuring an integrated POS, online ordering, and room booking capabilities, designed to streamline operations for modern hospitality businesses.",
+    "This restaurant was running three separate systems, one for point-of-sale, one for online orders, and one for room bookings, so staff kept re-entering the same information three times. We built one system that replaced all three.",
   problem:
     "The client was struggling with fragmented systems: one for POS, another for online delivery, and a separate spreadsheet for booking tables and private rooms. This led to operational bottlenecks and revenue leakage.",
   approach:
-    "We architected a single, centralized management ecosystem. By unifying the POS with online orders and table management, staff could operate from a single pane of glass, reducing errors and increasing table turnover.",
+    "We architected a single, centralized management ecosystem. By unifying the POS with online orders and table management, staff could see and manage everything from one screen instead of three, reducing errors and increasing table turnover.",
   technology: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Stripe API"],
   implementation:
     "The platform is currently in active development. We are rolling out the core POS and menu management first, followed by the online ordering portal, and concluding with the automated room booking engine.",

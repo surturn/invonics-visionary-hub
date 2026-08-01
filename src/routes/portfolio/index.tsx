@@ -57,7 +57,7 @@ function PortfolioIndex() {
               Work that works.
             </h1>
             <p className="max-w-2xl text-lg text-muted-foreground mb-16">
-              A selection of our latest engineering, automation, and infrastructure projects.
+              A few of our recent projects, showing what the client needed and what we built.
             </p>
           </Reveal>
 
@@ -107,7 +107,7 @@ function PortfolioIndex() {
               </h2>
               <p className="max-w-2xl text-lg text-muted-foreground mb-12">
                 Layered poster compositions and content systems built for brand and campaign
-                clients — move your cursor over a piece to see it respond.
+                clients. Move your cursor over a piece to see it respond.
               </p>
             </Reveal>
 

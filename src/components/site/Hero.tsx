@@ -13,7 +13,7 @@ export function Hero() {
           alt="Invonics Technologies software studio — Nairobi, Kenya"
           loading="eager"
           fetchPriority="high"
-          decoding="sync"
+          decoding="async"
           className="h-full w-full object-cover opacity-25 mix-blend-luminosity"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/40 to-background" />
@@ -21,11 +21,11 @@ export function Hero() {
       <div className="absolute inset-0 -z-10 blueprint opacity-50" />
       <div className="hero-topology absolute inset-0 -z-10 opacity-70" />
       <ParallaxLayer
-        className="pointer-events-none absolute -top-40 right-[-10%] -z-10 h-[560px] w-[560px] rounded-full bg-primary/15 blur-3xl will-change-transform"
+        className="pointer-events-none absolute -top-40 right-[-10%] -z-10 h-[560px] w-[560px] bg-[radial-gradient(circle_at_center,var(--color-primary)_0%,transparent_70%)] opacity-15 will-change-transform"
         speed={0.04}
       />
 
-      <div className="mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-5 md:min-h-[70vh]">
+      <div className="mx-auto flex min-h-[80svh] max-w-7xl flex-col justify-center px-5 md:min-h-[70svh]">
         {/* Top engineered meta-bar */}
         <div className="mb-14 grid grid-cols-12 items-center gap-4 md:mb-20">
           <div className="col-span-6 label-mono md:col-span-3">
@@ -41,14 +41,16 @@ export function Hero() {
 
         {/* Clean, authoritative headline */}
         <div className="max-w-5xl">
-          <h1 className="font-display leading-[0.98] tracking-tight text-[11vw] text-gradient sm:text-6xl md:text-7xl lg:text-[5.6rem]">
-            Enterprise Software, Engineered for Kenya&rsquo;s Growth.
-          </h1>
+          <h1 className="sr-only">Custom Software Development & AI Automation Company in Nairobi, Kenya</h1>
+          <h2 className="font-display leading-[0.98] tracking-tight text-[11vw] text-gradient sm:text-6xl md:text-7xl lg:text-[5.6rem]">
+            Software That Fits How You Actually Work.
+          </h2>
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Invonics Technologies builds mission-critical operating systems for hospitality groups,
-            schools, and enterprise across Nairobi and beyond — replacing manual processes and
-            legacy tools with automated, accountable, revenue-protecting infrastructure. Fewer
-            losses. Faster operations. Full visibility.
+            Your business probably already runs on a system, and maybe even a few of them.
+            The problem is, they rarely fit your day-to-day operations. We close that gap by
+            connecting and customising what you already have. We only build from scratch when
+            your current software can&rsquo;t be saved. Fewer losses, faster operations, and
+            full visibility.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">

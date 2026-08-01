@@ -26,6 +26,10 @@ export async function onRequestPost(context) {
     // Brevo API payload
     const payload = {
       sender: {
+        name: "Invonics Website",
+        email: "hello@invonicstechnologies.com",
+      },
+      replyTo: {
         name: name,
         email: email,
       },

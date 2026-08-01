@@ -4,18 +4,18 @@ import { Reveal } from "./Reveal";
 const signals = [
   {
     icon: Server,
-    title: "Built for Zero-Downtime Operations",
-    body: "99.9% uptime SLA on every hosted platform — enterprise-grade infrastructure your operations can depend on, day and night.",
+    title: "Always On",
+    body: "99.9% uptime SLA on every hosted platform. This means enterprise-grade infrastructure your operations can depend on, day and night.",
   },
   {
     icon: ShieldCheck,
-    title: "Data Sovereignty & Local Compliance",
-    body: "Hosted and handled in line with Kenya's Data Protection Act (2019) — your records stay compliant, local, and under your control.",
+    title: "Your Data Stays Yours",
+    body: "Hosted and handled in line with Kenya's Data Protection Act (2019) so your records stay compliant, local, and under your control.",
   },
   {
     icon: TrendingUp,
-    title: "Outcomes, Not Just Output",
-    body: "Every engagement ships with a measurable result — from asset-loss reduction to order-error rates — reported back to you.",
+    title: "We Report Results, Not Just Deliverables",
+    body: "Every engagement ships with a measurable result, from asset-loss reduction to order-error rates, reported back to you.",
   },
 ];
 

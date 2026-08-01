@@ -1,22 +1,17 @@
 import { Reveal } from "./Reveal";
 
 const steps = [
-  { n: "01", t: "Discover", d: "Audits, interviews and systems mapping to surface real leverage." },
+  { n: "01", t: "Challenge", d: "We start by questioning assumptions, both yours and ours. What do you actually need? What are you doing today that you shouldn't be? We push back before we build." },
   {
     n: "02",
-    t: "Design",
-    d: "Information architecture, UX and brand systems set the foundations.",
+    t: "Discover",
+    d: "We dig into the real pain, not just the symptoms. Interviews, system audits, and watching how your team actually works day-to-day, not how a process document says they should.",
   },
-  { n: "03", t: "Build", d: "Production engineering, integrations and infrastructure deployment." },
+  { n: "03", t: "Simplify", d: "We strip away complexity until the problem is obvious. Most projects don't need more software. They need less, better connected." },
   {
     n: "04",
-    t: "Automate",
-    d: "Reliable workflows reduce ops cost and remove manual surface area.",
-  },
-  {
-    n: "05",
-    t: "Scale",
-    d: "Observability, growth loops and SLAs for the next stage of the business.",
+    t: "Create",
+    d: "We close the gap between what your business has and what it needs. Integrate first. Build new only when what you're on is genuinely beyond repair.",
   },
 ];
 
@@ -34,14 +29,14 @@ export function Process() {
               <span className="text-primary">●</span>&nbsp; Process
             </div>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-gradient leading-[1.04]">
-              A repeatable path from idea to scale.
+              How we think about your problem, before we write a line of code.
             </h2>
           </Reveal>
         </div>
 
         <div className="mt-16 relative">
           <div className="absolute left-0 right-0 top-12 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent hidden md:block" />
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-4">
             {steps.map((s, i) => (
               <Reveal key={s.n} delay={i * 80}>
                 <div className="group relative">

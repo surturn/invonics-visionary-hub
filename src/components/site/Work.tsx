@@ -11,7 +11,7 @@ const projects = [
     img: school,
     tag: "School Portal · Web",
     title: "Greenfields Academy Portal",
-    sub: "A clean, fast website and information hub for a 700-learner school — built to be edited by staff and trusted by parents.",
+    sub: "A clean, fast website and information hub for a 700-learner school, built to be edited by staff and trusted by parents.",
     metric: "~700 learners",
   },
   {
@@ -25,7 +25,7 @@ const projects = [
     img: branding,
     tag: "Brand · Identity",
     title: "Invonics Brand System",
-    sub: "Logo, type, motion and the editorial language you're reading right now — built in-house and applied across every touchpoint.",
+    sub: "Logo, type, motion and the editorial language you're reading right now, built in-house and applied across every touchpoint.",
     metric: "v2026.05",
   },
   {
@@ -124,7 +124,7 @@ export function Work() {
               <span className="text-primary">●</span>&nbsp; Featured Work / cinematic rail
             </div>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-gradient leading-[1.04] max-w-3xl">
-              Selected projects, sequenced like product storytelling.
+              A few recent projects showing what the client needed, and what we built.
             </h2>
           </Reveal>
           <Reveal delay={120} variant="right">

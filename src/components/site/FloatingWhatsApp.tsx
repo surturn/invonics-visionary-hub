@@ -1,75 +1,19 @@
-import { useEffect, useState } from "react";
-
 const PHONE = "254786669572";
 const MSG = encodeURIComponent("Hi Invonics Technologies 👋 — I'd like to discuss a project.");
 
 export const WA_LINK = `https://wa.me/${PHONE}?text=${MSG}`;
 
 export function FloatingWhatsApp() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 280);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <>
-      {/* Tooltip card on desktop */}
-      <div
-        className={`fixed bottom-24 right-5 z-40 hidden md:block transition-all duration-500 ${
-          open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
-        }`}
-      >
-        <div className="glass-strong shadow-card rounded-2xl p-4 w-72">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-[oklch(0.62_0.18_150)] grid place-items-center">
-              <WhatsAppIcon className="h-5 w-5 text-white" />
-            </div>
-            <div className="leading-tight">
-              <div className="text-sm font-medium text-foreground">Invonics · Live</div>
-              <div className="text-[11px] text-muted-foreground">Replies in ~5 min</div>
-            </div>
-          </div>
-          <p className="mt-3 text-sm text-foreground/85">
-            Hi 👋 Tell us what you&rsquo;re building — we&rsquo;ll respond on WhatsApp.
-          </p>
-          <a
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[oklch(0.62_0.18_150)] hover:bg-[oklch(0.58_0.18_150)] text-white text-sm font-medium px-4 py-2.5 transition-colors"
-          >
-            Start chat
-            <span aria-hidden>→</span>
-          </a>
-        </div>
-      </div>
-
-      {/* Floating button */}
-      <button
-        onClick={() => setOpen((o) => !o)}
-        onMouseEnter={() => setOpen(true)}
-        aria-label="Chat on WhatsApp"
-        className="hidden md:grid fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-50 h-14 w-14 place-items-center rounded-full bg-[oklch(0.62_0.18_150)] text-white wa-pulse opacity-100 transition-all duration-500 hover:scale-105"
-      >
-        <WhatsAppIcon className="h-7 w-7" />
-      </button>
-
-      {/* Sticky mobile bar */}
-      <a
-        href={WA_LINK}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="md:hidden fixed bottom-4 right-4 z-50 inline-flex items-center justify-center gap-2 rounded-full bg-[oklch(0.62_0.18_150)] text-white text-sm font-medium px-5 py-3.5 shadow-glow transition-all duration-500 opacity-100"
-      >
-        <WhatsAppIcon className="h-4 w-4" />
-        Chat on WhatsApp
-      </a>
-    </>
+    <a
+      href={WA_LINK}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with Invonics on WhatsApp"
+      className="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-50 flex h-[3.5rem] w-[3.5rem] items-center justify-center rounded-full bg-[oklch(0.62_0.18_150)] text-white border-[3px] border-background shadow-xl shadow-[oklch(0.62_0.18_150)]/30 wa-pulse hover:scale-110 active:scale-95 transition-all duration-300"
+    >
+      <WhatsAppIcon className="h-7 w-7 relative left-[1px]" />
+    </a>
   );
 }
 

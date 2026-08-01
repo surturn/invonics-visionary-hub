@@ -1,14 +1,15 @@
 import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 export function MotionSystem({ children }: { children: ReactNode }) {
-  useCursorLight();
+  const cursorRef = useRef<HTMLDivElement>(null);
+  useCursorLight(cursorRef);
   useScrollTelemetry();
 
   return (
     <>
       <div className="motion-field" aria-hidden>
         <div className="motion-field__grid" />
-        <div className="motion-field__cursor" />
+        <div className="motion-field__cursor" ref={cursorRef} />
         <div className="motion-field__grain" />
       </div>
       <div className="scroll-progress" aria-hidden />
@@ -17,7 +18,7 @@ export function MotionSystem({ children }: { children: ReactNode }) {
   );
 }
 
-function useCursorLight() {
+function useCursorLight(ref: React.RefObject<HTMLDivElement>) {
   const target = useRef({ x: 0.5, y: 0.35 });
   const current = useRef({ x: 0.5, y: 0.35 });
 
@@ -25,14 +26,16 @@ function useCursorLight() {
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     let frame = 0;
-    const root = document.documentElement;
+    const el = ref.current;
+    if (!el) return;
 
     const tick = () => {
       const x = current.current.x + (target.current.x - current.current.x) * 0.12;
       const y = current.current.y + (target.current.y - current.current.y) * 0.12;
       current.current = { x, y };
-      root.style.setProperty("--cursor-x", `${(x * 100).toFixed(3)}%`);
-      root.style.setProperty("--cursor-y", `${(y * 100).toFixed(3)}%`);
+      
+      el.style.setProperty("--cursor-x", `${(x * 100).toFixed(3)}%`);
+      el.style.setProperty("--cursor-y", `${(y * 100).toFixed(3)}%`);
 
       if (Math.abs(target.current.x - x) > 0.001 || Math.abs(target.current.y - y) > 0.001) {
         frame = window.requestAnimationFrame(tick);

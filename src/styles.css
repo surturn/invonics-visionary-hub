@@ -233,16 +233,24 @@
       0 0 40px -10px oklch(0.72 0.22 245 / 0.5);
   }
 
+  /* Content is always visible by default — nothing is hidden without JS confirmation */
   .reveal {
-    opacity: 0;
-    transform: translateY(24px);
     transition:
       opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
       transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
+  /* Only applied by JS to elements confirmed to be below the fold */
+  .reveal.reveal-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+  }
+
+  /* Animate into view when IntersectionObserver fires */
   .reveal.in {
     opacity: 1;
+    pointer-events: auto;
     transform: none;
   }
 

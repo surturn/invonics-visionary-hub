@@ -7,39 +7,28 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <Reveal className="lg:col-span-5">
             <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-5">
-              <span className="text-primary">●</span>&nbsp; About
+              <span className="text-primary">●</span>&nbsp; Our Story
             </div>
             <h2 className="font-display text-4xl md:text-5xl text-gradient leading-[1.05]">
-              We modernize the way organizations operate, build and grow.
+              We aren't just a software vendor. We are your operational partner.
             </h2>
           </Reveal>
 
           <Reveal delay={120} className="lg:col-span-7">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              We modernize the way organizations in Nairobi, Kenya and across East Africa operate,
-              build and grow. Invonics Technologies delivers custom software development, AI-powered
-              automation, web platforms, and brand systems — engineered end-to-end for businesses,
-              schools, SMEs and government institutions. From M-Pesa-integrated management systems
-              to motion graphics, every solution is built to compound in value as you scale.
-            </p>
-
-            <div className="mt-10 grid grid-cols-3 gap-6">
-              <Stat n="02" label="Schools onboarded" />
-              <Stat n="1,400+" label="Learners reached" />
-              <Stat n="01" label="School portal live" />
+            <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
+              <p>
+                Most businesses in East Africa are forced to bend their day-to-day operations to fit rigid, off-the-shelf software. We started Invonics Technologies because we believe that is fundamentally backward. Technology should adapt to your business.
+              </p>
+              <p>
+                We don't just write code and walk away. We sit down with you to uncover the bottlenecks draining your revenue and slowing your growth. Then, we design and engineer custom digital ecosystems—from AI workflows to full brand platforms—that fit exactly how your team actually works.
+              </p>
+              <p className="text-foreground font-medium">
+                When you work with us, you aren't just buying an application. You are gaining a dedicated technical partner invested in your bottom line. Brands that fail to modernize with a strategic partner are quietly getting left behind. We make sure you lead.
+              </p>
             </div>
           </Reveal>
         </div>
       </div>
     </section>
-  );
-}
-
-function Stat({ n, label }: { n: string; label: string }) {
-  return (
-    <div className="border-t border-border pt-5">
-      <div className="font-display text-3xl md:text-4xl text-foreground">{n}</div>
-      <div className="mt-1.5 text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
-    </div>
   );
 }

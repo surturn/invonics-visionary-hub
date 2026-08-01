@@ -11,13 +11,39 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=optional"
       rel="stylesheet"
     />
     <link rel="preload" href="/hero-bg.jpg" as="image" fetchpriority="high" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <style>
+        #initial-loader {
+          position: fixed;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #030712; /* matching dark background */
+          z-index: 9999;
+        }
+        .invonics-spinner {
+          width: 40px;
+          height: 40px;
+          border: 3px solid rgba(255, 255, 255, 0.08);
+          border-top-color: #3b82f6; /* matching primary accent */
+          border-radius: 50%;
+          animation: inv-spin 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) infinite;
+        }
+        @keyframes inv-spin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+      <div id="initial-loader">
+        <div class="invonics-spinner"></div>
+      </div>
+    </div>
     <script type="module" src="/src/start.ts"></script>
   </body>
 </html>

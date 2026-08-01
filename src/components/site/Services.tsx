@@ -16,7 +16,7 @@ const services: Service[] = [
   {
     icon: Globe,
     title: "Custom Software & Web Platforms",
-    desc: "Custom websites, web applications and client portals — production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.",
+    desc: "Custom websites, web applications and client portals that are production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.",
     details:
       "We design and build responsive websites, dashboards, portals, and custom apps with fast loading, clean user journeys, analytics, SEO foundations, and a maintainable codebase.",
     outcomes: ["UX/UI design", "Frontend/backend build", "Launch optimization"],
@@ -32,7 +32,7 @@ const services: Service[] = [
   {
     icon: Zap,
     title: "AI & Workflow Automation",
-    desc: "Cut hours of manual work with smart automation — WhatsApp ordering bots, automated invoicing, appointment reminders, and AI-powered customer replies. Designed around M-Pesa and how Kenyan businesses actually operate.",
+    desc: "Cut hours of manual work with smart automation like WhatsApp ordering bots, automated invoicing, appointment reminders, and AI-powered customer replies. Designed around M-Pesa and how Kenyan businesses actually operate.",
     details:
       "We map repetitive tasks, identify bottlenecks, and automate approvals, notifications, data entry, reminders, and handoffs so your team spends less time chasing routine work.",
     outcomes: ["Process mapping", "Automated triggers", "Monitoring & handover"],
@@ -69,12 +69,12 @@ export function Services() {
               <span className="text-primary">●</span>&nbsp; Services
             </div>
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-gradient leading-[1.04] max-w-2xl">
-              A full studio of capability — under one roof.
+              A full studio of capability, all under one roof.
             </h2>
           </Reveal>
           <Reveal delay={120}>
             <p className="md:max-w-sm text-muted-foreground">
-              Engineering, infrastructure and creative — engineered to interlock into a single,
+              Engineering, infrastructure and creative, engineered to interlock into a single,
               scalable system.
             </p>
           </Reveal>

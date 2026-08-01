@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
+import { Reveal } from "./Reveal";
 
 export function Footer() {
   return (
@@ -10,7 +11,7 @@ export function Footer() {
 
       <div className="glow-divider mb-16" />
 
-      <div className="mx-auto max-w-7xl px-5">
+      <Reveal className="mx-auto max-w-7xl px-5">
         {/* Slogan banner */}
         <div className="text-center mb-16">
           <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">
@@ -33,8 +34,8 @@ export function Footer() {
               </span>
             </div>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              Software, infrastructure, automation and brand — engineered to compound for the
-              institutions of the next decade.
+              Software, automation and brand, built for the institutions that are shaping
+              what&rsquo;s next.
             </p>
             <p className="mt-3 max-w-sm text-sm text-muted-foreground leading-relaxed footer-geo-desc">
               Custom software development, AI automation, web design and branding company based in
@@ -114,7 +115,7 @@ export function Footer() {
               </li>
               <li>
                 <Link className="text-foreground/80 hover:text-foreground" to="/contact">
-                  Contact Us — Nairobi, Kenya
+                  Contact Us in Nairobi, Kenya
                 </Link>
               </li>
             </ul>
@@ -151,7 +152,7 @@ export function Footer() {
             v2026.01 · Nairobi · Built in the dark.
           </p>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }
