@@ -66,17 +66,17 @@ export function Contact() {
     setErrors({});
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(r.data),
-      });
-      if (!res.ok) {
-        throw new Error("Failed to send message");
-      }
+      const { name, email, company, message } = r.data;
+      const subject = encodeURIComponent(
+        `New Project Inquiry from ${name}${company ? ` (${company})` : ""}`
+      );
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nCompany: ${company || "N/A"}\n\nProject Brief:\n${message}`
+      );
+      window.location.href = `mailto:sales@invonicstechnologies.com?subject=${subject}&body=${body}`;
       setSent(true);
     } catch (err) {
-      setErrors({ message: "Failed to send message. Please try WhatsApp instead." });
+      setErrors({ message: "Failed to open email client. Please try WhatsApp instead." });
     } finally {
       setIsSubmitting(false);
     }
