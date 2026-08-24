@@ -12,11 +12,25 @@
     </image>
     <atom:link href="https://invonicstechnologies.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title><![CDATA[The Future of AI Automation in Kenyan Enterprises]]></title>
-      <link>https://invonicstechnologies.com/blog/future-of-ai-automation-kenya</link>
-      <description><![CDATA[How SMEs in East Africa are bypassing traditional software curves and moving straight to AI-driven workflows.]]></description>
-      <pubDate>Fri, 12 Apr 2024 00:00:00 GMT</pubDate>
-      <guid>https://invonicstechnologies.com/blog/future-of-ai-automation-kenya</guid>
+      <title><![CDATA[Motion Grid: A New Paradigm for Animated Layouts]]></title>
+      <link>https://invonicstechnologies.com/blog/motion-grid-a-new-paradigm-for-animated-layouts</link>
+      <description><![CDATA[Motion grids combine the power of CSS Grid with fluid animations to create dynamic, visually compelling layouts that elevate user experience.]]></description>
+      <pubDate>Thu, 09 Jul 2026 16:19:23 GMT</pubDate>
+      <guid>https://invonicstechnologies.com/blog/motion-grid-a-new-paradigm-for-animated-layouts</guid>
+    </item>
+    <item>
+      <title><![CDATA[Clean Architecture in Practice: Structuring a Scalable Backend]]></title>
+      <link>https://invonicstechnologies.com/blog/clean-architecture-scalable-backend</link>
+      <description><![CDATA[Layered boundaries keep your codebase adaptable. Here's how to apply clean architecture without the dogma.]]></description>
+      <pubDate>Thu, 09 Jul 2026 17:38:58 GMT</pubDate>
+      <guid>https://invonicstechnologies.com/blog/clean-architecture-scalable-backend</guid>
+    </item>
+    <item>
+      <title><![CDATA[A Practical Guide to Building AI Features Without Overengineering]]></title>
+      <link>https://invonicstechnologies.com/blog/practical-guide-building-ai-features</link>
+      <description><![CDATA[AI doesn't have to mean massive infrastructure. Here's how to ship valuable AI features quickly and responsibly.]]></description>
+      <pubDate>Thu, 09 Jul 2026 16:13:46 GMT</pubDate>
+      <guid>https://invonicstechnologies.com/blog/practical-guide-building-ai-features</guid>
     </item>
   </channel>
 </rss>

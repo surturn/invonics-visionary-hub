@@ -15,7 +15,7 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.title} — Invonics Technologies` },
+          { title: `${loaderData.title} | Invonics` },
           ...(loaderData.metadata.excerpt
             ? [{ name: "description", content: loaderData.metadata.excerpt }]
             : []),
@@ -84,7 +84,11 @@ function BlogPost() {
               <img
                 src={`${post.metadata.cover_image.imgix_url}?w=1200&auto=format`}
                 alt={post.title}
-                className="mt-8 w-full rounded-2xl border border-border/60 object-cover"
+                loading="eager"
+                decoding="async"
+                width={1200}
+                height={675}
+                className="mt-8 aspect-[16/9] w-full rounded-2xl border border-border/60 object-cover"
               />
             )}
           </Reveal>

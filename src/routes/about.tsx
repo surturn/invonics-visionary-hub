@@ -35,6 +35,13 @@ function AboutPage() {
       />
       <Nav />
       <main className="pt-20 pb-24">
+        {/*
+          AboutComponent's own heading is an <h2> (correct when it's a
+          section under the homepage's <h1>). Standalone here it has no
+          page-level heading at all, so give the page a real (visually
+          hidden) <h1> rather than restyle the shared component.
+        */}
+        <h1 className="sr-only">About Invonics Technologies</h1>
         {/* We reuse the existing About component from the homepage for now, but in a dedicated layout */}
         <div className="pt-16">
           <AboutComponent />

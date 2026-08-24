@@ -91,6 +91,9 @@ function PostCard({ post }: { post: Post }) {
             src={`${cover}?w=800&auto=format`}
             alt={post.title}
             loading="lazy"
+            decoding="async"
+            width={800}
+            height={450}
             className="h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]"
           />
         ) : (

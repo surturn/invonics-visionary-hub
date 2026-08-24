@@ -20,12 +20,12 @@ export function Showcase() {
 
         <div className="mt-14 grid grid-cols-12 gap-4 md:gap-5">
           <Reveal className="col-span-12 md:col-span-5">
-            <Tile img={motion} title="Motion Reel · 04" tag="Motion" tall />
+            <Tile img={motion} imgW={1024} imgH={1280} title="Motion Reel · 04" tag="Motion" tall />
           </Reveal>
           <Reveal delay={100} className="col-span-12 md:col-span-7 grid grid-rows-2 gap-4 md:gap-5">
-            <Tile img={brand} title="Identity System for Sirine" tag="Branding" />
+            <Tile img={brand} imgW={1280} imgH={896} title="Identity System for Sirine" tag="Branding" />
             <div className="grid grid-cols-2 gap-4 md:gap-5">
-              <Tile img={poster} title="Poster Series" tag="Print" />
+              <Tile img={poster} imgW={900} imgH={1125} title="Poster Series" tag="Print" />
               <div className="rounded-3xl glass p-7 flex flex-col justify-between min-h-[220px]">
                 <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
                   <span className="text-primary">●</span>&nbsp; Campaign
@@ -51,11 +51,15 @@ export function Showcase() {
 
 function Tile({
   img,
+  imgW,
+  imgH,
   title,
   tag,
   tall = false,
 }: {
   img: string;
+  imgW: number;
+  imgH: number;
   title: string;
   tag: string;
   tall?: boolean;
@@ -71,6 +75,8 @@ function Tile({
         alt={`${title} — Invonics Technologies, Nairobi Kenya`}
         loading="lazy"
         decoding="async"
+        width={imgW}
+        height={imgH}
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1600ms] group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />

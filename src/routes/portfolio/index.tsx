@@ -73,9 +73,9 @@ function PortfolioIndex() {
                     <div className="mb-4 text-xs font-medium uppercase tracking-wider text-primary">
                       {project.industry}
                     </div>
-                    <h3 className="mb-3 font-display text-2xl text-foreground group-hover:text-primary transition-colors">
+                    <h2 className="mb-3 font-display text-2xl text-foreground group-hover:text-primary transition-colors">
                       {project.title}
-                    </h3>
+                    </h2>
                     <p className="text-muted-foreground leading-relaxed">{project.summary}</p>
                     <div className="mt-6 flex flex-wrap gap-2">
                       {project.services.slice(0, 3).map((service) => (

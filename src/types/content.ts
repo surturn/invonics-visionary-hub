@@ -7,9 +7,26 @@ export interface CaseStudy {
   problem: string;
   approach: string;
   technology: string[];
-  implementation: string;
+  // A prose implementation narrative, an ordered workflow list, or both —
+  // at least one should be present so the detail page has an "how it works"
+  // section, but neither is force-required so honest thin content isn't
+  // padded with invented prose.
+  implementation?: string;
+  workflow?: string[]; // ordered "how it works" steps (merged in from /work)
+  capabilities?: string[]; // feature bullet list (merged in from /work)
   results: string[];
-  lessonsLearned: string;
+  lessonsLearned?: string; // omit rather than fabricate when not actually known
+
+  // Card + live-demo fields (merged in from the old /work solution model)
+  category?: string; // chip shown on the portfolio card
+  statChip?: string; // proof stat rendered on the card image
+  demoUrl?: string;
+  demoLabel?: string;
+  demoInProgress?: boolean;
+  // width/height optional for backward compat, but should be set for every
+  // new screenshot — CLS-safe <img> attrs, not just a nice-to-have.
+  screenshots?: { src: string; caption: string; width?: number; height?: number }[];
+
   // Metadata & SEO
   metaDescription?: string;
   publishedAt?: string;

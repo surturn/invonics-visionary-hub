@@ -4,11 +4,13 @@ import { TiltCard } from "./MotionSystem";
 import saas from "@/assets/project-saas.jpg";
 import school from "@/assets/project-school.jpg";
 import branding from "@/assets/project-branding.jpg";
-import rsvp from "@/assets/project-rsvp.png";
+import rsvp from "@/assets/project-rsvp.webp";
 
 const projects = [
   {
     img: school,
+    imgW: 1280,
+    imgH: 896,
     tag: "School Portal · Web",
     title: "Greenfields Academy Portal",
     sub: "A clean, fast website and information hub for a 700-learner school, built to be edited by staff and trusted by parents.",
@@ -16,6 +18,8 @@ const projects = [
   },
   {
     img: saas,
+    imgW: 1280,
+    imgH: 896,
     tag: "Internal Tooling",
     title: "Operations Workspace",
     sub: "A lightweight internal dashboard the studio uses to track engagements, deliverables and school onboarding pipelines.",
@@ -23,6 +27,8 @@ const projects = [
   },
   {
     img: branding,
+    imgW: 1280,
+    imgH: 896,
     tag: "Brand · Identity",
     title: "Invonics Brand System",
     sub: "Logo, type, motion and the editorial language you're reading right now, built in-house and applied across every touchpoint.",
@@ -30,6 +36,8 @@ const projects = [
   },
   {
     img: rsvp,
+    imgW: 1024,
+    imgH: 1024,
     tag: "Event Tech · Platform",
     title: "Digital RSVP & Ticketing",
     sub: "A custom event management platform with QR-code invitations and M-Pesa integrated guest payments for corporate and social events.",
@@ -152,7 +160,14 @@ export function Work() {
       >
         <div className="flex gap-5 pb-3">
           {loopedProjects.map((p, i) => (
-            <div key={`${p.title}-${i}`} className="shrink-0">
+            <div
+              key={`${p.title}-${i}`}
+              className="shrink-0"
+              // Second half is a visual-only duplicate for the seamless loop —
+              // hide it from assistive tech and crawlers so headings/content
+              // don't appear duplicated in the page.
+              aria-hidden={i >= projects.length ? true : undefined}
+            >
               <ProjectCard {...p} index={i % projects.length} />
             </div>
           ))}
@@ -180,6 +195,8 @@ export function Work() {
 
 function ProjectCard({
   img,
+  imgW,
+  imgH,
   tag,
   title,
   sub,
@@ -187,6 +204,8 @@ function ProjectCard({
   index,
 }: {
   img: string;
+  imgW: number;
+  imgH: number;
   tag: string;
   title: string;
   sub: string;
@@ -201,6 +220,8 @@ function ProjectCard({
           alt={`${title} — Invonics Technologies, Nairobi Kenya`}
           loading="lazy"
           decoding="async"
+          width={imgW}
+          height={imgH}
           className="h-full w-full object-cover transition-transform duration-[1800ms] ease-out group-hover:scale-[1.055]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--color-background)_0%,oklch(0.13_0.008_260/0.78)_35%,transparent_76%)]" />

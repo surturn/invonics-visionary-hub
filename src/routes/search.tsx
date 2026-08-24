@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { z } from "zod";
 import { fetchLocalizedPosts, type LocalizedPost } from "@/server/localizedPosts";
 import { searchCosmicObjects, type CosmicSearchResult } from "@/server/cosmicSearch";
+import { absoluteUrl } from "@/lib/site";
 
 const LOCALES = ["en", "fr", "sw"] as const;
 type Locale = (typeof LOCALES)[number];
@@ -18,6 +19,15 @@ type LoaderResult =
   | { mode: "browse"; locale: Locale; posts: LocalizedPost[] };
 
 export const Route = createFileRoute("/search")({
+  // Internal search/browse results: infinite ?q=&locale= param combinations,
+  // thin/duplicate against the real blog pages — never let Google index it.
+  head: () => ({
+    meta: [
+      { title: "Search — Invonics Technologies" },
+      { name: "robots", content: "noindex, follow" },
+    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/search") }],
+  }),
   validateSearch: (search) => searchParamsSchema.parse(search),
   // Loader reruns whenever locale or q changes, not just on first load.
   loaderDeps: ({ search }) => ({ locale: search.locale, q: search.q }),

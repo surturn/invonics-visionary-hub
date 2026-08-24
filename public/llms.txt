@@ -5,8 +5,10 @@ Invonics Technologies is an authority platform and premier engineering studio in
 - https://invonicstechnologies.com/about
 
 ## Portfolio
+- https://invonicstechnologies.com/portfolio/accounting-finance-system
 - https://invonicstechnologies.com/portfolio/event-rsvp-automation
 - https://invonicstechnologies.com/portfolio/restaurant-management-system
+- https://invonicstechnologies.com/portfolio/school-asset-inventory-system
 
 ## Contact
 - Website: https://invonicstechnologies.com

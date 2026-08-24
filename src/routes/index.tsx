@@ -40,8 +40,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title:
-          "Software Development & AI Automation Company in Nairobi, Kenya | Invonics Technologies",
+        title: "Custom Software & AI Automation in Nairobi | Invonics",
       },
       {
         name: "description",

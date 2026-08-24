@@ -11,6 +11,8 @@ import brand from "@/assets/showcase-brand.jpg";
 const nodes = [
   {
     img: saas,
+    imgW: 1280,
+    imgH: 896,
     code: "NODE-02",
     kind: "Software",
     title: "Operations Console",
@@ -18,6 +20,8 @@ const nodes = [
   },
   {
     img: school,
+    imgW: 1280,
+    imgH: 896,
     code: "NODE-03",
     kind: "Platform",
     title: "Akademi · School OS",
@@ -25,6 +29,8 @@ const nodes = [
   },
   {
     img: branding,
+    imgW: 1280,
+    imgH: 896,
     code: "NODE-04",
     kind: "Brand System",
     title: "Summit Identity",
@@ -32,6 +38,8 @@ const nodes = [
   },
   {
     img: motion,
+    imgW: 1024,
+    imgH: 1280,
     code: "NODE-05",
     kind: "Motion",
     title: "Anthem Reel · 04",
@@ -39,6 +47,8 @@ const nodes = [
   },
   {
     img: poster,
+    imgW: 1024,
+    imgH: 1280,
     code: "NODE-06",
     kind: "Campaign",
     title: "Poster Series",
@@ -46,6 +56,8 @@ const nodes = [
   },
   {
     img: brand,
+    imgW: 1280,
+    imgH: 896,
     code: "NODE-07",
     kind: "Automation",
     title: "Workflow Mesh",
@@ -159,6 +171,8 @@ export function Ecosystem() {
 
 function NodeCard({
   img,
+  imgW,
+  imgH,
   code,
   kind,
   title,
@@ -166,6 +180,8 @@ function NodeCard({
   idx,
 }: {
   img: string;
+  imgW: number;
+  imgH: number;
   code: string;
   kind: string;
   title: string;
@@ -185,6 +201,8 @@ function NodeCard({
           alt={`${title} — Invonics Technologies, Nairobi Kenya`}
           loading="lazy"
           decoding="async"
+          width={imgW}
+          height={imgH}
           className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-[1.04]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />

@@ -8,6 +8,8 @@ import t4 from "@/assets/team-4.jpeg";
 const team = [
   {
     img: t1,
+    imgW: 900,
+    imgH: 893,
     name: "Sydney Kamau",
     role: "Founder & Systems Lead",
     email: "sydneykamau2005@gmail.com",
@@ -17,6 +19,8 @@ const team = [
   },
   {
     img: t2,
+    imgW: 897,
+    imgH: 801,
     name: "Finnly Baraka",
     role: "Software Engineer",
     email: "finnleybaraka@gmail.com",
@@ -26,6 +30,8 @@ const team = [
   },
   {
     img: t3,
+    imgW: 768,
+    imgH: 1289,
     name: "Sybil Mutethya",
     role: "Brand & Interface Designer",
     email: "sybillmutethya@gmail.com",
@@ -35,6 +41,8 @@ const team = [
   },
   {
     img: t4,
+    imgW: 935,
+    imgH: 753,
     name: "Ian Mdogoo",
     role: "Operations & Client Success",
     email: "ianroberts17030@gmail.com",
@@ -82,6 +90,8 @@ export function Team() {
                     alt={`${m.name}, ${m.role} at Invonics Technologies in Nairobi Kenya`}
                     loading="lazy"
                     decoding="async"
+                    width={m.imgW}
+                    height={m.imgH}
                     className="h-full w-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />

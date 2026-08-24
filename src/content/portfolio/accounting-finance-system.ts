@@ -1,19 +1,18 @@
-import { WorkSolution } from "../../types/content";
+import { CaseStudy } from "../../types/content";
 import accountingHero from "../../assets/work/accounting-hero.jpg";
 
-const solution: WorkSolution = {
-  slug: "accounting-finance-system",
+// Merged in from the old (noindexed, orphaned) /work section — see
+// docs on the /portfolio & /work merge for context.
+export const accountingFinanceSystem: CaseStudy = {
   title: "Accounting & Finance System",
+  slug: "accounting-finance-system",
+  industry: "Finance",
+  services: ["Business Management Systems", "Custom Software & Web Platforms"],
   category: "Finance",
   statChip: "KRA-compliant · Turnover Tax",
   summary:
     "Real-time financial visibility for growing operations. Move past fragmented spreadsheets with automated reconciliation, custom reporting, and instant cash flow insights.",
-  order: 2,
-
-  demoInProgress: true,
-
-  hasCaseStudy: true,
-  challenge:
+  problem:
     "Kenyan sole proprietors, freelancers and micro-businesses run their books on spreadsheets or nothing at all. Income and expenses live across M-Pesa messages, receipts and notebooks, there's no clear view of profit or cash position, and KRA Turnover Tax is worked out by hand at the last minute — so returns are late, wrong, or skipped. Hiring an accountant for a one-person business is overkill and out of budget.",
   approach:
     "We built a proper double-entry accounting system sized for micro-businesses. Every income and expense is posted against a chart of accounts and tied to a customer or vendor and an accounting period, so the books stay balanced and auditable. Turnover Tax is calculated automatically, reports are generated on demand, and scheduled jobs handle the things owners forget — emailing filing reminders and locking closed periods — while a full audit trail keeps every change accountable.",
@@ -34,12 +33,6 @@ const solution: WorkSolution = {
     "Automated email reminders for Turnover Tax filing deadlines",
     "Full audit trail on every entry and change",
   ],
-  outcomes: [
-    "KRA-ready books for a one-person business — no accountant required",
-    "Turnover Tax computed automatically, so returns are on time and correct",
-    "A live view of income, expenses, profit and cash position at any moment",
-    "Closed periods locked and every change audit-logged for trust",
-  ],
   technology: [
     "React 18",
     "TypeScript",
@@ -52,15 +45,23 @@ const solution: WorkSolution = {
     "JWT",
     "Zod",
   ],
+  results: [
+    "KRA-ready books for a one-person business — no accountant required",
+    "Turnover Tax computed automatically, so returns are on time and correct",
+    "A live view of income, expenses, profit and cash position at any moment",
+    "Closed periods locked and every change audit-logged for trust",
+  ],
   screenshots: [
     {
       src: accountingHero,
       caption: "Invonics Accounting — KRA-compliant income, expense and Turnover Tax dashboard.",
+      width: 1000,
+      height: 563,
     },
   ],
-
+  demoInProgress: true,
   metaDescription:
     "A KRA-compliant double-entry accounting system for Kenyan sole proprietors and micro-businesses — income and expense tracking, automatic Turnover Tax, P&L and cash-flow reports, and a full audit trail. Try the live demo.",
 };
 
-export default solution;
+export default accountingFinanceSystem;

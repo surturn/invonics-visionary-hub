@@ -1,5 +1,10 @@
 import { WorkSolution } from "../../types/content";
 
+// BACKLOG — not migrated to /portfolio with the rest of /work. It only has
+// a card-level summary, no real problem/approach/results copy. Turning it
+// into a /portfolio/$slug page today would just recreate the "low content
+// page" issue flagged in the Screaming Frog audit. Write the real case
+// study first, then move this into src/content/portfolio/.
 const solution: WorkSolution = {
   slug: "operations-console",
   title: "Operations Console",

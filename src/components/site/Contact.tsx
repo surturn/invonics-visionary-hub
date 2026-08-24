@@ -104,6 +104,8 @@ export function Contact() {
                   alt="Invonics Assistant robot mascot"
                   loading="lazy"
                   decoding="async"
+                  width={700}
+                  height={1037}
                   className="relative w-full h-auto object-contain drop-shadow-none"
                 />
               </div>

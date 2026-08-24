@@ -22,9 +22,9 @@ export const Route = createFileRoute("/portfolio/$slug")({
     const { project } = loaderData;
     return {
       meta: [
-        { title: `${project.title} — Case Study | Invonics Technologies` },
+        { title: `${project.title} | Invonics` },
         { name: "description", content: project.metaDescription || project.summary },
-        { property: "og:title", content: `${project.title} | Case Study` },
+        { property: "og:title", content: `${project.title} — Case Study | Invonics Technologies` },
         { property: "og:description", content: project.summary },
       ],
       links: [{ rel: "canonical", href: absoluteUrl(`/portfolio/${project.slug}`) }],
@@ -65,15 +65,15 @@ function PortfolioDetail() {
           <Reveal delay={100}>
             <div className="mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 rounded-2xl border border-border/60 bg-secondary/30 p-8">
               <div className="md:col-span-2">
-                <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                   The Problem
-                </h3>
+                </h2>
                 <p className="text-foreground leading-relaxed">{project.problem}</p>
               </div>
               <div>
-                <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                   Services
-                </h3>
+                </h2>
                 <ul className="space-y-2 text-foreground">
                   {project.services.map((s) => (
                     <li key={s} className="flex items-center gap-2">
@@ -105,12 +105,67 @@ function PortfolioDetail() {
               </div>
             </Reveal>
 
-            <Reveal>
-              <h2 className="mb-6 font-display text-3xl text-foreground">Implementation</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {project.implementation}
-              </p>
-            </Reveal>
+            {project.demoUrl && (
+              <Reveal>
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  {project.demoLabel || "Try the live demo"}
+                  <span aria-hidden>→</span>
+                </a>
+              </Reveal>
+            )}
+            {!project.demoUrl && project.demoInProgress && (
+              <Reveal>
+                <p className="text-sm text-muted-foreground">
+                  A self-serve live demo for this project is in progress.
+                </p>
+              </Reveal>
+            )}
+
+            {project.workflow && project.workflow.length > 0 && (
+              <Reveal>
+                <h2 className="mb-6 font-display text-3xl text-foreground">How It Works</h2>
+                <ol className="space-y-4">
+                  {project.workflow.map((step, i) => (
+                    <li key={step} className="flex items-start gap-4">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm text-primary">
+                        {i + 1}
+                      </span>
+                      <span className="text-lg text-muted-foreground leading-relaxed">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </Reveal>
+            )}
+
+            {project.capabilities && project.capabilities.length > 0 && (
+              <Reveal>
+                <h2 className="mb-6 font-display text-3xl text-foreground">Capabilities</h2>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {project.capabilities.map((cap) => (
+                    <li
+                      key={cap}
+                      className="flex items-start gap-3 rounded-xl border border-border/60 bg-background p-4 text-sm text-foreground"
+                    >
+                      <span className="text-primary">●</span> {cap}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            )}
+
+            {project.implementation && (
+              <Reveal>
+                <h2 className="mb-6 font-display text-3xl text-foreground">Implementation</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {project.implementation}
+                </p>
+              </Reveal>
+            )}
 
             <Reveal>
               <h2 className="mb-6 font-display text-3xl text-foreground">Results & Impact</h2>
@@ -129,12 +184,38 @@ function PortfolioDetail() {
               </ul>
             </Reveal>
 
-            <Reveal>
-              <h2 className="mb-6 font-display text-3xl text-foreground">Lessons Learned</h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {project.lessonsLearned}
-              </p>
-            </Reveal>
+            {project.screenshots && project.screenshots.length > 0 && (
+              <Reveal>
+                <h2 className="mb-6 font-display text-3xl text-foreground">Screenshots</h2>
+                <div className="grid grid-cols-1 gap-6">
+                  {project.screenshots.map((shot) => (
+                    <figure key={shot.src} className="overflow-hidden rounded-2xl border border-border/60">
+                      <img
+                        src={shot.src}
+                        alt={shot.caption}
+                        loading="lazy"
+                        decoding="async"
+                        width={shot.width}
+                        height={shot.height}
+                        className="w-full"
+                      />
+                      <figcaption className="p-3 text-sm text-muted-foreground">
+                        {shot.caption}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </Reveal>
+            )}
+
+            {project.lessonsLearned && (
+              <Reveal>
+                <h2 className="mb-6 font-display text-3xl text-foreground">Lessons Learned</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {project.lessonsLearned}
+                </p>
+              </Reveal>
+            )}
           </div>
         </article>
 

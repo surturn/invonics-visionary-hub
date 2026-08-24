@@ -32,6 +32,12 @@ function ContactPage() {
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <main className="pt-20">
+        {/*
+          Contact's own heading is an <h2> (correct as a homepage section).
+          Standalone here it has no page-level heading, so give the page a
+          real (visually hidden) <h1> rather than restyle the shared component.
+        */}
+        <h1 className="sr-only">Contact Invonics Technologies</h1>
         <Contact />
         <Booking />
         <FAQ />

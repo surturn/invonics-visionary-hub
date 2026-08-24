@@ -5,6 +5,8 @@ export const eventRsvpAutomation: CaseStudy = {
   slug: "event-rsvp-automation",
   industry: "Events & Entertainment",
   services: ["Workflow Automation", "Web Platforms & Apps"],
+  category: "Events",
+  statChip: "Live countdown · Self-serve RSVP",
   summary:
     "Event organizers were losing hours to spreadsheet RSVP tracking. We built a system that handles the whole guest list automatically, from invite to check-in.",
   problem:
