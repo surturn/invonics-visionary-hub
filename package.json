@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "generate-seo": "npx tsx scripts/generate-seo.ts"
+    "generate-seo": "node --experimental-strip-types scripts/generate-seo.ts"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
