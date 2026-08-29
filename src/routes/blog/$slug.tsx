@@ -4,6 +4,7 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { absoluteUrl } from "@/lib/site";
+import { generateBreadcrumbSchema, generateGraphSchema, SITE_URL } from "@/lib/schema";
 import { fetchPost } from "../../server/posts";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -54,8 +55,44 @@ const ARTICLE_PROSE_CLASSES =
 function BlogPost() {
   const post = Route.useLoaderData();
 
+  const blogPostingSchema = {
+    "@type": "BlogPosting",
+    headline: post.title,
+    ...(post.metadata.excerpt ? { description: post.metadata.excerpt } : {}),
+    ...(post.metadata.cover_image?.imgix_url
+      ? { image: post.metadata.cover_image.imgix_url }
+      : {}),
+    ...(post.published_at ? { datePublished: post.published_at } : {}),
+    author: {
+      "@type": "Person",
+      name: "Sydney Kamau",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Invonics Technologies",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.jpeg`,
+      },
+    },
+    mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
+    url: absoluteUrl(`/blog/${post.slug}`),
+  };
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", item: absoluteUrl("/") },
+    { name: "Blog", item: absoluteUrl("/blog") },
+    { name: post.title, item: absoluteUrl(`/blog/${post.slug}`) },
+  ]);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateGraphSchema([blogPostingSchema, breadcrumbSchema])),
+        }}
+      />
       <Nav />
       <main className="pt-32 pb-24">
         <article className="mx-auto max-w-3xl px-5">

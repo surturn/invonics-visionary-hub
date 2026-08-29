@@ -3,9 +3,9 @@ import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { getIndustryBySlug } from "@/lib/content";
-import { StructuredData } from "@/components/seo/StructuredData";
 import { ConsultationCTA } from "@/components/site/ConsultationCTA";
 import { absoluteUrl } from "@/lib/site";
+import { generateBreadcrumbSchema, generateGraphSchema, SITE_URL } from "@/lib/schema";
 
 export const Route = createFileRoute("/solutions/$slug")({
   loader: ({ params }) => {
@@ -35,12 +35,42 @@ function IndustryLandingPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <StructuredData
-        type="WebSite"
-        data={{
-          name: industry.title,
-          description: industry.summary,
-          url: absoluteUrl(`/solutions/${industry.slug}`),
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            generateGraphSchema([
+              {
+                "@type": "ProfessionalService",
+                name: industry.title,
+                description: industry.metaDescription || industry.summary,
+                url: absoluteUrl(`/solutions/${industry.slug}`),
+                provider: {
+                  "@type": "Organization",
+                  "@id": `${SITE_URL}/#organization`,
+                  name: "Invonics Technologies",
+                },
+                areaServed: ["Kenya", "East Africa"],
+                serviceType: industry.title,
+                hasOfferCatalog: {
+                  "@type": "OfferCatalog",
+                  name: industry.title,
+                  itemListElement: industry.solutions.map((solution) => ({
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: solution,
+                    },
+                  })),
+                },
+              },
+              generateBreadcrumbSchema([
+                { name: "Home", item: absoluteUrl("/") },
+                { name: "Solutions", item: absoluteUrl("/solutions") },
+                { name: industry.title, item: absoluteUrl(`/solutions/${industry.slug}`) },
+              ]),
+            ]),
+          ),
         }}
       />
       <Nav />

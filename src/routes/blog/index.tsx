@@ -4,6 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { absoluteUrl } from "@/lib/site";
 import { fetchPosts, type Post } from "../../server/posts";
+import { generateBreadcrumbSchema, generateGraphSchema, SITE_URL } from "@/lib/schema";
 
 export const Route = createFileRoute("/blog/")({
   loader: () => fetchPosts(),
@@ -29,8 +30,37 @@ export const Route = createFileRoute("/blog/")({
 function BlogIndex() {
   const posts = Route.useLoaderData();
 
+  const jsonLd = generateGraphSchema([
+    {
+      "@type": "CollectionPage",
+      name: "Blog — Invonics Technologies",
+      description:
+        "Field notes on software architecture, AI automation and building for African businesses — from the Invonics Technologies team.",
+      url: absoluteUrl("/blog"),
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: posts.map((post, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          url: absoluteUrl(`/blog/${post.slug}`),
+          name: post.title,
+        })),
+      },
+    },
+    generateBreadcrumbSchema([
+      { name: "Home", item: absoluteUrl("/") },
+      { name: "Blog", item: absoluteUrl("/blog") },
+    ]),
+  ]);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Nav />
       <main className="pt-32 pb-24">
         <section className="mx-auto max-w-6xl px-5">

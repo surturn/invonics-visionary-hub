@@ -5,6 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { getPortfolioBySlug, getRelatedPortfolioItems } from "@/lib/content";
 import { StructuredData, buildCreativeWorkSchema } from "@/components/seo/StructuredData";
 import { absoluteUrl } from "@/lib/site";
+import { generateBreadcrumbSchema } from "@/lib/schema";
 
 export const Route = createFileRoute("/portfolio/$slug")({
   loader: ({ params }) => {
@@ -46,6 +47,19 @@ function PortfolioDetail() {
           absoluteUrl(`/portfolio/${project.slug}`),
           project.publishedAt,
         )}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            ...generateBreadcrumbSchema([
+              { name: "Home", item: absoluteUrl("/") },
+              { name: "Portfolio", item: absoluteUrl("/portfolio") },
+              { name: project.title, item: absoluteUrl(`/portfolio/${project.slug}`) },
+            ]),
+          }),
+        }}
       />
       <Nav />
       <main className="pt-32 pb-24">
