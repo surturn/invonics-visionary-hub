@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { z } from "zod";
 import { Reveal } from "./Reveal";
-import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
 import { Send } from "lucide-react";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import mascot from "@/assets/invonics-mascot.webp";
 
 const step1Schema = z.object({
@@ -66,17 +66,23 @@ export function Contact() {
     setErrors({});
     setIsSubmitting(true);
     try {
+      if (!CONTACT_EMAIL) {
+        setErrors({
+          message: "Our contact form is temporarily unavailable. Please check back soon.",
+        });
+        return;
+      }
       const { name, email, company, message } = r.data;
       const subject = encodeURIComponent(
-        `New Project Inquiry from ${name}${company ? ` (${company})` : ""}`
+        `New Project Inquiry from ${name}${company ? ` (${company})` : ""}`,
       );
       const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nCompany: ${company || "N/A"}\n\nProject Brief:\n${message}`
+        `Name: ${name}\nEmail: ${email}\nCompany: ${company || "N/A"}\n\nProject Brief:\n${message}`,
       );
-      window.location.href = `mailto:sales@invonicstechnologies.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
       setSent(true);
     } catch (err) {
-      setErrors({ message: "Failed to open email client. Please try WhatsApp instead." });
+      setErrors({ message: "Failed to open email client. Please try again shortly." });
     } finally {
       setIsSubmitting(false);
     }
@@ -109,25 +115,6 @@ export function Contact() {
                   className="relative w-full h-auto object-contain drop-shadow-none"
                 />
               </div>
-
-              <div className="mt-8 pt-6 border-t border-border/50">
-                <a
-                  href={WA_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex w-full items-center justify-between rounded-2xl border border-primary/30 bg-primary/10 px-5 py-4 text-sm text-foreground transition-colors hover:bg-primary/15"
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="grid h-9 w-9 place-items-center rounded-xl bg-[oklch(0.62_0.18_150)] text-white">
-                      <WhatsAppIcon className="h-5 w-5" />
-                    </span>
-                    Need a faster reply? Chat on WhatsApp
-                  </span>
-                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                    →
-                  </span>
-                </a>
-              </div>
             </div>
           </Reveal>
 
@@ -158,7 +145,8 @@ export function Contact() {
                       </div>
                       <h3 className="font-display text-2xl text-foreground mb-2">Message Sent</h3>
                       <p className="text-muted-foreground text-sm max-w-[250px] mx-auto">
-                        We&rsquo;ve received your brief and will get back to you within 1 business day.
+                        We&rsquo;ve received your brief and will get back to you within 1 business
+                        day.
                       </p>
                     </div>
                   ) : (
@@ -309,9 +297,7 @@ function Field({
     <label className="block">
       <span className="text-xs uppercase tracking-wider text-muted-foreground">
         {label}
-        {!required && (
-          <span className="ml-1 normal-case text-muted-foreground/60">(optional)</span>
-        )}
+        {!required && <span className="ml-1 normal-case text-muted-foreground/60">(optional)</span>}
       </span>
       <input
         name={name}
