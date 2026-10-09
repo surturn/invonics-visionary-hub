@@ -57,7 +57,7 @@ export function Hero() {
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <Magnetic
-              href="https://calendly.com/invonicstechnologies/30min"
+              href="https://cal.com/invonics-booking/30min"
               className="group inline-flex items-center gap-2 rounded-full bg-accent-gradient px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-glow"
             >
               <span>Book a Strategy Call</span>
