@@ -2,6 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { Reveal } from "./Reveal";
 import { Send } from "lucide-react";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import mascot from "@/assets/invonics-mascot.webp";
 
 const step1Schema = z.object({
@@ -65,6 +66,12 @@ export function Contact() {
     setErrors({});
     setIsSubmitting(true);
     try {
+      if (!CONTACT_EMAIL) {
+        setErrors({
+          message: "Our contact form is temporarily unavailable. Please check back soon.",
+        });
+        return;
+      }
       const { name, email, company, message } = r.data;
       const subject = encodeURIComponent(
         `New Project Inquiry from ${name}${company ? ` (${company})` : ""}`,
@@ -72,10 +79,10 @@ export function Contact() {
       const body = encodeURIComponent(
         `Name: ${name}\nEmail: ${email}\nCompany: ${company || "N/A"}\n\nProject Brief:\n${message}`,
       );
-      window.location.href = `mailto:sales@invonicstechnologies.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
       setSent(true);
     } catch (err) {
-      setErrors({ message: "Failed to open email client. Please email us directly instead." });
+      setErrors({ message: "Failed to open email client. Please try again shortly." });
     } finally {
       setIsSubmitting(false);
     }
