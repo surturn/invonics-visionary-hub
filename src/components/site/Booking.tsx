@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { Reveal } from "./Reveal";
-import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
 
 import mascot from "@/assets/invonics-mascot.webp";
 
@@ -29,20 +28,11 @@ export function Booking() {
               A digital guide for your next build.
             </h2>
             <p className="mt-5 max-w-md text-muted-foreground leading-relaxed">
-              Tell the assistant what you want to modernize. We&rsquo;ll continue the conversation
-              on WhatsApp, clarify scope, and recommend the leanest path forward.
+              Tell the assistant what you want to modernize. We&rsquo;ll clarify scope, and
+              recommend the leanest path forward.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="magnetic inline-flex items-center gap-2 rounded-full bg-accent-gradient px-5 py-3 text-sm font-medium text-primary-foreground"
-              >
-                <WhatsAppIcon className="h-4 w-4" />
-                Chat with Invonics
-              </a>
               <a
                 href="#inquiry-form"
                 className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm text-foreground transition-colors hover:border-primary/60"
@@ -81,24 +71,6 @@ export function Booking() {
                       {prompt}
                     </div>
                   ))}
-                  <div className="pt-3">
-                    <a
-                      href={WA_LINK}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex w-full items-center justify-between rounded-2xl border border-primary/30 bg-primary/10 px-5 py-4 text-sm text-foreground transition-colors hover:bg-primary/15"
-                    >
-                      <span className="flex items-center gap-3">
-                        <span className="grid h-9 w-9 place-items-center rounded-xl bg-[oklch(0.62_0.18_150)] text-white">
-                          <WhatsAppIcon className="h-5 w-5" />
-                        </span>
-                        Start a WhatsApp inquiry
-                      </span>
-                      <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                        →
-                      </span>
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>

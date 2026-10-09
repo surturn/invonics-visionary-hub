@@ -25,7 +25,7 @@ export const faqs = [
   },
   {
     q: "How does the consultation process work?",
-    a: "Start with WhatsApp or the assistant, we listen, clarify the opportunity, then send a tailored proposal. No pressure, no boilerplate decks.",
+    a: "Start with the assistant or the inquiry form, we listen, clarify the opportunity, then send a tailored proposal. No pressure, no boilerplate decks.",
   },
   {
     q: "Can you manage branding and digital content?",
@@ -56,8 +56,7 @@ export function FAQ() {
               Questions, answered.
             </h2>
             <p className="mt-6 text-muted-foreground max-w-md">
-              Still curious? Reach out on WhatsApp, and most teams get a tailored answer in under five
-              minutes.
+              Still curious? Send us an inquiry and we will get back to you with a tailored answer.
             </p>
           </Reveal>
 

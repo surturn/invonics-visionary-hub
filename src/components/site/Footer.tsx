@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import { WA_LINK, WhatsAppIcon } from "./FloatingWhatsApp";
 import { Reveal } from "./Reveal";
 
 export function Footer() {
@@ -57,15 +56,6 @@ export function Footer() {
             </address>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-xs font-medium text-white"
-                style={{ background: "oklch(0.62 0.18 150)" }}
-              >
-                <WhatsAppIcon className="h-3.5 w-3.5" /> WhatsApp
-              </a>
               <a
                 href="mailto:hello@invonicstechnologies.com"
                 className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-2 text-xs"

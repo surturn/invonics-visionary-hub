@@ -1,15 +1,7 @@
 import { Reveal } from "./Reveal";
 import { Instagram, Twitter, Facebook, Mail, Bot } from "lucide-react";
-import { WhatsAppIcon, WA_LINK } from "./FloatingWhatsApp";
 
 const socials = [
-  {
-    name: "WhatsApp",
-    handle: "Chat now · ~5 min reply",
-    href: WA_LINK,
-    icon: <WhatsAppIcon className="h-5 w-5" />,
-    accent: "oklch(0.62 0.18 150)",
-  },
   {
     name: "Instagram",
     handle: "@invonicstechnologies",
