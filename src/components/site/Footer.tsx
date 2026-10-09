@@ -47,7 +47,6 @@ export function Footer() {
                 +254 786 669 572
               </a>
             </address>
-
           </div>
 
           <div className="md:col-span-2">
