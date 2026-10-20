@@ -3,7 +3,7 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { ThemeToggle } from "./Theme";
 import logo from "@/assets/logo.jpeg";
 
-const CALENDLY_LINK = "https://calendly.com/invonicstechnologies/30min";
+const BOOKING_LINK = "https://cal.com/invonics-booking/30min";
 
 const links = [
   { href: "/#services", label: "Services", index: "01" },
@@ -159,7 +159,7 @@ export function Nav() {
               <ThemeToggle />
             </div>
             <a
-              href={CALENDLY_LINK}
+              href={BOOKING_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center gap-2 px-5 border-l border-border/60 text-sm text-foreground hover:bg-secondary transition-colors"
@@ -211,7 +211,7 @@ export function Nav() {
             <div className="flex items-center justify-between py-4">
               <ThemeToggle />
               <a
-                href={CALENDLY_LINK}
+                href={BOOKING_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
