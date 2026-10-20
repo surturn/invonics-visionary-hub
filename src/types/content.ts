@@ -34,6 +34,24 @@ export interface CaseStudy {
   publishedAt?: string;
 }
 
+export interface ServicePageDetail {
+  /** H1 and search title for the dedicated page. */
+  headline: string;
+  intro: string;
+  /** Who the service suits. */
+  suitedFor: string[];
+  /** What the client gets, each with a short explanation. */
+  offerings: { name: string; body: string }[];
+  /** Delivery steps in order. */
+  process: { name: string; body: string }[];
+  /** Things handed over at the end. */
+  deliverables: string[];
+  /** Honest limits: what is not promised or not included. */
+  boundaries: string[];
+  /** Existing case studies and solution pages to link to. */
+  related?: { href: string; label: string }[];
+}
+
 export interface ServicePage {
   title: string;
   slug: string;
@@ -43,6 +61,8 @@ export interface ServicePage {
   benefits: string[];
   faqs?: { q: string; a: string }[];
   metaDescription?: string;
+  /** When present, the service gets its own page at /services/<slug>. */
+  page?: ServicePageDetail;
 }
 
 export interface IndustryPage {

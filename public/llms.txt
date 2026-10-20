@@ -15,6 +15,9 @@
 - [Restaurant Management System](https://invonicstechnologies.com/portfolio/restaurant-management-system): Discover how Invonics Technologies is building a unified Restaurant Management System integrating POS, online ordering, and room bookings.
 - [School Asset & Inventory System](https://invonicstechnologies.com/portfolio/school-asset-inventory-system): A role-based school asset and inventory system with loan tracking, automated invoicing and an audit trail for schools in Kenya. Try the live demo.
 
+## Services
+- [Custom Software & Web Platforms](https://invonicstechnologies.com/services/custom-software-and-web-platforms): Custom websites, web apps and Android and iPhone apps built in Nairobi. M-Pesa payments, a private staging link and a full handover pack.
+
 ## Solutions
 - [Restaurant & Hospitality Solutions](https://invonicstechnologies.com/solutions/restaurants): Custom restaurant software solutions by Invonics Technologies. Unify your POS, online ordering, and operations.
 

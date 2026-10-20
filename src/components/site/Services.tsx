@@ -10,6 +10,8 @@ type Service = {
   desc: string;
   details: string;
   outcomes: string[];
+  /** Dedicated page, when one exists. */
+  pageSlug?: string;
 };
 
 const services: Service[] = [
@@ -20,6 +22,7 @@ const services: Service[] = [
     details:
       "We design and build responsive websites, dashboards, portals, and custom apps with fast loading, clean user journeys, analytics, SEO foundations, and a maintainable codebase.",
     outcomes: ["UX/UI design", "Frontend/backend build", "Launch optimization"],
+    pageSlug: "custom-software-and-web-platforms",
   },
   {
     icon: LayoutDashboard,
@@ -104,6 +107,7 @@ function ServiceCard({
   desc,
   details,
   outcomes,
+  pageSlug,
   isOpen,
   onLearnMore,
 }: Service & {
@@ -141,6 +145,14 @@ function ServiceCard({
               </span>
             ))}
           </div>
+          {pageSlug && (
+            <a
+              href={`/services/${pageSlug}`}
+              className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+            >
+              Read the full service page &rarr;
+            </a>
+          )}
         </div>
       )}
 

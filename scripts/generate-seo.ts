@@ -42,7 +42,13 @@ function readStringField(source: string, key: string): string {
   }
 }
 
-type ContentEntry = { slug: string; title: string; summary: string; description: string };
+type ContentEntry = {
+  slug: string;
+  title: string;
+  summary: string;
+  description: string;
+  hasPage?: boolean;
+};
 
 function readContentEntries(dirName: string): ContentEntry[] {
   return getSlugsFromDir(dirName).map((slug) => {
@@ -53,6 +59,7 @@ function readContentEntries(dirName: string): ContentEntry[] {
       title: readStringField(source, "title") || slug,
       summary,
       description: readStringField(source, "metaDescription") || summary,
+      hasPage: /^\s{2}page:\s*\{/m.test(source),
     };
   });
 }
@@ -137,6 +144,7 @@ async function generate() {
   const serviceEntries = readContentEntries("services");
   const portfolio = portfolioEntries.map((e) => e.slug);
   const solutions = solutionEntries.map((e) => e.slug);
+  const servicePages = serviceEntries.filter((e) => e.hasPage).map((e) => e.slug);
   const blogPosts = await fetchPublishedBlogPosts();
 
   // Newest real post date, used as the blog index lastmod. Null when no posts are known.
@@ -164,6 +172,10 @@ async function generate() {
   blogPosts.forEach((post) => {
     const lastmod = lastmodTag(post.published_at ? new Date(post.published_at).toISOString() : null);
     sitemap += `  <url><loc>https://invonicstechnologies.com/blog/${post.slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
+  });
+  servicePages.forEach((slug) => {
+    const lastmod = lastmodTag(gitLastModified(`src/content/services/${slug}.ts`));
+    sitemap += `  <url><loc>https://invonicstechnologies.com/services/${slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
   });
   solutions.forEach((slug) => {
     const lastmod = lastmodTag(gitLastModified(`src/content/industries/${slug}.ts`));
@@ -214,7 +226,14 @@ async function generate() {
   const blogLinks = blogPosts.map((post) =>
     link(post.title, `${SITE}/blog/${post.slug}`, post.metadata?.excerpt),
   );
-  const serviceLines = serviceEntries.map((e) => `- ${e.title}: ${e.summary}`);
+  const serviceLines = serviceEntries.map((e) =>
+    e.hasPage
+      ? link(e.title, `${SITE}/services/${e.slug}`, e.summary)
+      : `- ${e.title}: ${e.summary}`,
+  );
+  const serviceLinks = serviceEntries
+    .filter((e) => e.hasPage)
+    .map((e) => link(e.title, `${SITE}/services/${e.slug}`, e.description));
 
   const joinSections = (parts: string[]) => parts.filter(Boolean).join("\n\n") + "\n";
 
@@ -225,6 +244,7 @@ async function generate() {
       "Case studies",
       portfolioEntries.map((e) => link(e.title, `${SITE}/portfolio/${e.slug}`, e.description)),
     ),
+    section("Services", serviceLinks),
     section("Solutions", solutionLinks),
     section("Blog posts", blogLinks),
     section("Contact", contactLines),
@@ -233,7 +253,7 @@ async function generate() {
   const llmsFull = joinSections([
     `# Invonics Technologies\n\n> ${company}`,
     section("Main pages", mainPages),
-    section(`Services (described on the homepage at ${SITE}/#services)`, serviceLines),
+    section(`Services (overview at ${SITE}/#services)`, serviceLines),
     section(
       "Case studies",
       portfolioEntries.map((e) =>
