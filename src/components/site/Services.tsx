@@ -10,6 +10,8 @@ type Service = {
   desc: string;
   details: string;
   outcomes: string[];
+  /** Dedicated page, when one exists. */
+  pageSlug?: string;
 };
 
 const services: Service[] = [
@@ -20,6 +22,7 @@ const services: Service[] = [
     details:
       "We design and build responsive websites, dashboards, portals, and custom apps with fast loading, clean user journeys, analytics, SEO foundations, and a maintainable codebase.",
     outcomes: ["UX/UI design", "Frontend/backend build", "Launch optimization"],
+    pageSlug: "custom-software-and-web-platforms",
   },
   {
     icon: LayoutDashboard,
@@ -104,6 +107,7 @@ function ServiceCard({
   desc,
   details,
   outcomes,
+  pageSlug,
   isOpen,
   onLearnMore,
 }: Service & {
@@ -144,24 +148,43 @@ function ServiceCard({
         </div>
       )}
 
-      <button
-        type="button"
-        onClick={onLearnMore}
-        aria-expanded={isOpen}
-        aria-controls={detailsId}
-        className="relative mt-6 flex items-center gap-2 text-xs text-primary/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
-      >
-        {isOpen ? "Show less" : "Learn more"}
-        <svg
-          className={`h-3.5 w-3.5 transition-transform ${isOpen ? "rotate-90" : ""}`}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
+      {pageSlug ? (
+        <a
+          href={`/services/${pageSlug}`}
+          aria-label={`${title}: read the full service page`}
+          className="mt-6 flex items-center gap-2 text-xs text-primary/90 after:absolute after:inset-0 after:z-10 after:content-['']"
         >
-          <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
+          View service
+          <svg
+            className="h-3.5 w-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </a>
+      ) : (
+        <button
+          type="button"
+          onClick={onLearnMore}
+          aria-expanded={isOpen}
+          aria-controls={detailsId}
+          className="relative mt-6 flex items-center gap-2 text-xs text-primary/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
+        >
+          {isOpen ? "Show less" : "Learn more"}
+          <svg
+            className={`h-3.5 w-3.5 transition-transform ${isOpen ? "rotate-90" : ""}`}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      )}
     </TiltCard>
   );
 }

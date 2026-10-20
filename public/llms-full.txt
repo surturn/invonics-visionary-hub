@@ -9,11 +9,11 @@
 - [Blog](https://invonicstechnologies.com/blog): Field notes on software architecture, AI automation and building for African businesses
 - [Contact](https://invonicstechnologies.com/contact): Send an inquiry to the team
 
-## Services (described on the homepage at https://invonicstechnologies.com/#services)
+## Services (overview at https://invonicstechnologies.com/#services)
 - AI & Workflow Automation: Cut hours of manual work with smart automation — WhatsApp ordering bots, automated invoicing, appointment reminders, and AI-powered customer replies. Designed around M-Pesa and how Kenyan businesses actually operate.
 - Brand Design & Motion Graphics: Identity systems, logo design, campaign visuals, explainer videos and motion posters for product launches, brands and events across East Africa.
 - Business Management Systems: Custom ERP, school management, HR and finance dashboards with real-time visibility. M-Pesa integrated. Built for Kenyan businesses and institutions.
-- Custom Software & Web Platforms: Custom websites, web applications and client portals — production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.
+- [Custom Software & Web Platforms](https://invonicstechnologies.com/services/custom-software-and-web-platforms): Custom websites, web applications and client portals — production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.
 - SEO & Digital Visibility: Search-first content systems and technical SEO that build organic traffic and compound your Google rankings over time.
 
 ## Case studies
