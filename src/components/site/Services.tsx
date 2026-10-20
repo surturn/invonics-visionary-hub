@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { TiltCard } from "./MotionSystem";
-import { Globe, LayoutDashboard, Palette, Search, Zap } from "lucide-react";
+import { Globe, LayoutDashboard, Search, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type Service = {
@@ -41,14 +41,6 @@ const services: Service[] = [
       "We map repetitive tasks, identify bottlenecks, and automate approvals, notifications, data entry, reminders, and handoffs so your team spends less time chasing routine work.",
     outcomes: ["Process mapping", "Automated triggers", "Monitoring & handover"],
     pageSlug: "ai-and-workflow-automation",
-  },
-  {
-    icon: Palette,
-    title: "Brand Design & Motion Graphics",
-    desc: "Identity systems, logo design, campaign visuals, explainer videos and motion posters for product launches, brands and events across East Africa.",
-    details:
-      "We create logos, brand systems, typography, pitch decks, animated visuals, short promotional clips, and campaign graphics that communicate your message clearly and memorably.",
-    outcomes: ["Visual identity", "Motion graphics", "Marketing assets"],
   },
   {
     icon: Search,
