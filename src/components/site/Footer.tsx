@@ -92,14 +92,6 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  className="text-foreground/80 hover:text-foreground"
-                  href="/services/brand-design-and-motion-graphics"
-                >
-                  Brand Design & Motion Graphics
-                </a>
-              </li>
-              <li>
                 <Link className="text-foreground/80 hover:text-foreground" to="/portfolio">
                   Projects & Case Studies
                 </Link>

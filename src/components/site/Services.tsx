@@ -49,7 +49,6 @@ const services: Service[] = [
     details:
       "We create logos, brand systems, typography, pitch decks, animated visuals, short promotional clips, and campaign graphics that communicate your message clearly and memorably.",
     outcomes: ["Visual identity", "Motion graphics", "Marketing assets"],
-    pageSlug: "brand-design-and-motion-graphics",
   },
   {
     icon: Search,

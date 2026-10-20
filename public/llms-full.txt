@@ -11,7 +11,7 @@
 
 ## Services (overview at https://invonicstechnologies.com/#services)
 - [AI & Workflow Automation](https://invonicstechnologies.com/services/ai-and-workflow-automation): Automation for repeated tasks such as WhatsApp ordering, invoicing and reminders, delivered as a one-workflow pilot with a person checking results.
-- [Brand Design & Motion Graphics](https://invonicstechnologies.com/services/brand-design-and-motion-graphics): Identity systems, logo design, campaign visuals, explainer videos and motion posters for product launches, brands and events across East Africa.
+- Brand Design & Motion Graphics: Identity systems, logo design, campaign visuals, explainer videos and motion posters for product launches, brands and events across East Africa.
 - [Business Management Systems](https://invonicstechnologies.com/services/business-management-systems): Custom ERP, school management, HR and finance dashboards with real-time visibility. M-Pesa integrated. Built for Kenyan businesses and institutions.
 - [Custom Software & Web Platforms](https://invonicstechnologies.com/services/custom-software-and-web-platforms): Custom websites, web applications and client portals — production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.
 - [SEO & Digital Visibility](https://invonicstechnologies.com/services/seo-and-digital-visibility): Technical SEO, answer-engine and AI-search work for Kenyan businesses, starting with a free audit of up to 100 pages.
