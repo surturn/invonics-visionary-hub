@@ -21,6 +21,7 @@ export const restaurantManagementSystem: CaseStudy = {
   ],
   lessonsLearned:
     "Early beta testing revealed that kitchen staff required ultra-high-contrast interfaces for the ticket display system. We adapted our UI system to be highly visible under harsh kitchen lighting.",
+  relatedSolution: { slug: "restaurants", label: "Restaurant & Hospitality Solutions" },
   metaDescription:
     "Discover how Invonics Technologies is building a unified Restaurant Management System integrating POS, online ordering, and room bookings.",
   publishedAt: "2024-03-10",

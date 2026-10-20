@@ -44,7 +44,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Invonics Technologies builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa. Get a free consultation.",
+          "Custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and East Africa. Get a free consultation.",
       },
       {
         name: "keywords",

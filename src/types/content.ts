@@ -23,6 +23,8 @@ export interface CaseStudy {
   demoUrl?: string;
   demoLabel?: string;
   demoInProgress?: boolean;
+  // Optional link from a case study to the matching /solutions/<slug> page.
+  relatedSolution?: { slug: string; label: string };
   // width/height optional for backward compat, but should be set for every
   // new screenshot — CLS-safe <img> attrs, not just a nice-to-have.
   screenshots?: { src: string; caption: string; width?: number; height?: number }[];

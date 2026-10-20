@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { createBucketClient } from "@cosmicjs/sdk";
 
@@ -26,6 +27,71 @@ function getSlugsFromDir(dirName: string) {
     .readdirSync(dirPath)
     .filter((file) => file.endsWith(".ts") && file !== "index.ts")
     .map((file) => file.replace(".ts", ""));
+}
+
+// Reads a top-level string field (title, slug, summary, metaDescription) from a
+// content file without importing it. The content files import type-only symbols
+// without the `type` keyword, which Node's type stripping cannot execute.
+function readStringField(source: string, key: string): string {
+  const match = source.match(new RegExp(`^\\s*${key}:\\s*"((?:[^"\\\\]|\\\\.)*)"`, "m"));
+  if (!match) return "";
+  try {
+    return JSON.parse(`"${match[1]}"`) as string;
+  } catch {
+    return match[1];
+  }
+}
+
+type ContentEntry = { slug: string; title: string; summary: string; description: string };
+
+function readContentEntries(dirName: string): ContentEntry[] {
+  return getSlugsFromDir(dirName).map((slug) => {
+    const source = fs.readFileSync(path.join(rootDir, "src", "content", dirName, `${slug}.ts`), "utf8");
+    const summary = readStringField(source, "summary");
+    return {
+      slug,
+      title: readStringField(source, "title") || slug,
+      summary,
+      description: readStringField(source, "metaDescription") || summary,
+    };
+  });
+}
+
+// lastmod must reflect a real change, not the build time. We use the last git
+// commit that touched the page's content file. A shallow clone (common in CI)
+// gives every file the same tip-commit date, so there we omit lastmod instead.
+function isShallowRepo(): boolean {
+  try {
+    return (
+      execFileSync("git", ["rev-parse", "--is-shallow-repository"], {
+        cwd: rootDir,
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "ignore"],
+      }).trim() !== "false"
+    );
+  } catch {
+    return true;
+  }
+}
+
+const shallowRepo = isShallowRepo();
+
+function gitLastModified(relPath: string): string | null {
+  if (shallowRepo) return null;
+  try {
+    const out = execFileSync("git", ["log", "-1", "--format=%cI", "--", relPath], {
+      cwd: rootDir,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    return out ? new Date(out).toISOString() : null;
+  } catch {
+    return null;
+  }
+}
+
+function lastmodTag(iso: string | null): string {
+  return iso ? `<lastmod>${iso}</lastmod>` : "";
 }
 
 type CosmicBlogPost = {
@@ -66,53 +132,126 @@ async function fetchPublishedBlogPosts(): Promise<CosmicBlogPost[]> {
 }
 
 async function generate() {
-  const portfolio = getSlugsFromDir("portfolio");
-  const solutions = getSlugsFromDir("industries");
+  const portfolioEntries = readContentEntries("portfolio");
+  const solutionEntries = readContentEntries("industries");
+  const serviceEntries = readContentEntries("services");
+  const portfolio = portfolioEntries.map((e) => e.slug);
+  const solutions = solutionEntries.map((e) => e.slug);
   const blogPosts = await fetchPublishedBlogPosts();
 
-  const today = new Date().toISOString();
+  // Newest real post date, used as the blog index lastmod. Null when no posts are known.
+  const newestPostDate = blogPosts
+    .map((post) => (post.published_at ? new Date(post.published_at).getTime() : 0))
+    .reduce((max, time) => Math.max(max, time), 0);
+  const blogIndexLastmod = newestPostDate ? new Date(newestPostDate).toISOString() : null;
 
   // 1. Generate sitemap.xml
+  // Static pages carry no lastmod: their content lives across many components, so
+  // we cannot date them honestly. An omitted lastmod is better than a false one.
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://invonicstechnologies.com/</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://invonicstechnologies.com/about</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://invonicstechnologies.com/portfolio</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://invonicstechnologies.com/contact</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://invonicstechnologies.com/blog</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://invonicstechnologies.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://invonicstechnologies.com/about</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://invonicstechnologies.com/portfolio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://invonicstechnologies.com/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://invonicstechnologies.com/blog</loc>${lastmodTag(blogIndexLastmod)}<changefreq>weekly</changefreq><priority>0.8</priority></url>
 `;
 
   portfolio.forEach((slug) => {
-    sitemap += `  <url><loc>https://invonicstechnologies.com/portfolio/${slug}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
+    const lastmod = lastmodTag(gitLastModified(`src/content/portfolio/${slug}.ts`));
+    sitemap += `  <url><loc>https://invonicstechnologies.com/portfolio/${slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
   });
   blogPosts.forEach((post) => {
-    const lastmod = post.published_at ? new Date(post.published_at).toISOString() : today;
-    sitemap += `  <url><loc>https://invonicstechnologies.com/blog/${post.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
+    const lastmod = lastmodTag(post.published_at ? new Date(post.published_at).toISOString() : null);
+    sitemap += `  <url><loc>https://invonicstechnologies.com/blog/${post.slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
   });
   solutions.forEach((slug) => {
-    sitemap += `  <url><loc>https://invonicstechnologies.com/solutions/${slug}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
+    const lastmod = lastmodTag(gitLastModified(`src/content/industries/${slug}.ts`));
+    sitemap += `  <url><loc>https://invonicstechnologies.com/solutions/${slug}</loc>${lastmod}<changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
   });
   sitemap += `</urlset>`;
 
   fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap);
 
-  // 2. Generate llms.txt
-  const llms = `# Invonics Technologies
-Invonics Technologies is an authority platform and premier engineering studio in Kenya, specializing in custom software, AI automation, web development, and digital infrastructure.
+  // 2. Generate llms.txt (short index) and llms-full.txt (index plus fuller summaries).
+  // Everything here is read from the site's own content files, so it never describes
+  // an offering the site does not already describe.
+  const SITE = "https://invonicstechnologies.com";
+  const company =
+    "Invonics Technologies is a custom software and AI automation company in Nairobi, Kenya. It builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa.";
 
-## About
-- https://invonicstechnologies.com/about
+  const link = (label: string, url: string, note?: string) => {
+    const cleanNote = note?.replace(/\s+/g, " ").trim();
+    return `- [${label}](${url})${cleanNote ? `: ${cleanNote}` : ""}`;
+  };
+  const section = (title: string, lines: string[]) =>
+    lines.length ? `## ${title}\n${lines.join("\n")}` : "";
 
-## Portfolio
-${portfolio.map((s) => `- https://invonicstechnologies.com/portfolio/${s}`).join("\n")}
+  const mainPages = [
+    link("Home", `${SITE}/`, "Overview of the company, its services and flagship solutions"),
+    link("About", `${SITE}/about`, "About Invonics Technologies"),
+    link(
+      "Portfolio and case studies",
+      `${SITE}/portfolio`,
+      "Software platforms, automation systems and digital ecosystems built by Invonics Technologies",
+    ),
+    link(
+      "Blog",
+      `${SITE}/blog`,
+      "Field notes on software architecture, AI automation and building for African businesses",
+    ),
+    link("Contact", `${SITE}/contact`, "Send an inquiry to the team"),
+  ];
+  const contactLines = [
+    `- Website: ${SITE}`,
+    `- Contact form: ${SITE}/contact`,
+    "- Location: 259a, Njambi road, Oreteti Heights, Ongata Rongai, Nairobi, Kenya",
+    "- Phone: +254 786 669 572",
+  ];
+  const solutionLinks = solutionEntries.map((e) =>
+    link(e.title, `${SITE}/solutions/${e.slug}`, e.description),
+  );
+  const blogLinks = blogPosts.map((post) =>
+    link(post.title, `${SITE}/blog/${post.slug}`, post.metadata?.excerpt),
+  );
+  const serviceLines = serviceEntries.map((e) => `- ${e.title}: ${e.summary}`);
 
-## Contact
-- Website: https://invonicstechnologies.com
-- Contact Form: https://invonicstechnologies.com/contact
-`;
+  const joinSections = (parts: string[]) => parts.filter(Boolean).join("\n\n") + "\n";
+
+  const llms = joinSections([
+    `# Invonics Technologies\n\n> ${company}`,
+    section("Main pages", mainPages),
+    section(
+      "Case studies",
+      portfolioEntries.map((e) => link(e.title, `${SITE}/portfolio/${e.slug}`, e.description)),
+    ),
+    section("Solutions", solutionLinks),
+    section("Blog posts", blogLinks),
+    section("Contact", contactLines),
+  ]);
+
+  const llmsFull = joinSections([
+    `# Invonics Technologies\n\n> ${company}`,
+    section("Main pages", mainPages),
+    section(`Services (described on the homepage at ${SITE}/#services)`, serviceLines),
+    section(
+      "Case studies",
+      portfolioEntries.map((e) =>
+        link(e.title, `${SITE}/portfolio/${e.slug}`, e.summary || e.description),
+      ),
+    ),
+    section(
+      "Solutions",
+      solutionEntries.map((e) =>
+        link(e.title, `${SITE}/solutions/${e.slug}`, e.summary || e.description),
+      ),
+    ),
+    section("Blog posts", blogLinks),
+    section("Contact", contactLines),
+  ]);
 
   fs.writeFileSync(path.join(publicDir, "llms.txt"), llms);
-  fs.writeFileSync(path.join(publicDir, "llms-full.txt"), llms);
+  fs.writeFileSync(path.join(publicDir, "llms-full.txt"), llmsFull);
 
   // 3. Generate robots.txt
   const robotsTxt = `User-agent: *

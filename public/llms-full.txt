@@ -1,15 +1,32 @@
 # Invonics Technologies
-Invonics Technologies is an authority platform and premier engineering studio in Kenya, specializing in custom software, AI automation, web development, and digital infrastructure.
 
-## About
-- https://invonicstechnologies.com/about
+> Invonics Technologies is a custom software and AI automation company in Nairobi, Kenya. It builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa.
 
-## Portfolio
-- https://invonicstechnologies.com/portfolio/accounting-finance-system
-- https://invonicstechnologies.com/portfolio/event-rsvp-automation
-- https://invonicstechnologies.com/portfolio/restaurant-management-system
-- https://invonicstechnologies.com/portfolio/school-asset-inventory-system
+## Main pages
+- [Home](https://invonicstechnologies.com/): Overview of the company, its services and flagship solutions
+- [About](https://invonicstechnologies.com/about): About Invonics Technologies
+- [Portfolio and case studies](https://invonicstechnologies.com/portfolio): Software platforms, automation systems and digital ecosystems built by Invonics Technologies
+- [Blog](https://invonicstechnologies.com/blog): Field notes on software architecture, AI automation and building for African businesses
+- [Contact](https://invonicstechnologies.com/contact): Send an inquiry to the team
+
+## Services (described on the homepage at https://invonicstechnologies.com/#services)
+- AI & Workflow Automation: Cut hours of manual work with smart automation — WhatsApp ordering bots, automated invoicing, appointment reminders, and AI-powered customer replies. Designed around M-Pesa and how Kenyan businesses actually operate.
+- Brand Design & Motion Graphics: Identity systems, logo design, campaign visuals, explainer videos and motion posters for product launches, brands and events across East Africa.
+- Business Management Systems: Custom ERP, school management, HR and finance dashboards with real-time visibility. M-Pesa integrated. Built for Kenyan businesses and institutions.
+- Custom Software & Web Platforms: Custom websites, web applications and client portals — production-grade, mobile-first, and built for SEO and longevity. Serving Nairobi and East Africa.
+- SEO & Digital Visibility: Search-first content systems and technical SEO that build organic traffic and compound your Google rankings over time.
+
+## Case studies
+- [Accounting & Finance System](https://invonicstechnologies.com/portfolio/accounting-finance-system): Real-time financial visibility for growing operations. Move past fragmented spreadsheets with automated reconciliation, custom reporting, and instant cash flow insights.
+- [Event RSVP Automation Platform](https://invonicstechnologies.com/portfolio/event-rsvp-automation): Event organizers were losing hours to spreadsheet RSVP tracking. We built a system that handles the whole guest list automatically, from invite to check-in.
+- [Restaurant Management System](https://invonicstechnologies.com/portfolio/restaurant-management-system): This restaurant was running three separate systems, one for point-of-sale, one for online orders, and one for room bookings, so staff kept re-entering the same information three times. We built one system that replaced all three.
+- [School Asset & Inventory System](https://invonicstechnologies.com/portfolio/school-asset-inventory-system): Stops asset shrinkage before it costs you — a single system that tracks every device, automates depreciation, and holds every borrower accountable.
+
+## Solutions
+- [Restaurant & Hospitality Solutions](https://invonicstechnologies.com/solutions/restaurants): Unified digital ecosystems for restaurants, combining POS, online ordering, and operational management into a single platform.
 
 ## Contact
 - Website: https://invonicstechnologies.com
-- Contact Form: https://invonicstechnologies.com/contact
+- Contact form: https://invonicstechnologies.com/contact
+- Location: 259a, Njambi road, Oreteti Heights, Ongata Rongai, Nairobi, Kenya
+- Phone: +254 786 669 572
