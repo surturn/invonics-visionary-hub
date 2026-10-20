@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Send } from "lucide-react";
 import { CONTACT_EMAIL } from "@/lib/contact";
+import { submitIntake } from "@/server/intake";
 import type { IntakeField, IntakeForm, IntakeStep } from "@/types/content";
 
 type Answers = Record<string, string | string[]>;
@@ -64,7 +65,9 @@ export function ServiceIntakeForm({
   const [answers, setAnswers] = useState<Answers>({});
   const [stepIndex, setStepIndex] = useState(0);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState<null | "delivered" | "email">(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [copied, setCopied] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const hydrated = useRef(false);
@@ -133,18 +136,56 @@ export function ServiceIntakeForm({
     return lines.join("\n").trim();
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  // Everything except the contact step, as one readable block for the Base row.
+  const buildBrief = (): string => {
+    const lines: string[] = [];
+    for (const s of form.steps) {
+      const rows = s.fields
+        .filter((f) => isVisible(f, answers) && !isEmpty(answers[f.id]))
+        .map((f) => {
+          const v = answers[f.id];
+          return `${f.label}: ${Array.isArray(v) ? v.join(", ") : String(v).trim()}`;
+        });
+      if (rows.length) lines.push(`[${s.title}]`, ...rows, "");
+    }
+    return lines.join("\n").trim() || "No project answers given";
+  };
+
+  const openEmailFallback = () => {
+    const name = String(answers.contact_name ?? "").trim();
+    const subject = encodeURIComponent(`${serviceTitle} brief from ${name}`);
+    const body = encodeURIComponent(buildSummary());
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isLast) {
       goNext();
       return;
     }
-    if (!validate()) return;
-    const name = String(answers.contact_name ?? "").trim();
-    const subject = encodeURIComponent(`${serviceTitle} brief from ${name}`);
-    const body = encodeURIComponent(buildSummary());
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
+    if (!validate() || submitting) return;
+    setSubmitting(true);
+    let delivered = false;
+    try {
+      const result = await submitIntake({
+        data: {
+          service: serviceTitle,
+          name: String(answers.contact_name ?? "").trim(),
+          email: String(answers.contact_email ?? "").trim(),
+          phone: String(answers.contact_phone ?? "").trim(),
+          organisation: String(answers.contact_org ?? "").trim(),
+          brief: buildBrief(),
+          website: honeypot,
+        },
+      });
+      delivered = result.ok;
+    } catch {
+      delivered = false;
+    }
+    if (!delivered) openEmailFallback();
+    setSent(delivered ? "delivered" : "email");
+    setSubmitting(false);
     try {
       window.sessionStorage.removeItem(storageKey);
     } catch {
@@ -161,16 +202,33 @@ export function ServiceIntakeForm({
     }
   };
 
-  if (sent) {
+  const icon = (
+    <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-primary/10 border border-primary/20 text-primary">
+      <Send className="h-5 w-5" />
+    </div>
+  );
+
+  if (sent === "delivered") {
     return (
-      <div className="glass-strong rounded-3xl p-8 md:p-10 text-center">
-        <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-primary/10 border border-primary/20 text-primary">
-          <Send className="h-5 w-5" />
-        </div>
+      <div className="glass-strong rounded-3xl p-8 md:p-10 text-center" role="status">
+        {icon}
+        <h3 className="font-display text-2xl mb-2">Brief received</h3>
+        <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+          Thank you. Your answers reached our team and we will reply within 1 business day.
+        </p>
+      </div>
+    );
+  }
+
+  if (sent === "email") {
+    return (
+      <div className="glass-strong rounded-3xl p-8 md:p-10 text-center" role="status">
+        {icon}
         <h3 className="font-display text-2xl mb-2">One last click in your email app</h3>
         <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
-          Your email app should have opened with your answers filled in. Press send there and we
-          will reply within 1 business day. If nothing opened, copy your answers and email them to{" "}
+          We could not send this automatically, so your email app should have opened with your
+          answers filled in. Press send there and we will reply within 1 business day. If nothing
+          opened, copy your answers and email them to{" "}
           <a className="text-primary underline" href={`mailto:${CONTACT_EMAIL}`}>
             {CONTACT_EMAIL}
           </a>
@@ -226,6 +284,19 @@ export function ServiceIntakeForm({
       </div>
 
       <div className="space-y-5">
+        <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+          <label>
+            Leave this field empty
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+          </label>
+        </div>
         {visibleFields.map((f) => (
           <FieldInput
             key={f.id}
@@ -249,9 +320,10 @@ export function ServiceIntakeForm({
         )}
         <button
           type="submit"
-          className="w-full inline-flex items-center justify-center rounded-xl bg-accent-gradient px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-glow hover:translate-y-[-1px] transition-transform"
+          disabled={submitting}
+          className="w-full inline-flex items-center justify-center rounded-xl bg-accent-gradient px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-glow hover:translate-y-[-1px] transition-transform disabled:opacity-70 disabled:hover:translate-y-0"
         >
-          {isLast ? "Send my brief" : "Continue"}
+          {isLast ? (submitting ? "Sending..." : "Send my brief") : "Continue"}
         </button>
       </div>
     </form>
