@@ -43,6 +43,7 @@ export const service: ServicePage = {
   ],
   page: {
     headline: "Website and Mobile App Development in Nairobi, Kenya",
+    seoTitle: "Web & Mobile App Development in Nairobi | Invonics",
     intro:
       "We design, build, test and launch websites, web applications and mobile apps for businesses, schools and institutions in Nairobi and across East Africa. You review real work on a private staging link at every milestone, and you get a complete handover when it launches.",
     suitedFor: [

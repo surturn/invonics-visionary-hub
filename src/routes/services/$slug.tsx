@@ -26,7 +26,7 @@ export const Route = createFileRoute("/services/$slug")({
     const description = service.metaDescription || service.summary;
     return {
       meta: [
-        { title: `${service.page!.headline} | Invonics Technologies` },
+        { title: service.page!.seoTitle },
         { name: "description", content: description },
         { property: "og:title", content: service.page!.headline },
         { property: "og:description", content: description },

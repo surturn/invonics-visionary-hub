@@ -37,6 +37,8 @@ export interface CaseStudy {
 export interface ServicePageDetail {
   /** H1 and search title for the dedicated page. */
   headline: string;
+  /** Browser/search title, kept under 60 characters. */
+  seoTitle: string;
   intro: string;
   /** Who the service suits. */
   suitedFor: string[];
