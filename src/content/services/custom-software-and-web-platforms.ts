@@ -118,6 +118,160 @@ export const service: ServicePage = {
       },
       { href: "/portfolio/accounting-finance-system", label: "Accounting & Finance System" },
     ],
+    intake: {
+      title: "Tell us about your project",
+      intro:
+        "Six short steps, only questions that matter for a website or app. It takes about three minutes and you can go back at any point.",
+      steps: [
+        {
+          title: "What are you building?",
+          fields: [
+            {
+              id: "platforms",
+              label: "Which platforms?",
+              type: "multi",
+              options: [
+                "Website",
+                "Web app or portal",
+                "Android app",
+                "iPhone app",
+                "Not sure yet",
+              ],
+              required: true,
+            },
+            {
+              id: "purpose",
+              label: "What should it do for your business?",
+              type: "textarea",
+              required: true,
+              help: "One or two sentences is plenty.",
+            },
+            {
+              id: "users",
+              label: "Who will use it?",
+              type: "multi",
+              options: ["Customers", "Staff", "Students or parents", "Partners or suppliers"],
+            },
+          ],
+        },
+        {
+          title: "What does it need to do?",
+          fields: [
+            {
+              id: "features",
+              label: "Pick everything that applies",
+              type: "multi",
+              options: [
+                "Take payments (M-Pesa)",
+                "User accounts and logins",
+                "Admin dashboard",
+                "Bookings or orders",
+                "Reports and exports",
+                "SMS, email or WhatsApp notifications",
+                "Connects to another system",
+              ],
+              required: true,
+            },
+            {
+              id: "daraja",
+              label: "Do you have your own Safaricom Daraja account?",
+              type: "radio",
+              options: ["Yes", "No", "Not sure"],
+              help: "M-Pesa payments run on your own account, so the money goes straight to you.",
+              showIf: {
+                field: "features",
+                includes: "Take payments (M-Pesa)",
+              },
+            },
+            {
+              id: "systems",
+              label: "Which systems should it connect to?",
+              type: "text",
+              showIf: {
+                field: "features",
+                includes: "Connects to another system",
+              },
+            },
+          ],
+        },
+        {
+          title: "Where do things stand today?",
+          fields: [
+            {
+              id: "starting",
+              label: "Starting point",
+              type: "radio",
+              options: [
+                "Starting from scratch",
+                "Replacing an existing site or app",
+                "Adding to an existing system",
+              ],
+              required: true,
+            },
+            {
+              id: "current_url",
+              label: "Link to the current site or app",
+              type: "text",
+              showIf: {
+                field: "starting",
+                equals: "Replacing an existing site or app",
+              },
+            },
+            {
+              id: "content",
+              label: "Is your content (text, photos, logo) ready?",
+              type: "radio",
+              options: ["Ready", "Partly", "Not started"],
+            },
+          ],
+        },
+        {
+          title: "Accounts you already hold",
+          blurb: "These stay in your name wherever possible.",
+          fields: [
+            {
+              id: "accounts",
+              label: "Which do you already have?",
+              type: "multi",
+              options: [
+                "Domain name",
+                "Hosting",
+                "Google Play developer account",
+                "None of these yet",
+              ],
+            },
+            {
+              id: "approver",
+              label: "Who approves the work?",
+              type: "radio",
+              options: ["Just me", "A small team", "A committee"],
+            },
+          ],
+        },
+        {
+          title: "Timing and budget",
+          fields: [
+            {
+              id: "timeline",
+              label: "When would you like to launch?",
+              type: "select",
+              options: [
+                "As soon as possible",
+                "Within 1 to 2 months",
+                "Within 3 to 6 months",
+                "No fixed date",
+              ],
+            },
+            {
+              id: "budget",
+              label: "Budget in KES, if you have one in mind",
+              type: "text",
+              help: "Optional. It helps us propose something realistic.",
+            },
+          ],
+        },
+      ],
+    },
   },
 };
 

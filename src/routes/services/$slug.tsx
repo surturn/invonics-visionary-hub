@@ -2,6 +2,7 @@ import { createFileRoute, redirect, notFound, Link } from "@tanstack/react-route
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
+import { ServiceIntakeForm } from "@/components/site/ServiceIntakeForm";
 import { ConsultationCTA } from "@/components/site/ConsultationCTA";
 import { getServiceBySlug } from "@/lib/content";
 import { absoluteUrl } from "@/lib/site";
@@ -94,12 +95,21 @@ function ServiceLandingPage() {
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">{page.intro}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/contact"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all"
-              >
-                Start a project
-              </Link>
+              {page.intake ? (
+                <a
+                  href="#start"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all"
+                >
+                  Start a project
+                </a>
+              ) : (
+                <Link
+                  to="/contact"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all"
+                >
+                  Start a project
+                </Link>
+              )}
               <Link
                 to="/portfolio"
                 className="inline-flex h-12 items-center justify-center rounded-full border border-border px-8 text-sm font-medium text-foreground/90 hover:bg-secondary/40 transition-colors"
@@ -193,6 +203,26 @@ function ServiceLandingPage() {
           </div>
         </section>
 
+        {page.proof && page.proof.length > 0 && (
+          <section className="mx-auto max-w-5xl px-5 mb-20">
+            <Reveal>
+              <h2 className="font-display text-3xl mb-3">Related skills from our own products</h2>
+              <p className="text-muted-foreground mb-6 max-w-3xl leading-relaxed">
+                We are offering this as a pilot service. These are products we built ourselves, not
+                client results.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {page.proof.map((p) => (
+                  <div key={p.name} className="p-6 rounded-2xl glass border border-border/60">
+                    <h3 className="font-display text-lg mb-2">{p.name}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{p.body}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </section>
+        )}
+
         {page.related && page.related.length > 0 && (
           <section className="mx-auto max-w-5xl px-5 mb-20">
             <Reveal>
@@ -233,6 +263,20 @@ function ServiceLandingPage() {
                   </details>
                 ))}
               </div>
+            </Reveal>
+          </section>
+        )}
+
+        {page.intake && (
+          <section id="start" className="mx-auto max-w-3xl px-5 mb-20 scroll-mt-28">
+            <Reveal>
+              <h2 className="font-display text-3xl mb-3">{page.intake.title}</h2>
+              <p className="text-muted-foreground mb-8 leading-relaxed">{page.intake.intro}</p>
+              <ServiceIntakeForm
+                serviceSlug={service.slug}
+                serviceTitle={service.title}
+                form={page.intake}
+              />
             </Reveal>
           </section>
         )}

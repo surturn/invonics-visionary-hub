@@ -31,6 +31,7 @@ const services: Service[] = [
     details:
       "We turn manual operations into secure management systems with roles, records, approvals, reports, dashboards, and alerts that help leaders see what is happening in real time.",
     outcomes: ["Role-based access", "Dashboards & reports", "Data workflows"],
+    pageSlug: "business-management-systems",
   },
   {
     icon: Zap,
@@ -39,6 +40,7 @@ const services: Service[] = [
     details:
       "We map repetitive tasks, identify bottlenecks, and automate approvals, notifications, data entry, reminders, and handoffs so your team spends less time chasing routine work.",
     outcomes: ["Process mapping", "Automated triggers", "Monitoring & handover"],
+    pageSlug: "ai-and-workflow-automation",
   },
   {
     icon: Palette,
@@ -47,6 +49,7 @@ const services: Service[] = [
     details:
       "We create logos, brand systems, typography, pitch decks, animated visuals, short promotional clips, and campaign graphics that communicate your message clearly and memorably.",
     outcomes: ["Visual identity", "Motion graphics", "Marketing assets"],
+    pageSlug: "brand-design-and-motion-graphics",
   },
   {
     icon: Search,
@@ -55,6 +58,7 @@ const services: Service[] = [
     details:
       "We improve technical SEO, page structure, metadata, content plans, keyword targeting, and analytics so customers can find your brand and understand your offer faster.",
     outcomes: ["SEO audit", "Content plan", "Analytics setup"],
+    pageSlug: "seo-and-digital-visibility",
   },
 ];
 

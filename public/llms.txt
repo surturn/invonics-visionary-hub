@@ -16,7 +16,11 @@
 - [School Asset & Inventory System](https://invonicstechnologies.com/portfolio/school-asset-inventory-system): A role-based school asset and inventory system with loan tracking, automated invoicing and an audit trail for schools in Kenya. Try the live demo.
 
 ## Services
+- [AI & Workflow Automation](https://invonicstechnologies.com/services/ai-and-workflow-automation): AI and workflow automation for Nairobi businesses, starting with a one-workflow pilot. A person checks the results first. No invented accuracy figures.
+- [Brand Design & Motion Graphics](https://invonicstechnologies.com/services/brand-design-and-motion-graphics): Logos, brand systems, pitch decks, motion graphics and explainer videos for businesses, launches and events in Nairobi and East Africa.
+- [Business Management Systems](https://invonicstechnologies.com/services/business-management-systems): Management systems for Kenyan schools and businesses: roles, approvals, dashboards, alerts and M-Pesa. Built in Nairobi with a clear handover.
 - [Custom Software & Web Platforms](https://invonicstechnologies.com/services/custom-software-and-web-platforms): Custom websites, web apps and Android and iPhone apps built in Nairobi. M-Pesa payments, a private staging link and a full handover pack.
+- [SEO & Digital Visibility](https://invonicstechnologies.com/services/seo-and-digital-visibility): SEO, AEO and GEO for Nairobi businesses. A free first audit of up to 100 pages, then fixes, content and reports. No promised rankings.
 
 ## Solutions
 - [Restaurant & Hospitality Solutions](https://invonicstechnologies.com/solutions/restaurants): Custom restaurant software solutions by Invonics Technologies. Unify your POS, online ordering, and operations.

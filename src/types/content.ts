@@ -34,6 +34,30 @@ export interface CaseStudy {
   publishedAt?: string;
 }
 
+export interface IntakeField {
+  id: string;
+  label: string;
+  type: "text" | "textarea" | "select" | "radio" | "multi";
+  options?: string[];
+  required?: boolean;
+  help?: string;
+  /** Only ask this question when an earlier answer matches. */
+  showIf?: { field: string; equals?: string; includes?: string };
+}
+
+export interface IntakeStep {
+  title: string;
+  blurb?: string;
+  fields: IntakeField[];
+}
+
+/** A service-specific, step-by-step discovery form. Contact details are asked last. */
+export interface IntakeForm {
+  title: string;
+  intro: string;
+  steps: IntakeStep[];
+}
+
 export interface ServicePageDetail {
   /** H1 and search title for the dedicated page. */
   headline: string;
@@ -52,6 +76,10 @@ export interface ServicePageDetail {
   boundaries: string[];
   /** Existing case studies and solution pages to link to. */
   related?: { href: string; label: string }[];
+  /** Our own products that show related skills, described honestly. */
+  proof?: { name: string; body: string }[];
+  /** Service-specific discovery form shown on the page. */
+  intake?: IntakeForm;
 }
 
 export interface ServicePage {
