@@ -1,15 +1,25 @@
 # Invonics Technologies
-Invonics Technologies is an authority platform and premier engineering studio in Kenya, specializing in custom software, AI automation, web development, and digital infrastructure.
 
-## About
-- https://invonicstechnologies.com/about
+> Invonics Technologies is a custom software and AI automation company in Nairobi, Kenya. It builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa.
 
-## Portfolio
-- https://invonicstechnologies.com/portfolio/accounting-finance-system
-- https://invonicstechnologies.com/portfolio/event-rsvp-automation
-- https://invonicstechnologies.com/portfolio/restaurant-management-system
-- https://invonicstechnologies.com/portfolio/school-asset-inventory-system
+## Main pages
+- [Home](https://invonicstechnologies.com/): Overview of the company, its services and flagship solutions
+- [About](https://invonicstechnologies.com/about): About Invonics Technologies
+- [Portfolio and case studies](https://invonicstechnologies.com/portfolio): Software platforms, automation systems and digital ecosystems built by Invonics Technologies
+- [Blog](https://invonicstechnologies.com/blog): Field notes on software architecture, AI automation and building for African businesses
+- [Contact](https://invonicstechnologies.com/contact): Send an inquiry to the team
+
+## Case studies
+- [Accounting & Finance System](https://invonicstechnologies.com/portfolio/accounting-finance-system): KRA-compliant double-entry accounting for Kenyan sole proprietors and micro-businesses, with automatic Turnover Tax, P&L reports and a full audit trail.
+- [Event RSVP Automation Platform](https://invonicstechnologies.com/portfolio/event-rsvp-automation): Read the case study on how Invonics Technologies built an automated Event RSVP platform to streamline guest management and event check-ins.
+- [Restaurant Management System](https://invonicstechnologies.com/portfolio/restaurant-management-system): Discover how Invonics Technologies is building a unified Restaurant Management System integrating POS, online ordering, and room bookings.
+- [School Asset & Inventory System](https://invonicstechnologies.com/portfolio/school-asset-inventory-system): A role-based school asset and inventory system with loan tracking, automated invoicing and an audit trail for schools in Kenya. Try the live demo.
+
+## Solutions
+- [Restaurant & Hospitality Solutions](https://invonicstechnologies.com/solutions/restaurants): Custom restaurant software solutions by Invonics Technologies. Unify your POS, online ordering, and operations.
 
 ## Contact
 - Website: https://invonicstechnologies.com
-- Contact Form: https://invonicstechnologies.com/contact
+- Contact form: https://invonicstechnologies.com/contact
+- Location: 259a, Njambi road, Oreteti Heights, Ongata Rongai, Nairobi, Kenya
+- Phone: +254 786 669 572
