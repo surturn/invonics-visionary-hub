@@ -39,12 +39,12 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-        title: "Custom Software & AI Automation in Nairobi | Invonics",
+        title: "Software Development Company in Nairobi | Invonics",
       },
       {
         name: "description",
         content:
-          "Custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and East Africa. Get a free consultation.",
+          "Nairobi software development company building custom software, web and mobile apps, and AI automation. M-Pesa payments, a private staging link and a full handover pack. Free consultation.",
       },
       {
         name: "keywords",
