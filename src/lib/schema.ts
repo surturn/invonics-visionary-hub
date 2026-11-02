@@ -1,4 +1,6 @@
-export const SITE_URL = "https://invonicstechnologies.com";
+import { SITE_URL } from "./site";
+
+export { SITE_URL };
 
 export const LOGO_URL = `${SITE_URL}/logo.jpeg`;
 

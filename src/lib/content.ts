@@ -1,3 +1,4 @@
+import { CONTENT_TYPES } from "./content-registry";
 import { CaseStudy, ServicePage, IndustryPage } from "../types/content";
 
 // Import all TypeScript content files eagerly for now.
@@ -9,17 +10,22 @@ import { CaseStudy, ServicePage, IndustryPage } from "../types/content";
 // feeding an unused getAllBlogPosts() here; it drifted out of sync with Cosmic
 // (its own `slug` field didn't even match its filename) and was removed.
 
-const portfolioGlob = import.meta.glob("../content/portfolio/*.ts", { eager: true });
-const servicesGlob = import.meta.glob("../content/services/*.ts", { eager: true });
-const industriesGlob = import.meta.glob("../content/industries/*.ts", { eager: true });
+// One glob for every content directory; entries are grouped by the directories
+// declared in the content registry (the single owner of dir -> route mapping).
+const contentGlob = import.meta.glob("../content/*/*.ts", { eager: true });
 
-function extractValues<T>(globResult: Record<string, any>): T[] {
-  return Object.values(globResult).map((module: any) => module.default as T);
+function extractValues<T>(contentDir: string): T[] {
+  return Object.entries(contentGlob)
+    .filter(([file]) => file.startsWith(`../content/${contentDir}/`))
+    .map(([, module]) => (module as { default: T }).default);
 }
 
-export const getAllPortfolioItems = (): CaseStudy[] => extractValues<CaseStudy>(portfolioGlob);
-export const getAllServices = (): ServicePage[] => extractValues<ServicePage>(servicesGlob);
-export const getAllIndustries = (): IndustryPage[] => extractValues<IndustryPage>(industriesGlob);
+export const getAllPortfolioItems = (): CaseStudy[] =>
+  extractValues<CaseStudy>(CONTENT_TYPES.portfolio.contentDir);
+export const getAllServices = (): ServicePage[] =>
+  extractValues<ServicePage>(CONTENT_TYPES.services.contentDir);
+export const getAllIndustries = (): IndustryPage[] =>
+  extractValues<IndustryPage>(CONTENT_TYPES.solutions.contentDir);
 
 export const getPortfolioBySlug = (slug: string): CaseStudy | undefined => {
   return getAllPortfolioItems().find((item) => item.slug === slug);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SITE_URL, absoluteUrl } from "@/lib/site";
 
 export function OrganizationJsonLd() {
   const jsonLdData = {
@@ -6,12 +7,12 @@ export function OrganizationJsonLd() {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://invonicstechnologies.com/#organization",
+        "@id": `${SITE_URL}/#organization`,
         "name": "Invonics Technologies",
-        "url": "https://invonicstechnologies.com",
+        "url": SITE_URL,
         "logo": {
           "@type": "ImageObject",
-          "url": "https://invonicstechnologies.com/logo.jpeg"
+          "url": absoluteUrl("/logo.jpeg")
         },
         "description": "Invonics Technologies builds vertical operating systems, custom web/app software, e-commerce, inventory and event-management systems, payment integrations, and brand/motion design for African SMEs, with deep East African market expertise.",
         "slogan": "Engineering Tomorrow, Today",
@@ -44,11 +45,11 @@ export function OrganizationJsonLd() {
       },
       {
         "@type": "WebSite",
-        "@id": "https://invonicstechnologies.com/#website",
-        "url": "https://invonicstechnologies.com",
+        "@id": `${SITE_URL}/#website`,
+        "url": SITE_URL,
         "name": "Invonics Technologies",
         "publisher": {
-          "@id": "https://invonicstechnologies.com/#organization"
+          "@id": `${SITE_URL}/#organization`
         }
       }
     ]

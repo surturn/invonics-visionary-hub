@@ -3,6 +3,8 @@ import path from "path";
 import { execFileSync } from "child_process";
 import { fileURLToPath } from "url";
 import { createBucketClient } from "@cosmicjs/sdk";
+import { CONTENT_TYPES } from "../src/lib/content-registry.ts";
+import { SITE_URL } from "../src/lib/site.ts";
 
 // Minimal generation script without needing full framework context
 const __filename = fileURLToPath(import.meta.url);
@@ -139,9 +141,9 @@ async function fetchPublishedBlogPosts(): Promise<CosmicBlogPost[]> {
 }
 
 async function generate() {
-  const portfolioEntries = readContentEntries("portfolio");
-  const solutionEntries = readContentEntries("industries");
-  const serviceEntries = readContentEntries("services");
+  const portfolioEntries = readContentEntries(CONTENT_TYPES.portfolio.contentDir);
+  const solutionEntries = readContentEntries(CONTENT_TYPES.solutions.contentDir);
+  const serviceEntries = readContentEntries(CONTENT_TYPES.services.contentDir);
   const portfolio = portfolioEntries.map((e) => e.slug);
   const solutions = solutionEntries.map((e) => e.slug);
   const servicePages = serviceEntries.filter((e) => e.hasPage).map((e) => e.slug);
@@ -158,28 +160,28 @@ async function generate() {
   // we cannot date them honestly. An omitted lastmod is better than a false one.
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://invonicstechnologies.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://invonicstechnologies.com/about</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://invonicstechnologies.com/portfolio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://invonicstechnologies.com/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://invonicstechnologies.com/blog</loc>${lastmodTag(blogIndexLastmod)}<changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>${SITE_URL}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>${SITE_URL}/about</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>${SITE_URL}/portfolio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>${SITE_URL}/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>${SITE_URL}/blog</loc>${lastmodTag(blogIndexLastmod)}<changefreq>weekly</changefreq><priority>0.8</priority></url>
 `;
 
   portfolio.forEach((slug) => {
-    const lastmod = lastmodTag(gitLastModified(`src/content/portfolio/${slug}.ts`));
-    sitemap += `  <url><loc>https://invonicstechnologies.com/portfolio/${slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
+    const lastmod = lastmodTag(gitLastModified(`src/content/${CONTENT_TYPES.portfolio.contentDir}/${slug}.ts`));
+    sitemap += `  <url><loc>${SITE_URL}${CONTENT_TYPES.portfolio.routePrefix}/${slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
   });
   blogPosts.forEach((post) => {
     const lastmod = lastmodTag(post.published_at ? new Date(post.published_at).toISOString() : null);
-    sitemap += `  <url><loc>https://invonicstechnologies.com/blog/${post.slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
+    sitemap += `  <url><loc>${SITE_URL}/blog/${post.slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
   });
   servicePages.forEach((slug) => {
-    const lastmod = lastmodTag(gitLastModified(`src/content/services/${slug}.ts`));
-    sitemap += `  <url><loc>https://invonicstechnologies.com/services/${slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
+    const lastmod = lastmodTag(gitLastModified(`src/content/${CONTENT_TYPES.services.contentDir}/${slug}.ts`));
+    sitemap += `  <url><loc>${SITE_URL}${CONTENT_TYPES.services.routePrefix}/${slug}</loc>${lastmod}<changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
   });
   solutions.forEach((slug) => {
-    const lastmod = lastmodTag(gitLastModified(`src/content/industries/${slug}.ts`));
-    sitemap += `  <url><loc>https://invonicstechnologies.com/solutions/${slug}</loc>${lastmod}<changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
+    const lastmod = lastmodTag(gitLastModified(`src/content/${CONTENT_TYPES.solutions.contentDir}/${slug}.ts`));
+    sitemap += `  <url><loc>${SITE_URL}${CONTENT_TYPES.solutions.routePrefix}/${slug}</loc>${lastmod}<changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
   });
   sitemap += `</urlset>`;
 
@@ -188,7 +190,7 @@ async function generate() {
   // 2. Generate llms.txt (short index) and llms-full.txt (index plus fuller summaries).
   // Everything here is read from the site's own content files, so it never describes
   // an offering the site does not already describe.
-  const SITE = "https://invonicstechnologies.com";
+  const SITE = SITE_URL;
   const company =
     "Invonics Technologies is a custom software and AI automation company in Nairobi, Kenya. It builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa.";
 
@@ -221,19 +223,19 @@ async function generate() {
     "- Phone: +254 786 669 572",
   ];
   const solutionLinks = solutionEntries.map((e) =>
-    link(e.title, `${SITE}/solutions/${e.slug}`, e.description),
+    link(e.title, `${SITE}${CONTENT_TYPES.solutions.routePrefix}/${e.slug}`, e.description),
   );
   const blogLinks = blogPosts.map((post) =>
     link(post.title, `${SITE}/blog/${post.slug}`, post.metadata?.excerpt),
   );
   const serviceLines = serviceEntries.map((e) =>
     e.hasPage
-      ? link(e.title, `${SITE}/services/${e.slug}`, e.summary)
+      ? link(e.title, `${SITE}${CONTENT_TYPES.services.routePrefix}/${e.slug}`, e.summary)
       : `- ${e.title}: ${e.summary}`,
   );
   const serviceLinks = serviceEntries
     .filter((e) => e.hasPage)
-    .map((e) => link(e.title, `${SITE}/services/${e.slug}`, e.description));
+    .map((e) => link(e.title, `${SITE}${CONTENT_TYPES.services.routePrefix}/${e.slug}`, e.description));
 
   const joinSections = (parts: string[]) => parts.filter(Boolean).join("\n\n") + "\n";
 
@@ -242,7 +244,7 @@ async function generate() {
     section("Main pages", mainPages),
     section(
       "Case studies",
-      portfolioEntries.map((e) => link(e.title, `${SITE}/portfolio/${e.slug}`, e.description)),
+      portfolioEntries.map((e) => link(e.title, `${SITE}${CONTENT_TYPES.portfolio.routePrefix}/${e.slug}`, e.description)),
     ),
     section("Services", serviceLinks),
     section("Solutions", solutionLinks),
@@ -257,13 +259,13 @@ async function generate() {
     section(
       "Case studies",
       portfolioEntries.map((e) =>
-        link(e.title, `${SITE}/portfolio/${e.slug}`, e.summary || e.description),
+        link(e.title, `${SITE}${CONTENT_TYPES.portfolio.routePrefix}/${e.slug}`, e.summary || e.description),
       ),
     ),
     section(
       "Solutions",
       solutionEntries.map((e) =>
-        link(e.title, `${SITE}/solutions/${e.slug}`, e.summary || e.description),
+        link(e.title, `${SITE}${CONTENT_TYPES.solutions.routePrefix}/${e.slug}`, e.summary || e.description),
       ),
     ),
     section("Blog posts", blogLinks),
@@ -277,14 +279,14 @@ async function generate() {
   const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://invonicstechnologies.com/sitemap.xml
+Sitemap: ${SITE_URL}/sitemap.xml
 `;
   fs.writeFileSync(path.join(publicDir, "robots.txt"), robotsTxt);
 
   // 4. Generate rss.xml — sourced from the same Cosmic posts as the sitemap.
   let rssItems = "";
   blogPosts.forEach((post) => {
-    const link = `https://invonicstechnologies.com/blog/${post.slug}`;
+    const link = `${SITE_URL}/blog/${post.slug}`;
     const description = post.metadata?.excerpt ?? "";
     const pubDate = post.published_at
       ? new Date(post.published_at).toUTCString()
@@ -304,15 +306,15 @@ Sitemap: https://invonicstechnologies.com/sitemap.xml
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Invonics Technologies Blog</title>
-    <link>https://invonicstechnologies.com/blog</link>
+    <link>${SITE_URL}/blog</link>
     <description>Invonics Technologies builds vertical operating systems, custom web/app software, e-commerce, and brand design for African SMEs. Engineering Tomorrow, Today.</description>
     <language>en-us</language>
     <image>
-      <url>https://invonicstechnologies.com/logo.jpeg</url>
+      <url>${SITE_URL}/logo.jpeg</url>
       <title>Invonics Technologies</title>
-      <link>https://invonicstechnologies.com</link>
+      <link>${SITE_URL}</link>
     </image>
-    <atom:link href="https://invonicstechnologies.com/rss.xml" rel="self" type="application/rss+xml" />${rssItems}
+    <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml" />${rssItems}
   </channel>
 </rss>`;
 
