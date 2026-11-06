@@ -1,13 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
-import { getAllIndustries, getAllPortfolioItems } from "@/lib/content";
+import { getAllPortfolioItems } from "@/lib/content";
 
-// Plain crawlable links to every case study and industry page. The cinematic
+// Plain crawlable links to every case study. The cinematic
 // Work rail above is visual-only, so without this the deeper pages were only
-// reachable through /portfolio (and /solutions/restaurants not at all).
+// reachable through /portfolio.
 export function CaseStudyLinks() {
   const projects = getAllPortfolioItems();
-  const industries = getAllIndustries();
 
   return (
     <section className="relative border-t border-border/60 py-20">
@@ -38,16 +37,6 @@ export function CaseStudyLinks() {
           ))}
         </div>
         <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-          {industries.map((industry) => (
-            <Link
-              key={industry.slug}
-              to="/solutions/$slug"
-              params={{ slug: industry.slug }}
-              className="text-foreground/80 underline-offset-4 hover:text-primary hover:underline"
-            >
-              {industry.title} →
-            </Link>
-          ))}
           <Link
             to="/portfolio"
             className="text-foreground/80 underline-offset-4 hover:text-primary hover:underline"

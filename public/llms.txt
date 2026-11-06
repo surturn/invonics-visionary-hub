@@ -18,8 +18,10 @@
 ## Services
 - [Custom Software & Web Platforms](https://invonicstechnologies.com/services/custom-software-and-web-platforms): Custom websites, web apps and Android and iPhone apps built in Nairobi. M-Pesa payments, a private staging link and a full handover pack.
 
-## Solutions
-- [Restaurant & Hospitality Solutions](https://invonicstechnologies.com/solutions/restaurants): Custom restaurant software solutions by Invonics Technologies. Unify your POS, online ordering, and operations.
+## Blog posts
+- [Motion Grid: A New Paradigm for Animated Layouts](https://invonicstechnologies.com/blog/motion-grid-a-new-paradigm-for-animated-layouts): Motion grids combine the power of CSS Grid with fluid animations to create dynamic, visually compelling layouts that elevate user experience.
+- [Clean Architecture in Practice: Structuring a Scalable Backend](https://invonicstechnologies.com/blog/clean-architecture-scalable-backend): Layered boundaries keep your codebase adaptable. Here's how to apply clean architecture without the dogma.
+- [A Practical Guide to Building AI Features Without Overengineering](https://invonicstechnologies.com/blog/practical-guide-building-ai-features): AI doesn't have to mean massive infrastructure. Here's how to ship valuable AI features quickly and responsibly.
 
 ## Contact
 - Website: https://invonicstechnologies.com
