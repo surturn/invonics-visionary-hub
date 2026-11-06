@@ -15,6 +15,7 @@ const FeaturedSolutions = lazy(() =>
 import { Belief } from "@/components/site/Belief";
 import { About } from "@/components/site/About";
 import { Process } from "@/components/site/Process";
+import { CaseStudyLinks } from "@/components/site/CaseStudyLinks";
 
 const Services = lazy(() =>
   import("@/components/site/Services").then((m) => ({ default: m.Services })),
@@ -110,6 +111,7 @@ function Index() {
           <Suspense fallback={<SectionSpinner />}>
             <Work />
           </Suspense>
+          <CaseStudyLinks />
           <About />
           <Suspense fallback={<SectionSpinner />}>
             <Team />

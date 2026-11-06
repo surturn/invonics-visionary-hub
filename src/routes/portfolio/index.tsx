@@ -5,7 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { TiltCard } from "@/components/site/MotionSystem";
 import { Gallery } from "@/components/gallery/Gallery";
 import { FeaturedSolutions } from "@/components/site/FeaturedSolutions";
-import { getAllPortfolioItems } from "@/lib/content";
+import { getAllIndustries, getAllPortfolioItems } from "@/lib/content";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { absoluteUrl } from "@/lib/site";
 
@@ -29,13 +29,14 @@ export const Route = createFileRoute("/portfolio/")({
   loader: () => {
     return {
       projects: getAllPortfolioItems(),
+      industries: getAllIndustries(),
     };
   },
   component: PortfolioIndex,
 });
 
 function PortfolioIndex() {
-  const { projects } = Route.useLoaderData();
+  const { projects, industries } = Route.useLoaderData();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -90,6 +91,22 @@ function PortfolioIndex() {
                   </TiltCard>
                 </Link>
               </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+            <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
+              Industry solutions
+            </span>
+            {industries.map((industry) => (
+              <Link
+                key={industry.slug}
+                to="/solutions/$slug"
+                params={{ slug: industry.slug }}
+                className="text-foreground/80 underline-offset-4 hover:text-primary hover:underline"
+              >
+                {industry.title} →
+              </Link>
             ))}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect } from "react";
 import {
   Outlet,
   Link,
@@ -131,8 +132,22 @@ function RootShell({ children }: { children: React.ReactNode }) {
             __html: `function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"37fb9c571acf6d2eae2ac31a09d0eea5"})});`,
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2053067108744154');fbq('track','PageView');`,
+          }}
+        />
       </head>
       <body>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2053067108744154&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
         <OrganizationJsonLd />
         {children}
         <Scripts />
@@ -143,6 +158,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  // The pixel fires PageView on first load; fire it again on client-side navigations.
+  useEffect(() => {
+    let first = true;
+    return router.subscribe("onResolved", () => {
+      if (first) {
+        first = false;
+        return;
+      }
+      (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq?.("track", "PageView");
+    });
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
