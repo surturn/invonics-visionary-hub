@@ -22,7 +22,6 @@ export const BASE_ORGANIZATION_SCHEMA = {
     addressCountry: "KE",
   },
   telephone: "+254786669572",
-  email: "invonicstechnologies@gmail.com",
   founder: {
     "@type": "Person",
     name: FOUNDER_NAME,

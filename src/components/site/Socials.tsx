@@ -1,15 +1,7 @@
 import { Reveal } from "./Reveal";
-import { Instagram, Twitter, Facebook, Mail, Bot } from "lucide-react";
-import { WhatsAppIcon, WA_LINK } from "./FloatingWhatsApp";
+import { Instagram, Twitter, Facebook, Bot } from "lucide-react";
 
 const socials = [
-  {
-    name: "WhatsApp",
-    handle: "Chat now · ~5 min reply",
-    href: WA_LINK,
-    icon: <WhatsAppIcon className="h-5 w-5" />,
-    accent: "oklch(0.62 0.18 150)",
-  },
   {
     name: "Instagram",
     handle: "@invonicstechnologies",
@@ -37,13 +29,6 @@ const socials = [
     href: "https://www.facebook.com/invonicstechnologies",
     icon: <Facebook className="h-5 w-5" strokeWidth={1.6} />,
     accent: "oklch(0.55 0.2 250)",
-  },
-  {
-    name: "Email",
-    handle: "hello@invonics.tech",
-    href: "mailto:invonicstechnologies@gmail.com",
-    icon: <Mail className="h-5 w-5" strokeWidth={1.6} />,
-    accent: "oklch(0.7 0.16 80)",
   },
   {
     name: "Assistant",

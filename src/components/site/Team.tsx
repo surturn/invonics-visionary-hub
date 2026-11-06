@@ -1,5 +1,5 @@
 import { Reveal } from "./Reveal";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import t1 from "@/assets/IMG_9828.jpg";
 import t2 from "@/assets/finnly.jpeg";
 import t3 from "@/assets/sybil.jpeg";
@@ -12,7 +12,6 @@ const team = [
     imgH: 893,
     name: "Sydney Kamau",
     role: "Founder & Systems Lead",
-    email: "sydneykamau2005@gmail.com",
     linkedin: "https://www.linkedin.com/in/sydney-kamau-991b362a2",
     bio: "Engineers the studio's software architecture, infrastructure rollouts and client systems end-to-end.",
     span: "lg:col-span-5 lg:row-span-2",
@@ -23,7 +22,6 @@ const team = [
     imgH: 801,
     name: "Finnly Baraka",
     role: "Software Engineer",
-    email: "finnleybaraka@gmail.com",
     linkedin: "https://ke.linkedin.com/in/finnley-baraka-015b4a3b7",
     bio: "Designs and ships the school management tooling, internal automations and front-end systems.",
     span: "lg:col-span-4",
@@ -34,7 +32,6 @@ const team = [
     imgH: 1289,
     name: "Sybil Mutethya",
     role: "Brand & Interface Designer",
-    email: "sybillmutethya@gmail.com",
     linkedin: "https://www.linkedin.com/in/sybil-mutethya",
     bio: "Owns the visual language, including websites, identity systems and the studio's editorial direction.",
     span: "lg:col-span-3 lg:row-span-2",
@@ -45,7 +42,6 @@ const team = [
     imgH: 753,
     name: "Ian Mdogoo",
     role: "Operations & Client Success",
-    email: "ianroberts17030@gmail.com",
     linkedin: "https://www.linkedin.com/in/ian-roberts-01528340a",
     bio: "Coordinates deployments, school onboarding and the day-to-day rhythm of every engagement.",
     span: "lg:col-span-4",
@@ -117,13 +113,6 @@ export function Team() {
                     {m.bio}
                   </p>
                   <div className="mt-4 flex items-center gap-2">
-                    <a
-                      href={`mailto:${m.email}`}
-                      aria-label={`Email ${m.name} at ${m.email}`}
-                      className="grid h-8 w-8 place-items-center border border-border text-foreground/80 hover:text-primary hover:border-primary/60 transition-colors"
-                    >
-                      <Mail className="h-3.5 w-3.5" strokeWidth={1.6} />
-                    </a>
                     <a
                       href={m.linkedin}
                       target="_blank"

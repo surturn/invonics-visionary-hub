@@ -6,7 +6,6 @@ import { faqs } from "@/components/site/FAQ";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
 import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
-import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
 const TrustBar = lazy(() =>
   import("@/components/site/TrustBar").then((m) => ({ default: m.TrustBar })),
 );
@@ -16,6 +15,7 @@ const FeaturedSolutions = lazy(() =>
 import { Belief } from "@/components/site/Belief";
 import { About } from "@/components/site/About";
 import { Process } from "@/components/site/Process";
+import { CaseStudyLinks } from "@/components/site/CaseStudyLinks";
 
 const Services = lazy(() =>
   import("@/components/site/Services").then((m) => ({ default: m.Services })),
@@ -45,7 +45,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Invonics Technologies builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa. Get a free consultation.",
+          "Custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and East Africa. Get a free consultation.",
       },
       {
         name: "keywords",
@@ -98,22 +98,42 @@ function Index() {
         />
         <StructuredData type="FAQPage" data={buildFAQSchema(faqs)} />
         <Nav />
-        <FloatingWhatsApp />
         <main>
           <Hero />
           <Belief />
           <Process />
-          <Suspense fallback={<SectionSpinner />}><FeaturedSolutions /></Suspense>
-          <Suspense fallback={<SectionSpinner />}><Services /></Suspense>
-          <Suspense fallback={<SectionSpinner />}><Work /></Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <FeaturedSolutions />
+          </Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <Services />
+          </Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <Work />
+          </Suspense>
+          <CaseStudyLinks />
           <About />
-          <Suspense fallback={<SectionSpinner />}><Team /></Suspense>
-          <Suspense fallback={<SectionSpinner />}><Showcase /></Suspense>
-          <Suspense fallback={<SectionSpinner />}><TrustBar /></Suspense>
-          <Suspense fallback={<SectionSpinner />}><Vision /></Suspense>
-          <Suspense fallback={<SectionSpinner />}><Contact /></Suspense>
-          <Suspense fallback={<SectionSpinner />}><FAQ /></Suspense>
-          <Suspense fallback={<SectionSpinner />}><Socials /></Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <Team />
+          </Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <Showcase />
+          </Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <TrustBar />
+          </Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <Vision />
+          </Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <Contact />
+          </Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <FAQ />
+          </Suspense>
+          <Suspense fallback={<SectionSpinner />}>
+            <Socials />
+          </Suspense>
         </main>
         <Suspense fallback={<SectionSpinner />}>
           <Footer />
