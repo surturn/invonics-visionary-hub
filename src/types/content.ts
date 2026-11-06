@@ -23,6 +23,8 @@ export interface CaseStudy {
   demoUrl?: string;
   demoLabel?: string;
   demoInProgress?: boolean;
+  // Optional link from a case study to the matching /solutions/<slug> page.
+  relatedSolution?: { slug: string; label: string };
   // width/height optional for backward compat, but should be set for every
   // new screenshot — CLS-safe <img> attrs, not just a nice-to-have.
   screenshots?: { src: string; caption: string; width?: number; height?: number }[];
@@ -30,6 +32,26 @@ export interface CaseStudy {
   // Metadata & SEO
   metaDescription?: string;
   publishedAt?: string;
+}
+
+export interface ServicePageDetail {
+  /** H1 and search title for the dedicated page. */
+  headline: string;
+  /** Browser/search title, kept under 60 characters. */
+  seoTitle: string;
+  intro: string;
+  /** Who the service suits. */
+  suitedFor: string[];
+  /** What the client gets, each with a short explanation. */
+  offerings: { name: string; body: string }[];
+  /** Delivery steps in order. */
+  process: { name: string; body: string }[];
+  /** Things handed over at the end. */
+  deliverables: string[];
+  /** Honest limits: what is not promised or not included. */
+  boundaries: string[];
+  /** Existing case studies and solution pages to link to. */
+  related?: { href: string; label: string }[];
 }
 
 export interface ServicePage {
@@ -41,6 +63,8 @@ export interface ServicePage {
   benefits: string[];
   faqs?: { q: string; a: string }[];
   metaDescription?: string;
+  /** When present, the service gets its own page at /services/<slug>. */
+  page?: ServicePageDetail;
 }
 
 export interface IndustryPage {

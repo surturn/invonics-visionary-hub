@@ -139,6 +139,18 @@ function PortfolioDetail() {
                 </p>
               </Reveal>
             )}
+            {project.relatedSolution && (
+              <Reveal>
+                <Link
+                  to="/solutions/$slug"
+                  params={{ slug: project.relatedSolution.slug }}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/90 transition-colors hover:text-primary"
+                >
+                  {project.relatedSolution.label}
+                  <span aria-hidden>→</span>
+                </Link>
+              </Reveal>
+            )}
 
             {project.workflow && project.workflow.length > 0 && (
               <Reveal>

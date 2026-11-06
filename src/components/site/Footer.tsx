@@ -60,8 +60,25 @@ export function Footer() {
                 </a>
               </li>
               <li>
+                <a
+                  className="text-foreground/80 hover:text-foreground"
+                  href="/services/custom-software-and-web-platforms"
+                >
+                  Website & Mobile App Development
+                </a>
+              </li>
+              <li>
                 <Link className="text-foreground/80 hover:text-foreground" to="/portfolio">
                   Projects & Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-foreground/80 hover:text-foreground"
+                  to="/solutions/$slug"
+                  params={{ slug: "restaurants" }}
+                >
+                  Restaurant & Hospitality Solutions
                 </Link>
               </li>
               <li>

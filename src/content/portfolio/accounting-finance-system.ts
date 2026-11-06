@@ -61,7 +61,7 @@ export const accountingFinanceSystem: CaseStudy = {
   ],
   demoInProgress: true,
   metaDescription:
-    "KRA-compliant accounting for Kenyan sole proprietors and micro-businesses: income and expense tracking, automatic Turnover Tax, P&L and cash-flow reports.",
+    "KRA-compliant double-entry accounting for Kenyan sole proprietors and micro-businesses, with automatic Turnover Tax, P&L reports and a full audit trail.",
 };
 
 export default accountingFinanceSystem;
