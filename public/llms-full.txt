@@ -22,8 +22,10 @@
 - [Restaurant Management System](https://invonicstechnologies.com/portfolio/restaurant-management-system): This restaurant was running three separate systems, one for point-of-sale, one for online orders, and one for room bookings, so staff kept re-entering the same information three times. We built one system that replaced all three.
 - [School Asset & Inventory System](https://invonicstechnologies.com/portfolio/school-asset-inventory-system): Stops asset shrinkage before it costs you — a single system that tracks every device, automates depreciation, and holds every borrower accountable.
 
-## Solutions
-- [Restaurant & Hospitality Solutions](https://invonicstechnologies.com/solutions/restaurants): Unified digital ecosystems for restaurants, combining POS, online ordering, and operational management into a single platform.
+## Blog posts
+- [Motion Grid: A New Paradigm for Animated Layouts](https://invonicstechnologies.com/blog/motion-grid-a-new-paradigm-for-animated-layouts): Motion grids combine the power of CSS Grid with fluid animations to create dynamic, visually compelling layouts that elevate user experience.
+- [Clean Architecture in Practice: Structuring a Scalable Backend](https://invonicstechnologies.com/blog/clean-architecture-scalable-backend): Layered boundaries keep your codebase adaptable. Here's how to apply clean architecture without the dogma.
+- [A Practical Guide to Building AI Features Without Overengineering](https://invonicstechnologies.com/blog/practical-guide-building-ai-features): AI doesn't have to mean massive infrastructure. Here's how to ship valuable AI features quickly and responsibly.
 
 ## Contact
 - Website: https://invonicstechnologies.com
