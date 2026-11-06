@@ -1,4 +1,4 @@
-﻿import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect } from "react";
 import {
   Outlet,
@@ -75,14 +75,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Invonics Technologies â€” Engineering Tomorrow, Today." },
+      { title: "Invonics Technologies — Engineering Tomorrow, Today." },
       {
         name: "description",
         content:
           "Invonics Technologies engineers software, infrastructure, automation and brand systems for future-ready organizations.",
       },
       { name: "author", content: "Invonics Technologies" },
-      { property: "og:title", content: "Invonics Technologies â€” Engineering Tomorrow, Today." },
+      { property: "og:title", content: "Invonics Technologies — Engineering Tomorrow, Today." },
       {
         property: "og:description",
         content:
@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Invonics Technologies" },
       { property: "og:image", content: "/og-image.jpg" },
-      { property: "og:image:alt", content: "Invonics Technologies â€” Engineering Tomorrow, Today." },
+      { property: "og:image:alt", content: "Invonics Technologies — Engineering Tomorrow, Today." },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@invonics" },
       { name: "twitter:image", content: "/og-image.jpg" },
