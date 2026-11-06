@@ -31,7 +31,15 @@ export const schoolAssetInventorySystem: CaseStudy = {
     "Full audit trail on every action",
     "WCAG AA accessible interface",
   ],
-  technology: ["Django 5", "Django REST Framework", "PostgreSQL", "React 18", "TypeScript", "Celery", "Redis"],
+  technology: [
+    "Django 5",
+    "Django REST Framework",
+    "PostgreSQL",
+    "React 18",
+    "TypeScript",
+    "Celery",
+    "Redis",
+  ],
   results: [
     "A single source of truth for every school asset",
     "Loans and returns tracked end-to-end — no more unaccounted devices",
@@ -49,7 +57,7 @@ export const schoolAssetInventorySystem: CaseStudy = {
   demoUrl: "https://assetflow.invonicstechnologies.com/",
   demoLabel: "Try the live demo",
   metaDescription:
-    "A role-based school asset and inventory system — loan tracking, automated invoicing and a full audit trail for schools in Kenya and East Africa. Try the live demo.",
+    "School asset and inventory system with loan tracking, automated invoicing and a full audit trail for schools in Kenya and East Africa. Try the live demo.",
 };
 
 export default schoolAssetInventorySystem;

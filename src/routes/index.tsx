@@ -15,6 +15,7 @@ const FeaturedSolutions = lazy(() =>
 import { Belief } from "@/components/site/Belief";
 import { About } from "@/components/site/About";
 import { Process } from "@/components/site/Process";
+import { CaseStudyLinks } from "@/components/site/CaseStudyLinks";
 
 const Services = lazy(() =>
   import("@/components/site/Services").then((m) => ({ default: m.Services })),
@@ -44,7 +45,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Invonics Technologies builds custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and across East Africa. Get a free consultation.",
+          "Custom software, AI automation, web platforms and brand systems for businesses and schools in Nairobi, Kenya and East Africa. Get a free consultation.",
       },
       {
         name: "keywords",
@@ -110,6 +111,7 @@ function Index() {
           <Suspense fallback={<SectionSpinner />}>
             <Work />
           </Suspense>
+          <CaseStudyLinks />
           <About />
           <Suspense fallback={<SectionSpinner />}>
             <Team />
