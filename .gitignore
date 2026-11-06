@@ -35,3 +35,6 @@ dist-ssr
 # Agent/MCP tools
 .claude/
 .playwright-mcp/
+
+# graphify code graph (local)
+graphify-out/
