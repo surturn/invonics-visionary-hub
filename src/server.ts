@@ -31,7 +31,7 @@ function brandedErrorResponse(): Response {
 //
 // CSP hosts, cross-checked against what the site actually loads:
 //   - fonts.googleapis.com / fonts.gstatic.com: Google Fonts <link> in __root.tsx
-//   - tracker.metricool.com: analytics snippet injected in __root.tsx
+//   - tracker.metricool.com: analytics snippet injected in __root.tsx (script, XHR, and the c3po.jpg tracking pixel, hence img-src)
 //   - connect.facebook.net / www.facebook.com: Meta Pixel (script, beacon, noscript image) in __root.tsx
 //   - *.cosmicjs.com: blog cover images served from Cosmic's imgix CDN (src/routes/blog/index.tsx)
 const SECURITY_HEADERS: Record<string, string> = {
@@ -44,7 +44,7 @@ const SECURITY_HEADERS: Record<string, string> = {
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tracker.metricool.com https://connect.facebook.net",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data: https://*.cosmicjs.com https://www.facebook.com",
+    "img-src 'self' data: https://*.cosmicjs.com https://www.facebook.com https://tracker.metricool.com",
     "connect-src 'self' https://tracker.metricool.com https://www.facebook.com https://connect.facebook.net",
   ].join("; "),
 };
