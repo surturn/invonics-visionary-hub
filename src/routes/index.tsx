@@ -64,7 +64,11 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
     ],
-    links: [{ rel: "canonical", href: absoluteUrl("/") }],
+    links: [
+      { rel: "canonical", href: absoluteUrl("/") },
+      // Only the homepage renders the hero image, so only it preloads it.
+      { rel: "preload", as: "image", href: "/hero-bg.jpg", fetchPriority: "high" },
+    ],
   }),
   component: Index,
 });
