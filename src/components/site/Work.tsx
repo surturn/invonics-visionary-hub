@@ -4,7 +4,6 @@ import { TiltCard } from "./MotionSystem";
 import saas from "@/assets/project-saas.jpg";
 import school from "@/assets/project-school.jpg";
 import branding from "@/assets/project-branding.jpg";
-import rsvp from "@/assets/project-rsvp.webp";
 
 const projects = [
   {
@@ -33,15 +32,6 @@ const projects = [
     title: "Invonics Brand System",
     sub: "Logo, type, motion and the editorial language you're reading right now, built in-house and applied across every touchpoint.",
     metric: "v2026.05",
-  },
-  {
-    img: rsvp,
-    imgW: 1024,
-    imgH: 1024,
-    tag: "Event Tech · Platform",
-    title: "Digital RSVP & Ticketing",
-    sub: "A custom event management platform with QR-code invitations and M-Pesa integrated guest payments for corporate and social events.",
-    metric: "12k+ check-ins",
   },
 ];
 
