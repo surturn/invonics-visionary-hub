@@ -79,7 +79,7 @@ function BlogIndex() {
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post, i) => (
                 <Reveal key={post.id} delay={i * 80}>
-                  <PostCard post={post} />
+                  <PostCard post={post} priority={i === 0} />
                 </Reveal>
               ))}
             </div>
@@ -99,7 +99,7 @@ function BlogIndex() {
   );
 }
 
-function PostCard({ post }: { post: Post }) {
+function PostCard({ post, priority = false }: { post: Post; priority?: boolean }) {
   const cover = post.metadata.cover_image?.imgix_url;
   const initials =
     post.title
@@ -118,9 +118,13 @@ function PostCard({ post }: { post: Post }) {
       <div className="relative aspect-video overflow-hidden bg-secondary/40">
         {cover ? (
           <img
-            src={`${cover}?w=800&auto=format`}
+            src={`${cover}?w=800&auto=format,compress`}
+            srcSet={`${cover}?w=400&auto=format,compress 400w, ${cover}?w=800&auto=format,compress 800w`}
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             alt={post.title}
-            loading="lazy"
+            // The first card is the LCP element on /blog: load it right away, the rest lazily.
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : undefined}
             decoding="async"
             width={800}
             height={450}
