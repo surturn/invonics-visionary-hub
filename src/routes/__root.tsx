@@ -127,16 +127,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
             __html: `(function(){try{var t=localStorage.getItem('invonics-theme');if(t!=='light')t='dark';document.documentElement.className=t;}catch(e){document.documentElement.className='dark';}})();`,
           }}
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"37fb9c571acf6d2eae2ac31a09d0eea5"})});`,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1586978133200396');fbq('track','PageView');`,
-          }}
-        />
       </head>
       <body>
         <noscript>
@@ -156,9 +146,40 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Vendor tracking snippets, unchanged. They used to be inline <script> tags in <head>, but each
+// one inserts another <script> into <head> while the page is still parsing, so React's hydration
+// found nodes it did not render (a hydration mismatch, logged as a console error). They also
+// competed with the hero image for bandwidth. They now run once, after the window load event.
+const METRICOOL_SNIPPET = `function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"37fb9c571acf6d2eae2ac31a09d0eea5"})});`;
+const META_PIXEL_SNIPPET = `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1586978133200396');fbq('track','PageView');`;
+
+let trackersLoaded = false;
+
+function runInlineScript(code: string) {
+  const el = document.createElement("script");
+  el.textContent = code;
+  document.body.appendChild(el);
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
+
+  // Load the trackers after hydration and after the page has loaded, never during parsing.
+  useEffect(() => {
+    const load = () => {
+      if (trackersLoaded) return; // StrictMode runs effects twice in dev
+      trackersLoaded = true;
+      runInlineScript(METRICOOL_SNIPPET);
+      runInlineScript(META_PIXEL_SNIPPET);
+    };
+    if (document.readyState === "complete") {
+      load();
+      return;
+    }
+    window.addEventListener("load", load, { once: true });
+    return () => window.removeEventListener("load", load);
+  }, []);
 
   // The pixel fires PageView on first load; fire it again on client-side navigations.
   useEffect(() => {
