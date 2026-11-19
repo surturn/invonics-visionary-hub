@@ -10,9 +10,6 @@
 - [Contact](https://invonicstechnologies.com/contact): Send an inquiry to the team
 
 ## Case studies
-- [Accounting & Finance System](https://invonicstechnologies.com/portfolio/accounting-finance-system): KRA-compliant double-entry accounting for Kenyan sole proprietors and micro-businesses, with automatic Turnover Tax, P&L reports and a full audit trail.
-- [Event RSVP Automation Platform](https://invonicstechnologies.com/portfolio/event-rsvp-automation): Read the case study on how Invonics Technologies built an automated Event RSVP platform to streamline guest management and event check-ins.
-- [Restaurant Management System](https://invonicstechnologies.com/portfolio/restaurant-management-system): Discover how Invonics Technologies is building a unified Restaurant Management System integrating POS, online ordering, and room bookings.
 - [School Asset & Inventory System](https://invonicstechnologies.com/portfolio/school-asset-inventory-system): A role-based school asset and inventory system with loan tracking, automated invoicing and an audit trail for schools in Kenya. Try the live demo.
 
 ## Services

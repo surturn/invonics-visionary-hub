@@ -17,9 +17,6 @@
 - SEO & Digital Visibility: Search-first content systems and technical SEO that build organic traffic and compound your Google rankings over time.
 
 ## Case studies
-- [Accounting & Finance System](https://invonicstechnologies.com/portfolio/accounting-finance-system): Real-time financial visibility for growing operations. Move past fragmented spreadsheets with automated reconciliation, custom reporting, and instant cash flow insights.
-- [Event RSVP Automation Platform](https://invonicstechnologies.com/portfolio/event-rsvp-automation): Event organizers were losing hours to spreadsheet RSVP tracking. We built a system that handles the whole guest list automatically, from invite to check-in.
-- [Restaurant Management System](https://invonicstechnologies.com/portfolio/restaurant-management-system): This restaurant was running three separate systems, one for point-of-sale, one for online orders, and one for room bookings, so staff kept re-entering the same information three times. We built one system that replaced all three.
 - [School Asset & Inventory System](https://invonicstechnologies.com/portfolio/school-asset-inventory-system): Stops asset shrinkage before it costs you — a single system that tracks every device, automates depreciation, and holds every borrower accountable.
 
 ## Blog posts

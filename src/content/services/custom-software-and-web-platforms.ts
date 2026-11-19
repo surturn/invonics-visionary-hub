@@ -111,12 +111,10 @@ export const service: ServicePage = {
       "New features after launch are quoted separately.",
     ],
     related: [
-      { href: "/portfolio/restaurant-management-system", label: "Restaurant Management System" },
       {
         href: "/portfolio/school-asset-inventory-system",
         label: "School Asset & Inventory System",
       },
-      { href: "/portfolio/accounting-finance-system", label: "Accounting & Finance System" },
     ],
   },
 };

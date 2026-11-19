@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 import registryShot from "@/assets/work/school-asset-registry.jpg";
-import accountingShot from "@/assets/work/accounting-hero.jpg";
+import lucklotterShot from "@/assets/work/lucklotter-overview.webp";
 
 type FeaturedSolution = {
   id: string;
@@ -14,10 +14,12 @@ type FeaturedSolution = {
   imgH: number;
   imgAlt: string;
   reverse: boolean;
-  // Either a live demo link, or a case-study link + an in-progress note — not both.
-  demoUrl?: string;
+  // In-page anchor, so old URLs can redirect straight to this solution.
+  anchor?: string;
   caseStudySlug?: string;
-  demoInProgress?: boolean;
+  // Invite-only products link to their early-access form instead of a demo.
+  earlyAccessUrl?: string;
+  imgNote?: string;
 };
 
 const solutions: FeaturedSolution[] = [
@@ -32,22 +34,23 @@ const solutions: FeaturedSolution[] = [
     imgW: 1000,
     imgH: 625,
     imgAlt: "AssetFlow asset registry dashboard — Invonics Technologies",
-    demoUrl: "https://assetflow.invonicstechnologies.com/",
+    caseStudySlug: "school-asset-inventory-system",
     reverse: false,
   },
   {
     id: "02",
-    tag: "Finance · Invonics Accounting",
-    title: "Know your numbers. File on time, every time.",
+    tag: "Client Engagement · LuckLotter",
+    title: "Bring your regulars back before they drift away.",
     pitch:
-      "Most small business owners in Kenya track their finances through M-Pesa messages, paper receipts and memory. They have no real sense of whether they're actually making money, and tax season is a scramble. Invonics Accounting gives them a simple, always-up-to-date view of income, expenses and profit, and handles their KRA tax obligations automatically in the background. The result is business owners who finally know their numbers, file on time without stress, and never need to hire an accountant to do it.",
-    metric: "Always tax-ready · zero late filings",
-    img: accountingShot,
-    imgW: 1000,
-    imgH: 563,
-    imgAlt: "Invonics Accounting dashboard — Invonics Technologies",
-    caseStudySlug: "accounting-finance-system",
-    demoInProgress: true,
+      "Every business has regulars who quietly stop coming, and most owners only notice months later. LuckLotter learns each customer's normal visit rhythm from your sales or booking records, flags the regulars who have gone quiet, and lines up a win-back offer for each one, ready to send by SMS or WhatsApp. Your team redeems the offer at the till, and the dashboard shows exactly who came back. Built first for salons, barbershops and spas, and now opening to cafes, restaurants and food joints.",
+    metric: "Beauty and food businesses · invite-only pilot",
+    img: lucklotterShot,
+    imgW: 1400,
+    imgH: 778,
+    imgAlt: "LuckLotter dashboard showing how many flagged regulars came back after an offer",
+    imgNote: "Demo business and data",
+    anchor: "lucklotter",
+    earlyAccessUrl: "https://lucklotter.vercel.app/pilot?src=invonics-site",
     reverse: true,
   },
 ];
@@ -80,75 +83,74 @@ export function FeaturedSolutions() {
 
         <div className="mt-20 space-y-24 md:mt-28 md:space-y-32">
           {solutions.map((s) => (
-            <Reveal
-              key={s.id}
-              className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14"
-            >
-              <div className={s.reverse ? "md:order-2" : ""}>
-                {s.img ? (
-                  <div className="relative overflow-hidden rounded-2xl border border-border/60 shadow-card">
-                    <img
-                      src={s.img}
-                      alt={s.imgAlt}
-                      loading="lazy"
-                      decoding="async"
-                      width={s.imgW}
-                      height={s.imgH}
-                      className="h-full w-full object-cover object-top"
-                    />
-                  </div>
-                ) : (
-                  <div className="relative grid aspect-[16/10] place-items-center overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-secondary/70 via-background to-background">
-                    <div className="absolute -right-10 -top-12 h-44 w-44 rounded-full bg-primary/25 blur-3xl" />
-                    <div className="absolute -bottom-14 -left-8 h-44 w-44 rounded-full bg-primary/10 blur-3xl" />
-                    <span className="relative select-none font-display text-6xl font-semibold text-gradient">
-                      {monogram(s.tag)}
-                    </span>
-                  </div>
-                )}
-              </div>
+            <div key={s.id} id={s.anchor} className="scroll-mt-28">
+              <Reveal className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
+                <div className={s.reverse ? "md:order-2" : ""}>
+                  {s.img ? (
+                    <div className="relative overflow-hidden rounded-2xl border border-border/60 shadow-card">
+                      <img
+                        src={s.img}
+                        alt={s.imgAlt}
+                        loading="lazy"
+                        decoding="async"
+                        width={s.imgW}
+                        height={s.imgH}
+                        className="h-full w-full object-cover object-top"
+                      />
+                      {s.imgNote && (
+                        <span className="absolute bottom-3 right-3 rounded-full bg-background/80 px-3 py-1 text-[11px] text-muted-foreground backdrop-blur">
+                          {s.imgNote}
+                        </span>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="relative grid aspect-[16/10] place-items-center overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-secondary/70 via-background to-background">
+                      <div className="absolute -right-10 -top-12 h-44 w-44 rounded-full bg-primary/25 blur-3xl" />
+                      <div className="absolute -bottom-14 -left-8 h-44 w-44 rounded-full bg-primary/10 blur-3xl" />
+                      <span className="relative select-none font-display text-6xl font-semibold text-gradient">
+                        {monogram(s.tag)}
+                      </span>
+                    </div>
+                  )}
+                </div>
 
-              <div className={s.reverse ? "md:order-1" : ""}>
-                <div className="label-mono mb-4">
-                  § {s.id} / {s.tag}
-                </div>
-                <h3 className="font-display text-3xl leading-[1.06] text-foreground md:text-4xl">
-                  {s.title}
-                </h3>
-                <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
-                  {s.pitch}
-                </p>
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <span className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-primary">
-                    {s.metric}
-                  </span>
-                  {s.demoUrl && (
-                    <a
-                      href={s.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-semibold text-foreground/90 hover:text-primary transition-colors"
-                    >
-                      Try the live demo ↗
-                    </a>
-                  )}
-                  {s.caseStudySlug && (
-                    <Link
-                      to="/portfolio/$slug"
-                      params={{ slug: s.caseStudySlug }}
-                      className="text-sm font-semibold text-foreground/90 hover:text-primary transition-colors"
-                    >
-                      View case study →
-                    </Link>
-                  )}
-                </div>
-                {s.demoInProgress && (
-                  <p className="mt-3 text-xs italic text-muted-foreground/70">
-                    Currently being rebuilt as a dedicated app, so the live demo is temporarily unavailable.
+                <div className={s.reverse ? "md:order-1" : ""}>
+                  <div className="label-mono mb-4">
+                    § {s.id} / {s.tag}
+                  </div>
+                  <h3 className="font-display text-3xl leading-[1.06] text-foreground md:text-4xl">
+                    {s.title}
+                  </h3>
+                  <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {s.pitch}
                   </p>
-                )}
-              </div>
-            </Reveal>
+                  <div className="mt-6 flex flex-wrap items-center gap-4">
+                    <span className="rounded-full bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-primary">
+                      {s.metric}
+                    </span>
+                    {s.earlyAccessUrl && (
+                      <a
+                        href={s.earlyAccessUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold text-foreground/90 hover:text-primary transition-colors"
+                      >
+                        Request early access ↗
+                      </a>
+                    )}
+                    {s.caseStudySlug && (
+                      <Link
+                        to="/portfolio/$slug"
+                        params={{ slug: s.caseStudySlug }}
+                        className="text-sm font-semibold text-foreground/90 hover:text-primary transition-colors"
+                      >
+                        View case study →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </Reveal>
+            </div>
           ))}
         </div>
       </div>

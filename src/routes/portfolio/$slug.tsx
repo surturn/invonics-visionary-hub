@@ -1,4 +1,4 @@
-import { createFileRoute, notFound, Link } from "@tanstack/react-router";
+import { createFileRoute, notFound, redirect, Link } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
@@ -7,7 +7,20 @@ import { StructuredData, buildCreativeWorkSchema } from "@/components/seo/Struct
 import { absoluteUrl } from "@/lib/site";
 import { generateBreadcrumbSchema } from "@/lib/schema";
 
+// Case studies for systems Invonics no longer offers. Each old URL 301s to the
+// closest live page so its search value is kept instead of returning 404.
+// Restaurants go to the LuckLotter section, which now serves food businesses.
+const RETIRED_PORTFOLIO: Record<string, string> = {
+  "accounting-finance-system": "/portfolio",
+  "event-rsvp-automation": "/portfolio",
+  "restaurant-management-system": "/#lucklotter",
+};
+
 export const Route = createFileRoute("/portfolio/$slug")({
+  beforeLoad: ({ params }) => {
+    const target = RETIRED_PORTFOLIO[params.slug];
+    if (target) throw redirect({ href: target, statusCode: 301 });
+  },
   loader: ({ params }) => {
     const project = getPortfolioBySlug(params.slug);
     if (!project) {
@@ -215,7 +228,10 @@ function PortfolioDetail() {
                 <h2 className="mb-6 font-display text-3xl text-foreground">Screenshots</h2>
                 <div className="grid grid-cols-1 gap-6">
                   {project.screenshots.map((shot) => (
-                    <figure key={shot.src} className="overflow-hidden rounded-2xl border border-border/60">
+                    <figure
+                      key={shot.src}
+                      className="overflow-hidden rounded-2xl border border-border/60"
+                    >
                       <img
                         src={shot.src}
                         alt={shot.caption}
