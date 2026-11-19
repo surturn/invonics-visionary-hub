@@ -63,7 +63,6 @@ function ServiceLandingPage() {
     },
     generateBreadcrumbSchema([
       { name: "Home", item: absoluteUrl("/") },
-      { name: "Services", item: absoluteUrl("/#services") },
       { name: service.title, item: url },
     ]),
   ];
