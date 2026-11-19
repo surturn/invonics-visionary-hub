@@ -106,7 +106,8 @@ function BlogPost() {
 
             {post.published_at && (
               <time className="mt-6 block text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                {new Date(post.published_at).toLocaleDateString(undefined, {
+                {new Date(post.published_at).toLocaleDateString("en-GB", {
+                  timeZone: "Africa/Nairobi",
                   year: "numeric",
                   month: "long",
                   day: "numeric",

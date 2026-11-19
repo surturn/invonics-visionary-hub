@@ -142,7 +142,8 @@ function PostCard({ post }: { post: Post }) {
       <div className="flex flex-1 flex-col p-6">
         {post.published_at && (
           <time className="text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            {new Date(post.published_at).toLocaleDateString(undefined, {
+            {new Date(post.published_at).toLocaleDateString("en-GB", {
+              timeZone: "Africa/Nairobi",
               year: "numeric",
               month: "short",
               day: "numeric",
